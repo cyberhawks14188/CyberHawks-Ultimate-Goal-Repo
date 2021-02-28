@@ -7,7 +7,6 @@ import org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses.DirectionCalcCla
 import org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses.SpeedClass;
 import org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses.TurnControl;
 import org.firstinspires.ftc.teamcode.RobotHardware;
-import org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses.Odometry;
 
 @Autonomous
 

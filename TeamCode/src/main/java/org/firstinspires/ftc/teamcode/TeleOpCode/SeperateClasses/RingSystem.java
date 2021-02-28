@@ -9,7 +9,6 @@ public class RingSystem {
     double stagerPower;
     double stopperSet;
     public void RingSystemControl(boolean gpadA, boolean gpadB, double colorSensor1, double colorSensor2, double colorSensor3, boolean gpadback){
-
         //uses a Finite State Machine to turn the intake and stager motors on or off and set the position of the stopper servo
         //to set what state the FSM is in, we use our 1 button function, The function uses a boolean to tell us if the button was pressed last loop cycle
         //if the button was't and it is now: change the state we are in, Then repeat until the program shuts off
@@ -54,6 +53,7 @@ public class RingSystem {
             intakePower = 1;
         }
     }
+    //Method to use the intake/stager in autonomous
     public void RingSystemAuto(double ringSystemFSM, double colorSensor1, double colorSensor2, double colorSensor3){
         //uses a Finite State Machine to turn the intake and stager motors on or off and set the position of the stopper servo
         //stage 0 shuts all motors off and this stager is starting stage

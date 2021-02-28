@@ -1,6 +1,4 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
-import android.graphics.Path;
-import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -14,8 +12,6 @@ import org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses.TurnControl;
 import org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses.DirectionCalcClass;
 import org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses.SpeedClass;
 import org.firstinspires.ftc.teamcode.RobotHardware;
-import org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses.Odometry;
-import org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses.WobbleGoalArm;
 
 import java.util.List;
 

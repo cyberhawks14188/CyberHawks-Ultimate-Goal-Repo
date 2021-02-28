@@ -24,7 +24,7 @@ public class MultiClassTeleop extends LinearOpMode {
         //Calling upon the HardwareMap and other classes
         RobotHardware robot = new RobotHardware();
         robot.init(hardwareMap);
-//assigning stating types for sensors
+        //setting gain on color sensors
         robot.Ring1_CS.setGain(10);
         robot.Ring2_CS.setGain(10);
         robot.Ring3_CS.setGain(10);

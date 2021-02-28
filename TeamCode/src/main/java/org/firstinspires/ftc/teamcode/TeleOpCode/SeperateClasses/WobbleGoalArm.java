@@ -60,6 +60,7 @@ public class WobbleGoalArm {
         wobbleError = wobbleSet - wbpt;
         wobblePower = wobbleError * wobbleProportionalMulitplier;
     }
+    //method to use the wobble goal arm in autonomous
     public void WobbleAuto(double wbpt, double wobbleEndSet, double gripperset){
         //This slowly brings the arm to the endsetpoint to ensure little wear from arm bannging on the wheels
         if (wobbleEndSet > wobbleSet + .08) {
