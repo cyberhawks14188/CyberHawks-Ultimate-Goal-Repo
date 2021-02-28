@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class EncoderReading extends LinearOpMode {
     RobotHardware robot = new RobotHardware();
     public void runOpMode() {
+        //Ints hardware
         robot.init(hardwareMap);
         //Resets Encoders
         robot.LF_M.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
