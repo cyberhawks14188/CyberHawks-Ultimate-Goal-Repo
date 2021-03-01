@@ -7,10 +7,11 @@ import org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses.DirectionCalcCla
 import org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses.SpeedClass;
 import org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses.TurnControl;
 import org.firstinspires.ftc.teamcode.RobotHardware;
+import org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses.Odometry;
 
 @Autonomous
 
-public class BlueAuto1 extends LinearOpMode {
+public class Movement extends LinearOpMode {
     RobotHardware robot = new RobotHardware();
 
     SpeedClass SpeedClass = new SpeedClass();
@@ -72,7 +73,7 @@ public class BlueAuto1 extends LinearOpMode {
         }
         public void Movement ( double endpointx, double endpointy, double thetasetpoint,
         double targetspeed, double accelerationdistance, double deccelerationdistance){
-            OdoClass.OdometryCalc(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition(), getRuntime());
+            OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
             DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
             SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn());
             SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);

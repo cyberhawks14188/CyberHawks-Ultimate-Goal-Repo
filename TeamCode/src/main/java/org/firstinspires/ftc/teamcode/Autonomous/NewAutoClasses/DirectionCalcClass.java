@@ -29,10 +29,11 @@ public class DirectionCalcClass {
     double ysetpoint;
     double endPointX;
     double endPointY;
-    double yPM = .001;
-    double yDM = .006;
-    double xPM = .001;
-    double xDM = .006;
+    double purePurusitDistance = .8;
+    double yPM = .0005;
+    double yDM = .0009;
+    double xPM = .0005;
+    double xDM = .0009;
     public void DirectionCalc(double startpointx, double startpointy, double endpointx, double endpointy, double odoX, double odoY, double theta){
         endPointX = endpointx;
         endPointY = endpointy;
@@ -44,8 +45,8 @@ public class DirectionCalcClass {
         distanceFrom = Math.hypot(distanceFromEndX, distanceFromEndY);
         //Y PD
 
-        xsetpoint = endpointx - (((distanceFrom-1)*(endpointx-startpointx))/distance);
-        ysetpoint = endpointy - (((distanceFrom-1)*(endpointy-startpointy))/distance);
+        xsetpoint = endpointx - (((distanceFrom-purePurusitDistance)*(endpointx-startpointx))/distance);
+        ysetpoint = endpointy - (((distanceFrom-purePurusitDistance)*(endpointy-startpointy))/distance);
         if(startpointx == endpointx){
             xsetpoint = endpointx;
         }
@@ -66,6 +67,10 @@ public class DirectionCalcClass {
         xDerivitive = (xError - xLastError) * xDM;
         xLastError = xError;
         x = xPorportional + xDerivitive;
+        if(distanceFrom <= purePurusitDistance){
+            xsetpoint = endpointx;
+            ysetpoint = endpointy;
+        }
         if(distanceFrom <= .15){
             x = 0;
             y = 0;
