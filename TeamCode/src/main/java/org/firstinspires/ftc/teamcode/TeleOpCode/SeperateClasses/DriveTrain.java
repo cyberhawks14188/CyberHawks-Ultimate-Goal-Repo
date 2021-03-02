@@ -11,7 +11,7 @@ public class DriveTrain {
     public void DriveBase(double x, double y, double z, boolean gpadRightBumper){//parameters to get gamepad buttons to figure out where we want to go
         //Slows down drivebase if the right bumper is pressed for accurate movements if needed
         if (gpadRightBumper) {
-            speedSetPoint = .5;
+            speedSetPoint = .4;
         } else {
             speedSetPoint = 1;
         }

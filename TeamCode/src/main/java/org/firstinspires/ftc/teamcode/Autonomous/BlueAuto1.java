@@ -16,7 +16,7 @@ public class BlueAuto1 extends LinearOpMode {
     SpeedClass SpeedClass = new SpeedClass();
     DirectionCalcClass DirectionClass = new DirectionCalcClass();
     TurnControl TurnControl = new TurnControl();
-    Odometry OdoClass = new Odometry();
+   // Odometry OdoClass = new Odometry();
     double breakout;
     double startPointX;
     double startPointY;
@@ -40,8 +40,8 @@ public class BlueAuto1 extends LinearOpMode {
 
         StopMotors();
         sleep(250);
-        startPointX = OdoClass.odoXReturn();
-        startPointY = OdoClass.odoYReturn();
+        //startPointX = OdoClass.odoXReturn();
+       // startPointY = OdoClass.odoYReturn();
         breakout = 1;
         //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
         while ((DirectionClass.distanceFromReturn() >= 1 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
@@ -57,9 +57,9 @@ public class BlueAuto1 extends LinearOpMode {
 
 
         public void Telemetry () {
-            telemetry.addData("Odo X", OdoClass.odoXReturn());
-            telemetry.addData("Odo Y", OdoClass.odoYReturn());
-            telemetry.addData("Theta Angle", OdoClass.thetaInDegreesReturn());
+           // telemetry.addData("Odo X", OdoClass.odoXReturn());
+            //telemetry.addData("Odo Y", OdoClass.odoYReturn());
+           // telemetry.addData("Theta Angle", OdoClass.thetaInDegreesReturn());
             telemetry.addData("Distance", DirectionClass.distanceReturn());
             telemetry.addData("Distance From", DirectionClass.distanceFromReturn());
             telemetry.addData("Speed", SpeedClass.SpeedReturn());
@@ -72,11 +72,11 @@ public class BlueAuto1 extends LinearOpMode {
         }
         public void Movement ( double endpointx, double endpointy, double thetasetpoint,
         double targetspeed, double accelerationdistance, double deccelerationdistance){
-            OdoClass.OdometryCalc(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition(), getRuntime());
-            DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
-            SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn());
-            SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);
-            TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 1);
+       //     OdoClass.OdometryCalc(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition(), getRuntime());
+        ///    DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
+        //    SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn());
+        //    SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);
+        //    TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 1);
             telemetry.addData("Speed Setpoint", SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn()));
         }
         public void PowerSetting () {

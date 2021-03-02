@@ -23,8 +23,8 @@ public class BlueAuto extends LinearOpMode {
     SpeedClass SpeedClass = new SpeedClass();
     DirectionCalcClass DirectionClass = new DirectionCalcClass();
     TurnControl TurnControl = new TurnControl();
-    Odometry OdoClass = new Odometry();
-    WobbleGoalArm Wobble = new WobbleGoalArm();
+    //Odometry OdoClass = new Odometry();
+    //WobbleGoalArm Wobble = new WobbleGoalArm();
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
@@ -90,7 +90,7 @@ public class BlueAuto extends LinearOpMode {
         //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
         while ((DirectionClass.distanceFromReturn() >= 1 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
             Movement(47, 18, 0, 30, 6, 9);
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .6,.1 );
+            //Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .6,.1 );
             Telemetry();
             PowerSetting();
             breakout = 0;
@@ -98,8 +98,8 @@ public class BlueAuto extends LinearOpMode {
 
         StopMotors();
         sleep(250);
-        startPointX = OdoClass.odoXReturn();
-        startPointY = OdoClass.odoYReturn();
+        //startPointX = OdoClass.odoXReturn();
+        //startPointY = OdoClass.odoYReturn();
         breakout = 1;
         if (Detected == 0) {
             //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
@@ -122,8 +122,8 @@ public class BlueAuto extends LinearOpMode {
 
         StopMotors();
         sleep(250);
-        startPointX = OdoClass.odoXReturn();
-        startPointY = OdoClass.odoYReturn();
+        //startPointX = OdoClass.odoXReturn();
+        //startPointY = OdoClass.odoYReturn();
         breakout = 1;
         if (Detected == 2) {
             //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
@@ -143,10 +143,10 @@ public class BlueAuto extends LinearOpMode {
         while (breakout != 0) {
             Movement(startPointX, startPointY, 0, 45, 6, 9);
             if(robot.WB_PT.getVoltage() >= 2){
-                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 2.1, .1);
+               // Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 2.1, .1);
             }
             else{
-                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 2.1, .65);
+               // Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 2.1, .65);
                 breakout = 0;
             }
             Telemetry();
@@ -154,26 +154,26 @@ public class BlueAuto extends LinearOpMode {
         }
         StopMotors();
         sleep(500);
-        startPointX = OdoClass.odoXReturn();
-        startPointY = OdoClass.odoYReturn();
+        //startPointX = OdoClass.odoXReturn();
+        //startPointY = OdoClass.odoYReturn();
         while ((DirectionClass.distanceFromReturn() >= 1 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
             Movement(60, -16, 0, 30, 6, 9);
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 3.5, .1);
+         //   Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 3.5, .1);
             Telemetry();
             PowerSetting();
             breakout = 0;
         }
         StopMotors();
         sleep(250);
-        startPointX = OdoClass.odoXReturn();
-        startPointY = OdoClass.odoYReturn();
+     //   startPointX = OdoClass.odoXReturn();
+     //   startPointY = OdoClass.odoYReturn();
         breakout = 1;
 
     }
         public void Telemetry () {
-            telemetry.addData("Odo X", OdoClass.odoXReturn());
-            telemetry.addData("Odo Y", OdoClass.odoYReturn());
-            telemetry.addData("Theta Angle", OdoClass.thetaInDegreesReturn());
+      // //     telemetry.addData("Odo X", OdoClass.odoXReturn());
+      //      telemetry.addData("Odo Y", OdoClass.odoYReturn());
+         //   telemetry.addData("Theta Angle", OdoClass.thetaInDegreesReturn());
             telemetry.addData("Distance", DirectionClass.distanceReturn());
             telemetry.addData("Distance From", DirectionClass.distanceFromReturn());
             telemetry.addData("Speed", SpeedClass.SpeedReturn());
@@ -186,11 +186,11 @@ public class BlueAuto extends LinearOpMode {
         }
         public void Movement ( double endpointx, double endpointy, double thetasetpoint,
         double targetspeed, double accelerationdistance, double deccelerationdistance){
-            OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
-            DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
-            SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn());
-            SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);
-            TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 1);
+       //     OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
+        //    DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
+        //    SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn());
+        //    SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);
+       //     TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 1);
             telemetry.addData("Speed Setpoint", SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn()));
         }
         public void PowerSetting () {
@@ -198,8 +198,8 @@ public class BlueAuto extends LinearOpMode {
             robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .15));
             robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.speed + .15));
             robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.speed + .15));
-            robot.WB_M.setPower(Wobble.wobblePowerReturn());
-            robot.GRIP_S.setPosition(Wobble.gripperSetReturn());
+        //    robot.WB_M.setPower(Wobble.wobblePowerReturn());
+         //   robot.GRIP_S.setPosition(Wobble.gripperSetReturn());
         }
         public void StopMotors () {
             robot.LF_M.setPower(0);
