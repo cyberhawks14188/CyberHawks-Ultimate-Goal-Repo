@@ -27,7 +27,7 @@ public class SpeedClass {
             positionErrorY = Math.abs(odoY - lastOdoY);
             lastOdoX = odoX;
             lastOdoY = odoY;
-            //Finds the hypotenuse/distance traveled
+            //Finds the hypotenuse/distance traveled in loop cycle
             distanceDelta = Math.hypot(positionErrorX, positionErrorY);
             //Find the robots in/s
             speedCurrent = distanceDelta / (time - timePrevious);

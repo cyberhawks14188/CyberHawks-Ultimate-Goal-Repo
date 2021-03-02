@@ -29,7 +29,7 @@ public class DirectionCalcClass {
     double ysetpoint;
     double endPointX;
     double endPointY;
-    double purePurusitDistance = .8;
+    double purePurusitDistance = 1.1;
     double yPM = .0005;
     double yDM = .0009;
     double xPM = .0005;
