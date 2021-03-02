@@ -12,8 +12,8 @@ public class SpeedClass {
     double speedLastError;
     double speedError;
     double speedPorportional;
-    double speedPM = .0047;
-    double speedDM = .035;
+    double speedPM = .001;
+    double speedDM = .005;
     double speedDerivative;
 
     public double speed;
@@ -27,7 +27,7 @@ public class SpeedClass {
             positionErrorY = Math.abs(odoY - lastOdoY);
             lastOdoX = odoX;
             lastOdoY = odoY;
-            //Finds the hypotenuse/distance traveled
+            //Finds the hypotenuse/distance traveled in loop cycle
             distanceDelta = Math.hypot(positionErrorX, positionErrorY);
             //Find the robots in/s
             speedCurrent = distanceDelta / (time - timePrevious);
