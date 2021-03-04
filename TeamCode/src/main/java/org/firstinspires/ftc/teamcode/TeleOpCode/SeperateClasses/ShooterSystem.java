@@ -77,7 +77,8 @@ public class ShooterSystem {
     public void ShooterControlAuto(double shootermotorcurrent, double runtime, double sotanglecurrent, double shootersetpoint, double sotangleset) {
         //Shooter Angle PID Loop follow the setpoint set above
         SOTAngleError = sotangleset - sotanglecurrent;
-        SOTAnglePower = (SOTAngleError * SOTAnglePropotionalMultiplier);
+        SOTAnglePower = ((SOTAngleError * SOTAnglePropotionalMultiplier) + ((SOTAngleError - SOTAngleLastError)*SOTAngleDerivitveMultiplier));
+        SOTAngleLastError = SOTAngleError;
         //Flywheel speed setpoint control. We use our custom one button on/off system to use the left bumper to set the shooter speed.
 
         //This is the Flywheels PID. This makes sure the Shooter speed is the same no matter the battery power
