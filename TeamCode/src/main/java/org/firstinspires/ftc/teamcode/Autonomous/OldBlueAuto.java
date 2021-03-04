@@ -31,7 +31,7 @@ import com.qualcomm.robotcore.util.Range;
 @Autonomous
 //Sets name
 //
-public class Movement_Program extends LinearOpMode {
+public class OldBlueAuto extends LinearOpMode {
     RobotHardware robot = new RobotHardware();
     //Sets up Vuforia
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
