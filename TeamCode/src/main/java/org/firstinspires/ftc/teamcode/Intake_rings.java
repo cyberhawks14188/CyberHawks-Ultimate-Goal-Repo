@@ -8,7 +8,7 @@ public class Intake_rings extends LinearOpMode {
     double SOTP = -20;
     double WB_PM = .4;
     double SOTPower;
-    double SOTSet = 2.24;
+    double SOTSet = 2;
     double SOTError;
 
     public  void runOpMode(){

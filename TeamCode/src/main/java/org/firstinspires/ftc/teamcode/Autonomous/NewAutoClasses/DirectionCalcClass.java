@@ -31,12 +31,12 @@ public class DirectionCalcClass {
     double endPointX;
     double endPointY;
     //Sets the distance we want our pure pursuit point to be set ahead of us
-    double purePursuitDistance = .8;
+    double purePursuitDistance = 1.4;
     //Sets our PD multipliers
-    double yPM = .0005;
-    double yDM = .0009;
-    double xPM = .0005;
-    double xDM = .0009;
+    double yPM = .0003;
+    double yDM = .001;
+    double xPM = .0003;
+    double xDM = .001;
     public void DirectionCalc(double startpointx, double startpointy, double endpointx, double endpointy, double odoX, double odoY, double theta){
         //Sets the parameter to othe varible
         endPointX = endpointx;
