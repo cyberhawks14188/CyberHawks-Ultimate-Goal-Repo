@@ -250,7 +250,7 @@ public class OldBlueAuto extends LinearOpMode {
         SOTSet = 1.47;
         Distance_From = 1;
         WB_Setpoint = .32;
-        GRIP_POS = .7;
+        GRIP_POS = .1;
         breakout = 1;
         targetVelocity = 37;
         while (Distance_From > .6 && opModeIsActive()) {
@@ -321,7 +321,7 @@ public class OldBlueAuto extends LinearOpMode {
             Movement(Last_X_EndSetpoint, Last_Y_EndSetpoint, 0, 1, 1);
             SubSystem();
             if (robot.WB_PT.getVoltage() > 2) {
-                GRIP_POS = .1;
+                GRIP_POS = .6;
             }
         }
         stop_motors();
@@ -331,7 +331,7 @@ public class OldBlueAuto extends LinearOpMode {
             SubSystem();
         }
         //Moves our robot to shooting position
-        GRIP_POS = 0.7;
+        GRIP_POS = 0.1;
         WB_Setpoint = .5;
         Last_X_EndSetpoint = -robot.LB_M.getCurrentPosition()* 0.00436111;
         Last_Y_EndSetpoint = (robot.LF_M.getCurrentPosition() * 0.00436111 + robot.RF_M.getCurrentPosition() * 0.00436111)/2;
@@ -394,7 +394,7 @@ public class OldBlueAuto extends LinearOpMode {
         stagerPower =0;
         stop_motors();
         //Opens our claw
-        GRIP_POS = 0;
+        GRIP_POS = .6;
 
         Last_X_EndSetpoint = -robot.LB_M.getCurrentPosition()* 0.00436111;
         Last_Y_EndSetpoint = (robot.LF_M.getCurrentPosition() * 0.00436111 + robot.RF_M.getCurrentPosition() * 0.00436111)/2;
@@ -448,7 +448,7 @@ public class OldBlueAuto extends LinearOpMode {
         }
         stop_motors();
         //Closes claw
-        GRIP_POS = .7;
+        GRIP_POS = .1;
         //Gives robot .75 seconds to Grab the 2nd wobble goal
         Timedloop = getRuntime() + .75;
         while(getRuntime() <= Timedloop){
