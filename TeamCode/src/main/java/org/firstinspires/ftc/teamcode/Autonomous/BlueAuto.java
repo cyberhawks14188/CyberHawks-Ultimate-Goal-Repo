@@ -217,6 +217,32 @@ public class BlueAuto extends LinearOpMode {
         startPointX = OdoClass.odoXReturn();
         startPointY = OdoClass.odoYReturn();
         breakout = 1;
+        //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
+        while ((DirectionClass.distanceFromReturn() >= 1.5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
+            Movement(40, -40, 0, 45, 2, 9);
+            Telemetry();
+            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.15);
+            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5, .08);
+            PowerSetting();
+            breakout = 0;
+        }
+        StopMotors();
+        startPointX = OdoClass.odoXReturn();
+        startPointY = OdoClass.odoYReturn();
+        breakout = 1;
+        //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
+        while ((DirectionClass.distanceFromReturn() >= 1.5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
+            Movement(15, -40, 0, 45, 2, 9);
+            Telemetry();
+            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.15);
+            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5, .08);
+            PowerSetting();
+            breakout = 0;
+        }
+        StopMotors();
+        startPointX = OdoClass.odoXReturn();
+        startPointY = OdoClass.odoYReturn();
+        breakout = 1;
     }
         public void Telemetry () {
             telemetry.addData("Odo X", OdoClass.odoXReturn());
