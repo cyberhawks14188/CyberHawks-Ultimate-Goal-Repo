@@ -217,7 +217,7 @@ public class BlueAuto extends LinearOpMode {
         breakout = 1;
         //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
         while ((DirectionClass.distanceFromReturn() >= 1.5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
-            Movement(40, -40, 0, 45, 2, 9);
+            Movement(40, -40, 0, 28, 2, 5);
             Telemetry();
             Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.15);
             Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5, .08);
@@ -230,7 +230,7 @@ public class BlueAuto extends LinearOpMode {
         breakout = 1;
         //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
         while ((DirectionClass.distanceFromReturn() >= 1.5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
-            Movement(15, -40, 0, 45, 2, 9);
+            Movement(15, -40, 0, 24, 2, 5);
             Telemetry();
             Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.15);
             Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5, .08);
@@ -271,7 +271,7 @@ public class BlueAuto extends LinearOpMode {
             DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
             SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn());
             SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);
-            TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 1.2);
+            TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 1);
             telemetry.addData("Speed Setpoint", SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn()));
         }
         public void PowerSetting () {

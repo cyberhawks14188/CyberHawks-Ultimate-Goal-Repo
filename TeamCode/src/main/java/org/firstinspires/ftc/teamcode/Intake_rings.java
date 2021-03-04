@@ -10,17 +10,21 @@ public class Intake_rings extends LinearOpMode {
     double SOTP = -20;
     double WB_PM = .4;
     double SOTPower;
-    double SOTSet = 2;
+    double SOTSet = 1.8;
     double SOTError;
 
     public  void runOpMode(){
         RobotHardware robot = new RobotHardware();
         robot.init(hardwareMap);
         waitForStart();
+        robot.Ring3_CS.setGain(15);
+        robot.Ring2_CS.setGain(15);
+        robot.Ring1_CS.setGain(15);
         while(opModeIsActive()) {
             NormalizedRGBA Ring1Color = robot.Ring1_CS.getNormalizedColors();
             NormalizedRGBA Ring2Color = robot.Ring2_CS.getNormalizedColors();
             NormalizedRGBA Ring3Color = robot.Ring3_CS.getNormalizedColors();
+
             SOTCurrent =  robot.SOT_PT.getVoltage();
             SOTError = SOTSet - SOTCurrent;
             SOTPower = SOTError * SOTP;
