@@ -39,7 +39,7 @@ public class MultiClassTeleop extends LinearOpMode {
             //Calling to the Classes and the methods inside of them to run the calculations and set points.
             DrivetrainClass.DriveBase(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.right_bumper);
             OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
-            RingClass.RingSystemControl(gamepad1.a, gamepad1.b, Ring1Color.red, Ring2Color.red, Ring3Color.red, gamepad1.back);
+            RingClass.RingSystemControl(gamepad1.a, gamepad1.b, Ring1Color.red, Ring2Color.red, Ring3Color.red, gamepad1.back, ShooterClass.sotAngleSetReturn());
             ShooterClass.shooterControl(gamepad1.dpad_left, gamepad1.dpad_right, gamepad1.y, gamepad1.x, gamepad1.left_bumper, robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), RingClass.intakePowerReturn());
             WobbleArmClass.WobbleControl(gamepad1.left_trigger, gamepad1.dpad_up, gamepad1.dpad_down, robot.WB_PT.getVoltage());
             //Setting Motor Power

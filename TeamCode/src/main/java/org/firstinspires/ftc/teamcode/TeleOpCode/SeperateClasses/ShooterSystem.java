@@ -23,7 +23,7 @@ public class ShooterSystem {
     public void shooterControl(boolean dpadleft, boolean dpadright, boolean gpady, boolean gpadx, boolean leftbumper, double shootermotorcurrent, double runtime, double sotanglecurrent, double intakepower){
         //uses Dpad left and right to be able to set the
         if (dpadleft) {
-            SOTAngleSet = 1.645;
+            SOTAngleSet = 1.275;
         } else if (dpadright) {
             SOTAngleSet = 1.15;//TOP GOAL
         }
