@@ -431,8 +431,8 @@ public class Movement_Program extends LinearOpMode {
         targetVelocity = 20;
         //Turns the robot 86 degrees umping the IMU
         while (imuZ <= 86 && opModeIsActive()) {
-            angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-            imuZ = angles.firstAngle;
+            //angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+            //imuZ = angles.firstAngle;
             telemetry.addData("imuZ", imuZ);
             Movement(18.5, 42, -70, 1, 1);
             SubSystem();
@@ -477,8 +477,8 @@ public class Movement_Program extends LinearOpMode {
         targetVelocity = 20;
         //Turns the robot back forward using IMU
         while (imuZ >= 25 && opModeIsActive()) {
-            angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-            imuZ = angles.firstAngle;
+         //   angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+          //  imuZ = angles.firstAngle;
             telemetry.addData("imuZ", imuZ);
             Movement(18.5, 42, 10, 1, 1);
             SubSystem();

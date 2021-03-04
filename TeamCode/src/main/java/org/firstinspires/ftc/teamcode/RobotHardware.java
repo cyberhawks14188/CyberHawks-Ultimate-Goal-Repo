@@ -40,7 +40,7 @@ public class RobotHardware{
     public NormalizedColorSensor Ring1_CS;
     public NormalizedColorSensor Ring2_CS;
     public NormalizedColorSensor Ring3_CS;
-    public BNO055IMU imu;
+  //  public BNO055IMU imu;
 
 
     //Create Hardware map
@@ -48,16 +48,16 @@ public class RobotHardware{
 
     public void init(HardwareMap hardwareMap) {
 
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        /*BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
         parameters.calibrationDataFile = "BNO055IMUCalibration.json";
         parameters.loggingEnabled = true;
         parameters.loggingTag = "imu";
         parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
-
+*/
         // Define motors and servos
-        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        //imu = hardwareMap.get(BNO055IMU.class, "imu");
         LF_M = hardwareMap.get(DcMotor.class, "LF_M");
         LB_M = hardwareMap.get(DcMotor.class, "LB_M");
         RF_M = hardwareMap.get(DcMotor.class, "RF_M");
@@ -75,7 +75,7 @@ public class RobotHardware{
         Ring2_CS = hardwareMap.get(NormalizedColorSensor.class, "Ring2_CS");
         Ring3_CS = hardwareMap.get(NormalizedColorSensor.class, "Ring3_CS");
         NormalizedColorSensor colorSensor;
-        imu.initialize(parameters);
+       // imu.initialize(parameters);
         //servo = hardwareMap.get(Servo.class, "servo");
 
         // Set all motors to zero power
