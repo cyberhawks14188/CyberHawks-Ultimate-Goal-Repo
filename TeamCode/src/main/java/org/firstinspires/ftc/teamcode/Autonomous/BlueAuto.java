@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses.DirectionCalcCla
 import org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses.SpeedClass;
 import org.firstinspires.ftc.teamcode.RobotHardware;
 import org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses.Odometry;
+import org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses.RingSystem;
 import org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses.ShooterSystem;
 import org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses.WobbleGoalArm;
 
@@ -29,6 +30,7 @@ public class BlueAuto extends LinearOpMode {
     Odometry OdoClass = new Odometry();
     WobbleGoalArm Wobble = new WobbleGoalArm();
     ShooterSystem Shooter = new ShooterSystem();
+    RingSystem Stager = new RingSystem();
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
@@ -95,10 +97,10 @@ public class BlueAuto extends LinearOpMode {
         startPointY = 0;
         breakout = 1;
         //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
-        while ((DirectionClass.distanceFromReturn() >= .5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
+        while ((DirectionClass.distanceFromReturn() >= 1.5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
             Movement(47, 18, 0, 45, 2, 8);
             Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.15);
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5,.01 );
+            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5,.08 );
             Telemetry();
             PowerSetting();
             breakout = 0;
@@ -110,11 +112,11 @@ public class BlueAuto extends LinearOpMode {
         breakout = 1;
         if (Detected == 0) {
             //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
-            while ((DirectionClass.distanceFromReturn() >= .5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
+            while ((DirectionClass.distanceFromReturn() >= 1.5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
                 Movement(64, 18, 0, 30, 2, 9);
                 Telemetry();
                 Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.15);
-                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5,.1 );
+                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5,.08 );
                 PowerSetting();
                 breakout = 0;
 
@@ -122,11 +124,11 @@ public class BlueAuto extends LinearOpMode {
         }
         if (Detected == 1) {
             //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
-            while ((DirectionClass.distanceFromReturn() >= .5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
+            while ((DirectionClass.distanceFromReturn() >= 1.5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
                 Movement(86, -8, 0, 45, 2, 9);
                 Telemetry();
                 Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.15);
-                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5,.1 );
+                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5,.08 );
                 PowerSetting();
                 breakout = 0;
             }
@@ -139,11 +141,11 @@ public class BlueAuto extends LinearOpMode {
         breakout = 1;
         if (Detected == 2) {
             //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
-            while ((DirectionClass.distanceFromReturn() >= .5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
+            while ((DirectionClass.distanceFromReturn() >= 1.5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
                 Movement(112, 18, 0, 45, 2, 9);
                 Telemetry();
                 Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.15);
-                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5,.1 );
+                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5,.08 );
                 PowerSetting();
                 breakout = 0;
             }
@@ -152,7 +154,7 @@ public class BlueAuto extends LinearOpMode {
 
 
         StopMotors();
-        timepassed = getRuntime() + .5;
+        timepassed = getRuntime() + 1;
         while(timepassed > getRuntime()){
             Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.8, .1);
         }
@@ -173,28 +175,48 @@ public class BlueAuto extends LinearOpMode {
             PowerSetting();
         }
         StopMotors();
-        timepassed = getRuntime() + 1;
+        timepassed = getRuntime() + 2;
         while(timepassed > getRuntime()){
             Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .6, .65);
+            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1900, 1.15);
         }
-        sleep(1000);
+        StopMotors();
         startPointX = OdoClass.odoXReturn();
         startPointY = OdoClass.odoYReturn();
         breakout = 1;
-        while ((DirectionClass.distanceFromReturn() >= .5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
-            Movement(60, -16, 0, 30, 6, 9);
+        while ((DirectionClass.distanceFromReturn() >= 1.5 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
+            Movement(57, -16, 0, 30, 6, 9);
             Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1900, 1.15);
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .6,.1 );
+            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .6,.08 );
             Telemetry();
             PowerSetting();
             breakout = 0;
         }
         StopMotors();
-        sleep(250);
+        timepassed = getRuntime() + 1;
+        while(timepassed > getRuntime()){
+            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .6, .65);
+            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1900, 1.15);
+        }
+        StopMotors();
+        startPointX = DirectionClass.endpointXReturn();
+        startPointY = DirectionClass.endpointYReturn();
+
+        timepassed = getRuntime() + 4;
+        while (timepassed > time) {
+            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1900, 1.15);
+            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .6,.08 );
+            Stager.RingSystemAuto(2, 0, 0, 0);
+            Telemetry();
+            StopMotors();
+            PowerSetting();
+            SpeedClass.speed = 0 - .15;
+            StopMotors();
+        }
+        StopMotors();
         startPointX = OdoClass.odoXReturn();
         startPointY = OdoClass.odoYReturn();
         breakout = 1;
-
     }
         public void Telemetry () {
             telemetry.addData("Odo X", OdoClass.odoXReturn());
@@ -229,6 +251,8 @@ public class BlueAuto extends LinearOpMode {
             robot.GRIP_S.setPosition(Wobble.gripperSetReturn());
             robot.SOT_M.setPower(Shooter.shooterMotorPowerReturn());
             robot.SOT_S.setPower(Shooter.sotAnglePowerReturn());
+            robot.STG_M.setPower(Stager.stagerPowerRetun());
+            robot.STOP_S.setPosition(Stager.stopperSetReturn());
         }
         public void StopMotors () {
             robot.LF_M.setPower(0);
