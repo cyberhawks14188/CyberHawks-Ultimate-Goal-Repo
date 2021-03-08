@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
-public class WobbleGoalArm {
+public class  WobbleGoalArm {
     //Varibles for setting positions
     boolean WBControl = false;
     double WB_FSM = 5;
