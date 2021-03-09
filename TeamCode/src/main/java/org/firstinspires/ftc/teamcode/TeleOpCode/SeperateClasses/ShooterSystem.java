@@ -6,8 +6,8 @@ public class ShooterSystem {
     double SOTAngleSet = 1.03;
     double SOTAngleError;
     double SOTAngleLastError = 0;
-    double SOTAngleDerivitveMultiplier = -5;
-    double SOTAnglePropotionalMultiplier = -8;
+    double SOTAngleDerivitveMultiplier = -2;
+    double SOTAnglePropotionalMultiplier = -5;
     double SOTAnglePower;
     double shooterMotorSetpoint = 0;
     double shooterMotorCorrection = 0;
@@ -22,7 +22,7 @@ public class ShooterSystem {
     public void shooterControl(boolean leftbumper, double shootermotorcurrent, double runtime, double sotanglecurrent, double intakepower){
         //Flywheel speed setpoint control. We use our custom one button on/off system to use the left bumper to set the shooter speed.
         if (leftbumper && !shooterControlBoolean) {
-            if (shooterFSM < 3){
+            if (shooterFSM < 2){
                 shooterFSM = shooterFSM + 1;
             }else{
                 shooterFSM = 0;
@@ -67,6 +67,17 @@ public class ShooterSystem {
         SOTAngleError = SOTAngleSet - sotanglecurrent;
         SOTAnglePower = ((SOTAngleError * SOTAnglePropotionalMultiplier) + ((SOTAngleError - SOTAngleLastError)*SOTAngleDerivitveMultiplier));
         SOTAngleLastError = SOTAngleError;
+        if(Math.abs(SOTAngleError) < .01){
+            SOTAnglePower = 0;
+        }else{
+            if(Math.abs(SOTAnglePower) < .08){
+                if(SOTAnglePower < 0) {
+                    SOTAnglePower = -.08;
+                }else if(SOTAnglePower > 0){
+                    SOTAnglePower = .08;
+                }
+            }
+        }
 
     }
     //Method that we can use in autonomous

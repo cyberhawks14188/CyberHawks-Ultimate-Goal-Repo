@@ -55,7 +55,9 @@ public class MultiClassTeleop extends LinearOpMode {
             robot.WB_M.setPower(WobbleArmClass.wobblePowerReturn());
             robot.GRIP_S.setPosition(WobbleArmClass.gripperSetReturn());
 
+
             //Displaying Telemetry
+            telemetry.addData("robot.SOT_S.getPower()", robot.SOT_S.getPower());
             telemetry.addData("X Position", OdoClass.odoXReturn());
             telemetry.addData("Y Position", OdoClass.odoYReturn());
             telemetry.addData("Orientation (Degrees)", OdoClass.thetaInDegreesReturn());
