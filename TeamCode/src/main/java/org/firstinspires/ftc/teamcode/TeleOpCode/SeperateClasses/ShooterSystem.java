@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses;
 public class ShooterSystem {
     //Sets varibles to use in the method
     boolean shooterControlBoolean;
-    double SOTAngleSet = 1.12;
+    double SOTAngleSet = 1.03;
     double SOTAngleError;
     double SOTAngleLastError = 0;
     double SOTAngleDerivitveMultiplier = -5;
@@ -25,7 +25,7 @@ public class ShooterSystem {
         if (dpadleft) {
             SOTAngleSet = 1.275;
         } else if (dpadright) {
-            SOTAngleSet = 1.12;//TOP GOAL
+            SOTAngleSet = 1.03;//TOP GOAL
         }
         //Shooter Control
         //Manual adjusting the setpoint to adjust last second if needed

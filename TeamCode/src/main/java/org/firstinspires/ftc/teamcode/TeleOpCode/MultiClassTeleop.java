@@ -40,7 +40,7 @@ public class MultiClassTeleop extends LinearOpMode {
             DrivetrainClass.DriveBase(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.right_bumper);
             OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
             RingClass.RingSystemControl(gamepad1.a, gamepad1.b, Ring1Color.red, Ring2Color.red, Ring3Color.red, gamepad1.back, ShooterClass.sotAngleSetReturn());
-            ShooterClass.shooterControl(gamepad1.dpad_left, gamepad1.dpad_right, gamepad1.y, gamepad1.x, gamepad1.left_bumper, robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), RingClass.intakePowerReturn());
+            ShooterClass.shooterControl(gamepad1.left_bumper, robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), RingClass.intakePowerReturn());
             WobbleArmClass.WobbleControl(gamepad1.left_trigger, gamepad1.dpad_up, gamepad1.dpad_down, robot.WB_PT.getVoltage());
             //Setting Motor Power
             robot.LF_M.setPower(DrivetrainClass.LFMReturn());
@@ -55,7 +55,9 @@ public class MultiClassTeleop extends LinearOpMode {
             robot.WB_M.setPower(WobbleArmClass.wobblePowerReturn());
             robot.GRIP_S.setPosition(WobbleArmClass.gripperSetReturn());
 
+
             //Displaying Telemetry
+            telemetry.addData("robot.SOT_S.getPower()", robot.SOT_S.getPower());
             telemetry.addData("X Position", OdoClass.odoXReturn());
             telemetry.addData("Y Position", OdoClass.odoYReturn());
             telemetry.addData("Orientation (Degrees)", OdoClass.thetaInDegreesReturn());
