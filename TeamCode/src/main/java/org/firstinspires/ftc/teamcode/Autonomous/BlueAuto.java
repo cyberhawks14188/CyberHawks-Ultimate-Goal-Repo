@@ -49,6 +49,8 @@ public class BlueAuto extends LinearOpMode {
     double lsstEndPointX;
     double noDriveMotor;
     double loopcount;
+    double shooterOn;
+    double wobbleArm;
 
     @Override
 
@@ -102,7 +104,7 @@ public class BlueAuto extends LinearOpMode {
         while ((DirectionClass.distanceFromReturn() >= 1 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
             Movement(47, 18, 0, 45, 2, 8);
             Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5, .08);
+
             Telemetry();
             PowerSetting();
             breakout = 0;
@@ -282,7 +284,17 @@ public class BlueAuto extends LinearOpMode {
         }
 
 
+        public void Finite_Mechanisms(){
+        if(shooterOn == 1){
+            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
+        }
+        else{
+            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.12);
+        }
+        //Closed gripper and in up position
 
+
+    }
         public void Telemetry () {
             telemetry.addData("Odo X", OdoClass.odoXReturn());
             telemetry.addData("Odo Y", OdoClass.odoYReturn());
@@ -334,7 +346,6 @@ public class BlueAuto extends LinearOpMode {
             robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.speed + .15));
             robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.speed + .15));
         }
-
 
         }
         public void StopMotors () {

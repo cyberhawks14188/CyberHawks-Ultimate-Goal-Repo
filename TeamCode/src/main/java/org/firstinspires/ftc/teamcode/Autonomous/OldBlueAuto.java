@@ -186,7 +186,7 @@ public class OldBlueAuto extends LinearOpMode {
     double angles;
     public double Intial_Speed_Setpoint;
     //Makes the runOpMode public method
-    public void runOpMode() {
+    public void runOpMode()  {
         //Intializes our hardware map
         robot.init(hardwareMap);
         //Creates the Orintation Angles to be able to get the IMU's angle
@@ -211,22 +211,22 @@ public class OldBlueAuto extends LinearOpMode {
         }
         //Will run until we hit play
         while (isStarted() != true) {
-            //Sets up a ratio for our webcam to look at
-            //Allows our camera to focus only on the ring stack
-            tfod.setZoom(3, 1.78);
-            //Runs Tenosor Flow to detect the ring stack
-            if (tfod != null) {
-                List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
-                if (updatedRecognitions != null) {
-                    telemetry.addData("# Object Detected", updatedRecognitions.size());
-                    // step through the list of recognitions and display boundary info.
-                    int i = 0;
-                    for (Recognition recognition : updatedRecognitions) {
-                        telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+           //Sets up a ratio for our webcam to look at
+           //Allows our camera to focus only on the ring stack
+          tfod.setZoom(3, 1.78);
+          //Runs Tenosor Flow to detect the ring stack
+           if (tfod != null) {
+              List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+              if (updatedRecognitions != null) {
+                   telemetry.addData("# Object Detected", updatedRecognitions.size());
+                  // step through the list of recognitions and display boundary info.
+                   int i = 0;
+                   for (Recognition recognition : updatedRecognitions) {
+                    telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
                         telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
-                                recognition.getLeft(), recognition.getTop());
+                               recognition.getLeft(), recognition.getTop());
                         telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
-                                recognition.getRight(), recognition.getBottom());
+                               recognition.getRight(), recognition.getBottom());
                         //If we see 1 ring set Detected to 1
                         if (recognition.getLabel() == "Single") {
                             Detected = 1;
@@ -240,14 +240,16 @@ public class OldBlueAuto extends LinearOpMode {
                     telemetry.update();
                 }
             }
+            robot.GRIP_S.setPosition(.1);
         }
+
 
         //Waits for start
         waitForStart();
         //Our First move
         //Go up and to the left, just to the left of the ring stack
         shooterSetpoint = 0;
-        SOTSet = 1.47;
+        SOTSet = 1.12;
         Distance_From = 1;
         WB_Setpoint = .32;
         GRIP_POS = .1;
@@ -371,7 +373,7 @@ public class OldBlueAuto extends LinearOpMode {
         */
         stop_motors();
         //Lowers wobble goal arm back down to grabbing position
-        Timedloop = getRuntime() + .5;
+        Timedloop = getRuntime() + 2;
         while(Timedloop>getRuntime()){
             SubSystem();
         }
@@ -394,7 +396,7 @@ public class OldBlueAuto extends LinearOpMode {
         stagerPower =0;
         stop_motors();
         //Opens our claw
-        GRIP_POS = .6;
+        GRIP_POS = .81;
 
         Last_X_EndSetpoint = -robot.LB_M.getCurrentPosition()* 0.00436111;
         Last_Y_EndSetpoint = (robot.LF_M.getCurrentPosition() * 0.00436111 + robot.RF_M.getCurrentPosition() * 0.00436111)/2;
@@ -405,7 +407,7 @@ public class OldBlueAuto extends LinearOpMode {
         //Diffrent positions based on where our wobble goal is
         if(Detected == 0) {
             while (Distance_From > .6 && opModeIsActive()) {
-                Movement(33, 22, 0, 6, 6);
+                Movement(34.5, 22, 0, 6, 6);
                 SubSystem();
             }
         }
@@ -417,7 +419,7 @@ public class OldBlueAuto extends LinearOpMode {
         }
         if(Detected == 2) {
             while (Distance_From > .6 && opModeIsActive()) {
-                Movement(38.25, 22, 0, 6, 6);
+                Movement(36.25, 22, 0, 6, 6);
                 SubSystem();
             }
         }
@@ -431,8 +433,8 @@ public class OldBlueAuto extends LinearOpMode {
         targetVelocity = 20;
         //Turns the robot 86 degrees umping the IMU
         while (imuZ <= 86 && opModeIsActive()) {
-            //angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-            //imuZ = angles.firstAngle;
+            angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+            imuZ = angles.firstAngle;
             telemetry.addData("imuZ", imuZ);
             Movement(18.5, 42, -70, 1, 1);
             SubSystem();
@@ -448,15 +450,15 @@ public class OldBlueAuto extends LinearOpMode {
         }
         stop_motors();
         //Closes claw
-        GRIP_POS = .1;
-        //Gives robot .75 seconds to Grab the 2nd wobble goal
-        Timedloop = getRuntime() + .75;
+        GRIP_POS = .08;
+        //Gives robot .81 seconds to Grab the 2nd wobble goal
+        Timedloop = getRuntime() + .81;
         while(getRuntime() <= Timedloop){
             SubSystem();
         }
         //Raises wobble goal arm just above the ground
         WB_Setpoint = 1.2;
-        Timedloop = getRuntime() + .75;
+        Timedloop = getRuntime() + .81;
         while(getRuntime() <= Timedloop){
             SubSystem();
         }
@@ -467,8 +469,10 @@ public class OldBlueAuto extends LinearOpMode {
             robot.LB_M.setPower(-.3);
             robot.RF_M.setPower(-.3);
             robot.RB_M.setPower(-.3);
+            SubSystem();
         }
         stop_motors();
+        GRIP_POS = .08;
         JustTurn = 1;
         Last_X_EndSetpoint = -robot.LB_M.getCurrentPosition()* 0.00436111;
         Last_Y_EndSetpoint = (robot.LF_M.getCurrentPosition() * 0.00436111 + robot.RF_M.getCurrentPosition() * 0.00436111)/2;
@@ -477,8 +481,8 @@ public class OldBlueAuto extends LinearOpMode {
         targetVelocity = 20;
         //Turns the robot back forward using IMU
         while (imuZ >= 25 && opModeIsActive()) {
-         //   angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-          //  imuZ = angles.firstAngle;
+         angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+         imuZ = angles.firstAngle;
             telemetry.addData("imuZ", imuZ);
             Movement(18.5, 42, 10, 1, 1);
             SubSystem();
@@ -548,13 +552,15 @@ public class OldBlueAuto extends LinearOpMode {
             Movement(Last_X_EndSetpoint, Last_Y_EndSetpoint, 0, 1, 1);
             SubSystem();
             if (robot.WB_PT.getVoltage() > 1.7) {
-                GRIP_POS = .1;
+                GRIP_POS = .81;
             }
             if(getRuntime() >= Timedloop){
                 break;
             }
         }
-
+        if(Detected == 0){
+            WB_Setpoint = .9;
+        }
         stop_motors();
         Timedloop = getRuntime() + .5;
         Last_X_EndSetpoint = -robot.LB_M.getCurrentPosition()* 0.00436111;
@@ -883,7 +889,7 @@ public class OldBlueAuto extends LinearOpMode {
         //Gets our current potentiometer reading from our shooter angle
         SOTCurrent = robot.SOT_PT.getVoltage();
         //Sets our proportional multipliers for our sub system correctional loops
-        SOTP = -20;
+        SOTP = -5;
         WB_PM = .6;
         shooterPM = 15;
         //Shooter servo correectional loop
