@@ -96,12 +96,13 @@ public class ShooterSystem {
             previousShooterMotorEncoder = shootermotorcurrent;
             shooterMotorError = shootersetpoint - shooterMotorVelocity;
             shooterMotorCorrection = shooterMotorError * shooterMotorProportionalMultiplier;
+            shooterMotorSetpoint = shootersetpoint;
 
         }else{
             shooterMotorSetpoint = 0;
             shooterMotorCorrection = 0;//we set both of these variables to ensure that neither one has power
         }
-        shooterMotorSetpoint = shootersetpoint;
+
     }
     //returns values to use when we call the methods
     public double shooterMotorPowerReturn(){return (shooterMotorSetpoint+shooterMotorCorrection)/2800;}
