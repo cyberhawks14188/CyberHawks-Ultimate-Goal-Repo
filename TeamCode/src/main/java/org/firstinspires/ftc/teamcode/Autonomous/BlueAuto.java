@@ -115,6 +115,7 @@ public class BlueAuto extends LinearOpMode {
         action = 1;
         startPointX = 0;
         startPointY = 0;
+        wobbleSetpoint = 1;
         while(opModeIsActive() && stopProgram == 0) {
             if(action == 1 && (DirectionClass.distanceFromReturn() >= .8 || breakout == 0)){
                 shooterAngleSetpoint = 1.12;
@@ -126,7 +127,7 @@ public class BlueAuto extends LinearOpMode {
                 action = 2; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
             }
             else if(action == 2 && (robot.WB_PT.getVoltage() >= 1.6 || breakout == 0)){
-                wobbleSetpoint = 1.5;
+                wobbleSetpoint = 2.1;
                 xSetpoint = 40; ySetpoint = 0; thetaSetpoint = 0; targetSpeed = 2; accelerationDistance = 0; decelerationDistance = 0; breakout = 1;
             }
             else if(action == 2){
@@ -135,7 +136,7 @@ public class BlueAuto extends LinearOpMode {
                     timepassed = getRuntime() + 3;
                     breakout = 0;
                 }
-                if(timepassed <= timepassed){
+                if(timepassed <= getRuntime()){
                     action = 3; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn();
                 }
             }
