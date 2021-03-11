@@ -69,7 +69,7 @@ public class  WobbleGoalArm {
             wobbleSet = wobbleEndSet;
         }
         //PID to control the wobble arm to go to desired set point
-
+        gripperset = gripperSet;
         wobbleError = wobbleSet - wbpt;
         wobblePower = wobbleError * wobbleProportionalMulitplier;
     }
