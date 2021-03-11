@@ -132,8 +132,9 @@ public class BlueAuto extends LinearOpMode {
                 wobbleSetpoint = 2.1;
                 xSetpoint = 40; ySetpoint = 0; thetaSetpoint = 0; targetSpeed = 2; accelerationDistance = 0; decelerationDistance = 0; breakout = 1;
             }
-            else if(action == 2){
+            else if(action == 2.5 || action == 2){
                 StopMotors();
+                action = 2.5;
                 if(breakout == 1){
                     timepassed = getRuntime() + 3;
                     breakout = 0;
