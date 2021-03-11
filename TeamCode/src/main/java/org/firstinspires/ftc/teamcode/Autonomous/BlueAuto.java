@@ -128,7 +128,7 @@ public class BlueAuto extends LinearOpMode {
                 StopMotors();
                 action = 2; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
             }
-            else if(action == 2 && (robot.WB_PT.getVoltage() >= 1.6 || breakout == 0)){
+            else if(action == 2 && (robot.WB_PT.getVoltage() >= 2 || breakout == 0)){
                 wobbleSetpoint = 2.1;
                 xSetpoint = 40; ySetpoint = 0; thetaSetpoint = 0; targetSpeed = 2; accelerationDistance = 0; decelerationDistance = 0; breakout = 1;
             }
@@ -211,11 +211,10 @@ public class BlueAuto extends LinearOpMode {
             robot.SOT_M.setPower(Shooter.shooterMotorPowerReturn());
             robot.SOT_S.setPower(Shooter.sotAnglePowerReturn());
             robot.STG_M.setPower(Stager.stagerPowerRetun());
-            robot.STOP_S.setPosition(Stager.stopperSetReturn());
-            robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
-            robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
-            robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
-            robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
+            robot.STOP_S.setPosition(Stager.stopperSetReturn());robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .19));
+            robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .19));
+            robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .19));
+            robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .19));
         }
 
         }
