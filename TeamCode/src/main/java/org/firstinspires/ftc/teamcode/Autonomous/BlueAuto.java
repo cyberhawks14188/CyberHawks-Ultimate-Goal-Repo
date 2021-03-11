@@ -97,204 +97,28 @@ public class BlueAuto extends LinearOpMode {
             PowerSetting();
         }
         waitForStart();
-        startPointX = 0;
-        startPointY = 0;
-        breakout = 1;
-        //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
-        while ((DirectionClass.distanceFromReturn() >= 1 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
-            Movement(47, 18, 0, 45, 2, 8);
-            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-
-            Telemetry();
-            PowerSetting();
-            breakout = 0;
-        }
-        StopMotors();
-        sleep(400);
-        startPointX = OdoClass.odoXReturn();
-        startPointY = OdoClass.odoYReturn();
-        breakout = 1;
-        if (Detected == 0) {
+        while(opModeIsActive()) {
+            startPointX = 0;
+            startPointY = 0;
+            breakout = 1;
             //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
             while ((DirectionClass.distanceFromReturn() >= 1 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
-                Movement(64, 18, 0, 30, 2, 9);
-                Telemetry();
+                Movement(47, 18, 0, 45, 2, 8);
                 Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5, .08);
-                PowerSetting();
-                breakout = 0;
 
-            }
-        }
-        if (Detected == 1) {
-            //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
-            while ((DirectionClass.distanceFromReturn() >= 1 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
-                Movement(86, -8, 0, 45, 2, 9);
                 Telemetry();
-                Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5, .08);
                 PowerSetting();
                 breakout = 0;
             }
-        }
-
-        StopMotors();
-        startPointX = OdoClass.odoXReturn();
-        startPointY = OdoClass.odoYReturn();
-        breakout = 1;
-        if (Detected == 2) {
-            //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
-            while ((DirectionClass.distanceFromReturn() >= 1 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
-                Movement(112, 18, 0, 45, 2, 9);
-                Telemetry();
-                Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5, .08);
-                PowerSetting();
-                breakout = 0;
-            }
-        }
-
-
-        StopMotors();
-        timepassed = getRuntime() + 1;
-        noDriveMotor = 1;
-        while (timepassed > getRuntime()) {
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.8, .1);
-            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-            PowerSetting();
-        }
-        noDriveMotor = 0;
-        startPointX = DirectionClass.endpointXReturn();
-        startPointY = DirectionClass.endpointYReturn();
-        breakout = 1;
-        while (breakout != 0 && opModeIsActive()) {
-            Movement(startPointX, startPointY, 0, .3, 0, 0);
-            if (robot.WB_PT.getVoltage() <= 2) {
-                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 2.1, .1);
-            } else {
-                Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 2.1, .65);
-                breakout = 0;
-            }
-            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-            Telemetry();
-            PowerSetting();
-        }
-        StopMotors();
-        noDriveMotor = 1;
-        timepassed = getRuntime() + 2;
-        while (timepassed > getRuntime()) {
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .6, .65);
-            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-            PowerSetting();
-        }
-        noDriveMotor = 0;
-        StopMotors();
-        startPointX = OdoClass.odoXReturn();
-        startPointY = OdoClass.odoYReturn();
-        breakout = 1;
-        while ((DirectionClass.distanceFromReturn() >= 1 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
-            Movement(59, -16, 0, 30, 6, 9);
-            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .6, .08);
-            Telemetry();
-            PowerSetting();
-            breakout = 0;
-        }
-        noDriveMotor = 1;
-        StopMotors();
-        timepassed = getRuntime() + 4;
-        while (timepassed > getRuntime()) {
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .6, .65);
-            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-            PowerSetting();
-        }
-        noDriveMotor = 0;
-        StopMotors();
-        startPointX = DirectionClass.endpointXReturn();
-        startPointY = DirectionClass.endpointYReturn();
-        noDriveMotor = 1;
-        timepassed = getRuntime() + 4;
-        while (timepassed > time) {
-            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .6, .08);
-            Stager.RingSystemAuto(2, 0, 0, 0);
-            Telemetry();
-            PowerSetting();
             StopMotors();
+            sleep(400);
+            startPointX = OdoClass.odoXReturn();
+            startPointY = OdoClass.odoYReturn();
+            breakout = 1;
+
         }
-        noDriveMotor = 0;
-        StopMotors();
-        startPointX = OdoClass.odoXReturn();
-        startPointY = OdoClass.odoYReturn();
-        breakout = 1;
-        //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
-        while ((DirectionClass.distanceFromReturn() >= 1 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
-            Movement(40, -40, 0, 28, 2, 5);
-            Telemetry();
-            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.12);
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 1.5, .08);
-            PowerSetting();
-            breakout = 0;
-        }
-        StopMotors();
-        startPointX = OdoClass.odoXReturn();
-        startPointY = OdoClass.odoYReturn();
-        breakout = 1;
-        //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
-        while ((DirectionClass.distanceFromReturn() >= 1 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
-            Movement(15, -40, 0, 24, 2, 5);
-            Telemetry();
-            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.12);
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 2.1, .65);
-            PowerSetting();
-            breakout = 0;
-        }
-        StopMotors();
-        startPointX = OdoClass.odoXReturn();
-        startPointY = OdoClass.odoYReturn();
-        breakout = 1;
-        justTurn = 1;
-        while ((OdoClass.thetaInDegreesReturn() >= -86 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
-            Movement(15, -40, -90, 10, 0, 0);
-            Telemetry();
-            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.12);
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 2.1, .08);
-            PowerSetting();
-            breakout = 0;
-        }
-        sleep(1000);
-        StopMotors();
-        startPointX = OdoClass.odoXReturn();
-        startPointY = OdoClass.odoYReturn();
-        breakout = robot.LF_M.getCurrentPosition() + 2000;
-        while(breakout >= robot.LF_M.getCurrentPosition()){
-        robot.LF_M.setPower(.2);
-        robot.LB_M.setPower(.2);
-        robot.RF_M.setPower(.2);
-        robot.RB_M.setPower(.2);
-    }
-        StopMotors();
-        timepassed = getRuntime() + 1;
-        noDriveMotor = 1;
-        while (timepassed > time) {
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), 2.1 ,.08);
-            PowerSetting();
-        }
-        StopMotors();
         }
 
-
-        public void Finite_Mechanisms(){
-        if(shooterOn == 1){
-            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-        }
-        else{
-            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 0, 1.12);
-        }
-        //Closed gripper and in up position
-
-
-    }
         public void Telemetry () {
             telemetry.addData("Odo X", OdoClass.odoXReturn());
             telemetry.addData("Odo Y", OdoClass.odoYReturn());
