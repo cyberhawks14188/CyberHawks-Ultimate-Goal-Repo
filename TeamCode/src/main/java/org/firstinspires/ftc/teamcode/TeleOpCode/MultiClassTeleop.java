@@ -62,6 +62,7 @@ public class MultiClassTeleop extends LinearOpMode {
                 } else {
                     powershotControl = true;
                 }
+                powershotLoop = true;
             } else if (gamepad1.right_trigger < .05) {
                 powershotLoop = false;
             }
@@ -90,11 +91,13 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotShootOnce = false;
                         }else if (timerStart + .5 > getRuntime()) {
                             RingClass.RingSystemAuto(2, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                            noDriveMotor = 0;
+                            noDriveMotor = 1;
                         } else if (timerStart + 1 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                             powershotMovement = 2; noDriveMotor = 0; powershotStateOnce = true;
                         }
+                    }else{
+                        noDriveMotor = 0;
                     }
                 } else if (powershotMovement == 2) {
                     if (powershotStateOnce) {
@@ -118,9 +121,11 @@ public class MultiClassTeleop extends LinearOpMode {
                         } else if (timerStart + 1 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                             powershotMovement = 3;
-                            noDriveMotor = 0;
+                            noDriveMotor = 1;
                             powershotStateOnce = true;
                         }
+                    }else{
+                        noDriveMotor = 0;
                     }
                 }else if (powershotMovement == 3) {
                     if (powershotStateOnce) {
@@ -139,11 +144,13 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotShootOnce = false;
                         }else if (timerStart + .5 > getRuntime()) {
                             RingClass.RingSystemAuto(2, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                            noDriveMotor = 0;
+                            noDriveMotor = 1;
                         } else if (timerStart + 1 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                             powershotControl = false; noDriveMotor = 0;
                         }
+                    }else{
+                        noDriveMotor = 0;
                     }
                 }
 
