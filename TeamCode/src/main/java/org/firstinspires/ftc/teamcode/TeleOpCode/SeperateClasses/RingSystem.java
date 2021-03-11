@@ -32,6 +32,7 @@ public class RingSystem {
         if (ringSystemFSM == 0) {
             intakePower = 0;
             stagerPower = 0;
+            stopperSet = .3;
         }
         //stage 1 is intaking stage. Sets ring stopper to closed and intakes until sensors see that there is 3 rings in robot.
         if (ringSystemFSM == 1) {
@@ -66,6 +67,7 @@ public class RingSystem {
         if (ringSystemFSM == 0) {
             intakePower = 0;
             stagerPower = 0;
+            stopperSet = .3;
         }
         //stage 1 is intaking stage. Sets ring stopper to closed and intakes until sensors see that there is 3 rings in robot.
         if (ringSystemFSM == 1) {
