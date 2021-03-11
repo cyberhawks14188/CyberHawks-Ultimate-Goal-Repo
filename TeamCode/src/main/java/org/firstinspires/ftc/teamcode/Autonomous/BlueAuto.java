@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -142,7 +143,7 @@ public class BlueAuto extends LinearOpMode {
                 }
             }
             else if(action == 3 && (DirectionClass.distanceFromReturn() >= .6 || breakout == 0)){
-                xSetpoint = 00; ySetpoint = 0; thetaSetpoint = 0; targetSpeed = 30; accelerationDistance = 4; decelerationDistance = 8; breakout = 1;
+                xSetpoint = 0; ySetpoint = 0; thetaSetpoint = 0; targetSpeed = 30; accelerationDistance = 4; decelerationDistance = 8; breakout = 1;
             }
             else if (action == 3){
                 action = 4; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -160,6 +161,9 @@ public class BlueAuto extends LinearOpMode {
             PowerSetting();
         }
         StopMotors();
+        while(opModeIsActive()){
+            Telemetry();
+        }
         }
 
         public void Telemetry () {
@@ -208,10 +212,10 @@ public class BlueAuto extends LinearOpMode {
             robot.SOT_S.setPower(Shooter.sotAnglePowerReturn());
             robot.STG_M.setPower(Stager.stagerPowerRetun());
             robot.STOP_S.setPosition(Stager.stopperSetReturn());
-            robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .185));
-            robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .185));
-            robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .185));
-            robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .185));
+            robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
+            robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
+            robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
+            robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
         }
 
         }
