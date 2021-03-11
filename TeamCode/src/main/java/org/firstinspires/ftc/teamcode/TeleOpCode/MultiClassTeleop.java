@@ -90,7 +90,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotShootOnce = false;
                         }else if (timerStart + .5 > getRuntime()) {
                             RingClass.RingSystemAuto(2, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                            noDriveMotor = 1;
+                            noDriveMotor = 0;
                         } else if (timerStart + 1 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                             powershotMovement = 2; noDriveMotor = 0; powershotStateOnce = true;
@@ -114,7 +114,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotShootOnce = false;
                         } else if (timerStart + .5 > getRuntime()) {
                             RingClass.RingSystemAuto(2, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                            noDriveMotor = 1;
+                            noDriveMotor = 0;
                         } else if (timerStart + 1 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                             powershotMovement = 3;
@@ -139,7 +139,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotShootOnce = false;
                         }else if (timerStart + .5 > getRuntime()) {
                             RingClass.RingSystemAuto(2, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                            noDriveMotor = 1;
+                            noDriveMotor = 0;
                         } else if (timerStart + 1 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                             powershotControl = false; noDriveMotor = 0;
