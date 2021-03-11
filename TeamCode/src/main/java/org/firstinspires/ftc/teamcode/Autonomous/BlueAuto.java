@@ -117,7 +117,7 @@ public class BlueAuto extends LinearOpMode {
         startPointY = 0;
         wobbleSetpoint = 1;
         while(opModeIsActive() && stopProgram == 0) {
-            if(action == 1 && (DirectionClass.distanceFromReturn() >= .8 || breakout == 0)){
+            if(action == 1 && (DirectionClass.distanceFromReturn() >= .6 || breakout == 0)){
                 shooterAngleSetpoint = 1.12;
                 gripSetpoint = .15;
                 shooterSetpoint = 2000;
@@ -141,7 +141,7 @@ public class BlueAuto extends LinearOpMode {
                     action = 3; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn();
                 }
             }
-            else if(action == 3 && (DirectionClass.distanceFromReturn() >= .8 || breakout == 0)){
+            else if(action == 3 && (DirectionClass.distanceFromReturn() >= .6 || breakout == 0)){
                 xSetpoint = 00; ySetpoint = 0; thetaSetpoint = 0; targetSpeed = 30; accelerationDistance = 4; decelerationDistance = 8; breakout = 1;
             }
             else if (action == 3){
@@ -153,6 +153,7 @@ public class BlueAuto extends LinearOpMode {
 
             Movement(xSetpoint, ySetpoint, thetaSetpoint, targetSpeed, accelerationDistance, decelerationDistance);
             Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), shooterSetpoint, shooterAngleSetpoint);
+            //Stager.RingSystemAuto();
             Wobble.WobbleAuto(robot.WB_PT.getVoltage(), wobbleSetpoint, gripSetpoint);
 
             Telemetry();
@@ -207,10 +208,10 @@ public class BlueAuto extends LinearOpMode {
             robot.SOT_S.setPower(Shooter.sotAnglePowerReturn());
             robot.STG_M.setPower(Stager.stagerPowerRetun());
             robot.STOP_S.setPosition(Stager.stopperSetReturn());
-            robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.speed + .15));
-            robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .15));
-            robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.speed + .15));
-            robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.speed + .15));
+            robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .185));
+            robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .185));
+            robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .185));
+            robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .185));
         }
 
         }
