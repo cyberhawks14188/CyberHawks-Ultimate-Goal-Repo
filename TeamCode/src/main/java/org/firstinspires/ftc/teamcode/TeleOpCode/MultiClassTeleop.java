@@ -117,7 +117,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             noDriveMotor = 1;
                         } else if (timerStart + 1 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                            powershotMovement = 2; noDriveMotor = 0; powershotStateOnce = true;
+                            powershotMovement = 3; noDriveMotor = 0; powershotStateOnce = true;
                         }
                     }else if (powershotMovement == 3) {
                         if (powershotStateOnce) {
