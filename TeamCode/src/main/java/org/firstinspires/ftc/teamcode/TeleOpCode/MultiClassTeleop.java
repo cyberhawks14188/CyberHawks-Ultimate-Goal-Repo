@@ -62,7 +62,7 @@ public class MultiClassTeleop extends LinearOpMode {
                 } else {
                     powershotControl = true;
                 }
-            } else if (gamepad1.right_trigger < .1) {
+            } else if (gamepad1.right_trigger < .05) {
                 powershotLoop = false;
             }
             if (powershotControl) {
