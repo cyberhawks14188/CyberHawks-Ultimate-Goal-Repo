@@ -17,7 +17,7 @@ public class SpeedClass {
     public double speed;
     public double speedSetpoint;
     //Sets our Proportional and Derivative multipliers
-    double speedPM = .001;
+    double speedPM = .002;
     double speedDM = .005;
 
     public void SpeedCalc(double odoX, double odoY, double time, double speedsetpoint) {
