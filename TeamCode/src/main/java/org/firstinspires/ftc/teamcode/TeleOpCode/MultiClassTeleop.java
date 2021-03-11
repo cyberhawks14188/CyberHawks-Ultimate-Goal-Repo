@@ -173,10 +173,10 @@ public class MultiClassTeleop extends LinearOpMode {
                 robot.SOT_S.setPower(ShooterClass.sotAnglePowerReturn());
                 robot.STG_M.setPower(RingClass.stagerPowerRetun());
                 robot.STOP_S.setPosition(RingClass.stopperSetReturn());
-                robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.speed + .3));
-                robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .3));
-                robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.speed + .3));
-                robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.speed + .3));
+                robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.speed + .35));
+                robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .35));
+                robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.speed + .35));
+                robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.speed + .35));
             }
             ShooterClass.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1900, 1.275);
         }else{
