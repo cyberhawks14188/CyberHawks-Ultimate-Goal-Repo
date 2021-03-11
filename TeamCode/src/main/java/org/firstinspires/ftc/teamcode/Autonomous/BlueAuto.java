@@ -120,6 +120,7 @@ public class BlueAuto extends LinearOpMode {
             if(action == 1 && (DirectionClass.distanceFromReturn() >= .8 || breakout == 0)){
                 shooterAngleSetpoint = 1.12;
                 gripSetpoint = .15;
+                shooterSetpoint = 2000;
                 xSetpoint = 40; ySetpoint = 0; thetaSetpoint = 0; targetSpeed = 30; accelerationDistance = 4; decelerationDistance = 8; breakout = 1;
             }
             else if(action == 1){
@@ -153,6 +154,7 @@ public class BlueAuto extends LinearOpMode {
             Movement(xSetpoint, ySetpoint, thetaSetpoint, targetSpeed, accelerationDistance, decelerationDistance);
             Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), shooterSetpoint, shooterAngleSetpoint);
             Wobble.WobbleAuto(robot.WB_PT.getVoltage(), wobbleSetpoint, gripSetpoint);
+
             Telemetry();
             PowerSetting();
         }
