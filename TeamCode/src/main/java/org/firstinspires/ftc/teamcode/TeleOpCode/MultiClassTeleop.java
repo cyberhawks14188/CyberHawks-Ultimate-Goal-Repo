@@ -84,7 +84,7 @@ public class MultiClassTeleop extends LinearOpMode {
                     }
                     Movement(powershotPositionX, powershotPositionY, 0, 20, 2, 2);
                     RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                    if (DirectionClass.distanceFromReturn() < 1.5) {
+                    if (DirectionClass.distanceFromReturn() < 1) {
                         if (powershotShootOnce) {
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -108,7 +108,7 @@ public class MultiClassTeleop extends LinearOpMode {
                     }
                     Movement(powershotPositionX, powershotPositionY, 0, 20, 2, 2);
                     RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                    if (DirectionClass.distanceFromReturn() < 1.5) {
+                    if (DirectionClass.distanceFromReturn() < 1) {
                         if (powershotShootOnce) {
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -133,7 +133,7 @@ public class MultiClassTeleop extends LinearOpMode {
                     }
                     Movement(powershotPositionX, powershotPositionY, 0, 20, 2, 2);
                     RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                    if (DirectionClass.distanceFromReturn() < 1.5) {
+                    if (DirectionClass.distanceFromReturn() < 1) {
                         if (powershotShootOnce) {
                             timerStart = getRuntime();
                             powershotShootOnce = false;
