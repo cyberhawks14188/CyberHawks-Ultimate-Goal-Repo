@@ -56,12 +56,13 @@ public class MultiClassTeleop extends LinearOpMode {
             NormalizedRGBA Ring3Color = robot.Ring3_CS.getNormalizedColors();
             //Calling to the Classes and the methods inside of them to run the calculations and set points.
             OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
-            if (gamepad1.right_trigger > .05) {
-                powershotControl = true;
-            }
             if (gamepad1.right_trigger > .05 && !powershotLoop) {
-                if(powershotControl){ powershotControl = false;} else {powershotControl = true;}
-            } else if (gamepad1.right_trigger < .05) {
+                if(powershotControl){
+                    powershotControl = false;
+                } else {
+                    powershotControl = true;
+                }
+            } else if (gamepad1.right_trigger < .1) {
                 powershotLoop = false;
             }
             if (powershotControl) {
