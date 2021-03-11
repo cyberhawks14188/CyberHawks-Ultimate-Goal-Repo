@@ -59,8 +59,22 @@ public class  WobbleGoalArm {
         wobblePower = wobbleError * wobbleProportionalMulitplier;
     }
     //method to use the wobble goal arm in autonomous
-    public void WobbleAuto(double wbpt, double wobbleEndSet, double gripperset){
+    public void WobbleAuto(double wbpt, double WB_FSM, double b){
         //This slowly brings the arm to the endsetpoint to ensure little wear from arm bannging on the wheels
+        if (WB_FSM == 0) {
+            wobbleEndSet = 2.1;
+            gripperSet = .65;
+        } else if (WB_FSM == 1) {//state 1 is grab wobble goal while still in down position
+            gripperSet = .1;
+        } else if (WB_FSM == 2) {//Brings wobble goal arm in stored position to drive to wall
+            wobbleEndSet = .6;
+        } else if (WB_FSM == 3) {//Brings wobble goal above wall, gripper still closed
+            wobbleEndSet = 1;
+        } else if (WB_FSM == 4) {// Gripper opens
+            gripperSet = .65;
+        } else if (WB_FSM == 5) {//Closes Claw
+            gripperSet = .1;
+        }
         if (wobbleEndSet > wobbleSet + .02) {
             wobbleSet = wobbleSet + .02;
         } else if (wobbleEndSet < wobbleSet - .02) {
@@ -68,7 +82,6 @@ public class  WobbleGoalArm {
         } else {
             wobbleSet = wobbleEndSet;
         }
-        gripperSet = gripperset;
         //PID to control the wobble arm to go to desired set point
         wobbleError = wobbleSet - wbpt;
         wobblePower = wobbleError * wobbleProportionalMulitplier;
