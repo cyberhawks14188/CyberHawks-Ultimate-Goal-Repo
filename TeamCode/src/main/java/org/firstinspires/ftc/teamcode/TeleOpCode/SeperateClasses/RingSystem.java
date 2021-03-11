@@ -83,7 +83,7 @@ public class RingSystem {
         //stage 2 is shooting stage.
         if (ringSystemFSM == 2) {
             stopperSet = .5;
-            stagerPower = -.6;
+            stagerPower = -.3;
             intakePower = 0;
         }
     }
