@@ -7,7 +7,7 @@ public class  WobbleGoalArm {
     //Position Varibles
     double wobbleEndSet = 0.4;
     double wobbleSet = .4;
-    double gripperSet = .65;
+    double gripperSet = .1;
     double wobbleError;
     double wobbleProportionalMulitplier = 2;
     double wobblePower;
