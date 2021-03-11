@@ -45,17 +45,31 @@ public class BlueAuto extends LinearOpMode {
     double startPointY;
     double lastEndPointY;
     double justTurn;
+    double shooterSetpoint;
+    double stopperSetpoint;
+    double stagerSetpoint;
+    double shooterAngleSetpoint;
+    double wobbleSetpoint;
+    double gripSetpoint;
     double timepassed;
-    double lsstEndPointX;
+    double lastEndPointX;
     double noDriveMotor;
+    double xSetpoint;
+    double ySetpoint;
+    double thetaSetpoint;
     double loopcount;
-    double shooterOn;
-    double wobbleArm;
+    double accelerationDistance;
+    double decelerationDistance;
+    double targetSpeed;
+    double stopProgram;
+
+    double action;
 
     @Override
 
     public void runOpMode() {
         robot.init(hardwareMap);
+        /*
         //Intializes Vuforia
         initVuforia();
         //Intializes TensorFlow
@@ -93,30 +107,55 @@ public class BlueAuto extends LinearOpMode {
                     telemetry.update();
                 }
             }
+
             Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .32, .09);
             PowerSetting();
-        }
+        */
         waitForStart();
-        while(opModeIsActive()) {
-            startPointX = 0;
-            startPointY = 0;
-            breakout = 1;
-            //(DirectionClass.distanceFromReturn() >= .4 && opModeIsActive()) || (breakout == 1 && opModeIsActive())
-            while ((DirectionClass.distanceFromReturn() >= 1 && opModeIsActive()) || (breakout == 1 && opModeIsActive())) {
-                Movement(47, 18, 0, 45, 2, 8);
-                Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 2000, 1.12);
-
-                Telemetry();
-                PowerSetting();
-                breakout = 0;
+        action = 1;
+        startPointX = 0;
+        startPointY = 0;
+        while(opModeIsActive() && stopProgram == 0) {
+            if(action == 1 && (DirectionClass.distanceFromReturn() >= .8 || breakout == 0)){
+                shooterAngleSetpoint = 1.12;
+                gripSetpoint = .15;
+                xSetpoint = 40; ySetpoint = 0; thetaSetpoint = 0; targetSpeed = 30; accelerationDistance = 4; decelerationDistance = 8; breakout = 1;
             }
-            StopMotors();
-            sleep(400);
-            startPointX = OdoClass.odoXReturn();
-            startPointY = OdoClass.odoYReturn();
-            breakout = 1;
+            else if(action == 1){
+                StopMotors();
+                action = 2; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
+            }
+            else if(action == 2 && (robot.WB_PT.getVoltage() >= 1.6 || breakout == 0)){
+                wobbleSetpoint = 1.5;
+                xSetpoint = 40; ySetpoint = 0; thetaSetpoint = 0; targetSpeed = 2; accelerationDistance = 0; decelerationDistance = 0; breakout = 1;
+            }
+            else if(action == 2){
+                StopMotors();
+                if(breakout == 1){
+                    timepassed = getRuntime() + 3;
+                    breakout = 0;
+                }
+                if(timepassed <= timepassed){
+                    action = 3; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn();
+                }
+            }
+            else if(action == 3 && (DirectionClass.distanceFromReturn() >= .8 || breakout == 0)){
+                xSetpoint = 00; ySetpoint = 0; thetaSetpoint = 0; targetSpeed = 30; accelerationDistance = 4; decelerationDistance = 8; breakout = 1;
+            }
+            else if (action == 3){
+                action = 4; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
+            }
+            else if(action == 4){
+                stopProgram = 1;
+            }
 
+            Movement(xSetpoint, ySetpoint, thetaSetpoint, targetSpeed, accelerationDistance, decelerationDistance);
+            Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), shooterSetpoint, shooterAngleSetpoint);
+            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), wobbleSetpoint, gripSetpoint);
+            Telemetry();
+            PowerSetting();
         }
+        StopMotors();
         }
 
         public void Telemetry () {

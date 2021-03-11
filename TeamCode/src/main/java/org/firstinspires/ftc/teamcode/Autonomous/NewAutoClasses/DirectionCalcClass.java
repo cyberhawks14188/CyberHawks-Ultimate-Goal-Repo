@@ -17,6 +17,7 @@ public class DirectionCalcClass {
     double xError;
     double yPorportional;
     double yDerivitive;
+    double distanceFromSet;
     double yLastError;
     double xPorportional;
     double xDerivitive;
@@ -51,7 +52,7 @@ public class DirectionCalcClass {
         distanceFromEndX = odoX - endpointx;
         //Uses the pythagorean therom to find how far we are from the end point
         distanceFrom = Math.hypot(distanceFromEndX, distanceFromEndY);
-
+        distanceFromSet = 1;
         //Finds the point that the robot will be going to next
         //Finds this by calculating how far we are from the endpoint and how far ahead we want to look ahead using purePursuit Distance
         xsetpoint = endpointx - (((distanceFrom-purePursuitDistance)*(endpointx-startpointx))/distance);
@@ -105,6 +106,7 @@ public class DirectionCalcClass {
     }
     public double XSetpointReturn(){return xsetpoint;}
     public double YSetpointReturn(){return ysetpoint;}
+    public double DistanceFromSetReturn(){return distanceFromSet;}
     public double distanceReturn(){return distance;}
     public double distanceFromReturn(){return distanceFrom;}
     public double endpointXReturn(){return  endPointX;}
