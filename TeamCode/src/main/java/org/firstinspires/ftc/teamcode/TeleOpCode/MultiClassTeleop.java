@@ -36,6 +36,7 @@ public class MultiClassTeleop extends LinearOpMode {
     boolean powershotStateOnce = true;
     double noDriveMotor = 0, timerStart;
     boolean powershotLoop = false;
+    double thetaInitial;
 
     @Override
     public void runOpMode() {
@@ -73,6 +74,7 @@ public class MultiClassTeleop extends LinearOpMode {
                     powershotOnlyOnce = false;
                     powershotMovement = 1;
                     powershotStateOnce = true;
+                    thetaInitial = OdoClass.thetaInDegreesReturn();
                 }
                 if (powershotMovement == 1) {
                     if (powershotStateOnce) {
