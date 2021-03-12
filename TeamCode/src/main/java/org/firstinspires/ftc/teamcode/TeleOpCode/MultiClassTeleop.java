@@ -69,23 +69,17 @@ public class MultiClassTeleop extends LinearOpMode {
             }
             if (powershotControl) {
                 if (powershotOnlyOnce) {
-                    initialPositionX = OdoClass.odoXReturn();
-                    initialPositionY = OdoClass.odoYReturn();
-                    powershotOnlyOnce = false;
+                    initialPositionX = OdoClass.odoXReturn(); initialPositionY = OdoClass.odoYReturn(); thetaInitial = OdoClass.thetaInDegreesReturn();
+                    powershotOnlyOnce = false; powershotStateOnce = true;
                     powershotMovement = 1;
-                    powershotStateOnce = true;
-                    thetaInitial = OdoClass.thetaInDegreesReturn();
                 }
                 if (powershotMovement == 1) {
                     if (powershotStateOnce) {
-                        startPointX = OdoClass.odoXReturn();
-                        startPointY = OdoClass.odoYReturn();
-                        powershotStateOnce = false;
-                        powershotShootOnce = true;
-                        powershotPositionY = initialPositionY + 5;
-                        powershotPositionX = initialPositionX;
+                        startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn();
+                        powershotStateOnce = false; powershotShootOnce = true;
+                        powershotPositionY = initialPositionY + 5; powershotPositionX = initialPositionX;
                     }
-                    Movement(powershotPositionX, powershotPositionY, 0, 20, 2, 4);
+                    Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 2, 4);
                     RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     if (DirectionClass.distanceFromReturn() < 1) {
                         if (powershotShootOnce) {
@@ -105,13 +99,11 @@ public class MultiClassTeleop extends LinearOpMode {
                     if (powershotStateOnce) {
                         startPointX = OdoClass.odoXReturn();
                         startPointY = OdoClass.odoYReturn();
-                        powershotStateOnce = false;
-                        powershotShootOnce = true;
-                        powershotPositionY = initialPositionY + 10;
-                        powershotPositionX = initialPositionX;
+                        powershotStateOnce = false; powershotShootOnce = true;
+                        powershotPositionY = initialPositionY + 10; powershotPositionX = initialPositionX;
 
                     }
-                    Movement(powershotPositionX, powershotPositionY, 0, 20, 2, 4);
+                    Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 2, 4);
                     RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     if (DirectionClass.distanceFromReturn() < 1) {
                         if (powershotShootOnce) {
@@ -126,19 +118,14 @@ public class MultiClassTeleop extends LinearOpMode {
                             noDriveMotor = 1;
                             powershotStateOnce = true;
                         }
-                    }else{
-                        noDriveMotor = 0;
-                    }
+                    }else{noDriveMotor = 0;}
                 }else if (powershotMovement == 3) {
                     if (powershotStateOnce) {
-                        startPointX = OdoClass.odoXReturn();
-                        startPointY = OdoClass.odoYReturn();
-                        powershotStateOnce = false;
-                        powershotShootOnce = true;
-                        powershotPositionY = initialPositionY + 15;
-                        powershotPositionX = initialPositionX;
+                        startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn();
+                        powershotStateOnce = false; powershotShootOnce = true;
+                        powershotPositionY = initialPositionY + 15; powershotPositionX = initialPositionX;
                     }
-                    Movement(powershotPositionX, powershotPositionY, 0,20, 2, 4);
+                    Movement(powershotPositionX, powershotPositionY, thetaInitial,20, 2, 4);
                     RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     if (DirectionClass.distanceFromReturn() < 1) {
                         if (powershotShootOnce) {
@@ -153,10 +140,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         }
                     }else{
                         noDriveMotor = 0;
-                    }
-                }
-
-
+                    }}
             if (noDriveMotor == 1) {
                 robot.WB_M.setPower(WobbleArmClass.wobblePowerReturn());
                 robot.GRIP_S.setPosition(WobbleArmClass.gripperSetReturn());
@@ -164,10 +148,8 @@ public class MultiClassTeleop extends LinearOpMode {
                 robot.SOT_S.setPower(ShooterClass.sotAnglePowerReturn());
                 robot.STG_M.setPower(RingClass.stagerPowerRetun());
                 robot.STOP_S.setPosition(RingClass.stopperSetReturn());
-                robot.LF_M.setPower(0);
-                robot.LB_M.setPower(0);
-                robot.RF_M.setPower(0);
-                robot.RB_M.setPower(0);
+                robot.LF_M.setPower(0); robot.LB_M.setPower(0);
+                robot.RF_M.setPower(0); robot.RB_M.setPower(0);
             } else {
                 robot.WB_M.setPower(WobbleArmClass.wobblePowerReturn());
                 robot.GRIP_S.setPosition(WobbleArmClass.gripperSetReturn());
@@ -225,19 +207,12 @@ public class MultiClassTeleop extends LinearOpMode {
         telemetry.addData("Ring2RedValue", Ring2Color.red);
         telemetry.addData("Ring3RedValue", Ring3Color.red);
         telemetry.update();
-    }
-
-    }
-
+    }}
     public void Movement ( double endpointx, double endpointy, double thetasetpoint, double targetspeed, double accelerationdistance, double deccelerationdistance){
         OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
         DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
         SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn());
         SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);
         TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 1);
-
         telemetry.addData("Speed Setpoint", SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn()));
-    }
-
-}
-
+    }}
