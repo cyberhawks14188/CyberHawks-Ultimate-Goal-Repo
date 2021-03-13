@@ -84,9 +84,9 @@ public class MultiClassTeleop extends LinearOpMode {
                         if (powershotShootOnce) {
                             timerStart = getRuntime();
                             powershotShootOnce = false;
-                        }else if (timerStart + 1 > getRuntime()) {
+                        }else if (timerStart + 1.5 > getRuntime()) {
                             RingClass.RingSystemAuto(2, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                        } else if (timerStart + 1 < getRuntime()) {
+                        } else if (timerStart + 1.5 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                             powershotMovement = 2; powershotStateOnce = true;
                         }
@@ -106,9 +106,9 @@ public class MultiClassTeleop extends LinearOpMode {
                         if (powershotShootOnce) {
                             timerStart = getRuntime();
                             powershotShootOnce = false;
-                        } else if (timerStart + 1 > getRuntime()) {
+                        } else if (timerStart + 1.5 > getRuntime()) {
                             RingClass.RingSystemAuto(2, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                        } else if (timerStart + 1 < getRuntime()) {
+                        } else if (timerStart + 1.5 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                             powershotMovement = 3;
                             powershotStateOnce = true;
@@ -128,10 +128,10 @@ public class MultiClassTeleop extends LinearOpMode {
                         if (powershotShootOnce) {
                             timerStart = getRuntime();
                             powershotShootOnce = false;
-                        }else if (timerStart + 1 > getRuntime()) {
+                        }else if (timerStart + 1.5 > getRuntime()) {
                             RingClass.RingSystemAuto(2, Ring1Color.red, Ring2Color.red, Ring3Color.red);
 
-                        } else if (timerStart + 1 < getRuntime()) {
+                        } else if (timerStart + 1.5 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                             powershotControl = false;
                         }
