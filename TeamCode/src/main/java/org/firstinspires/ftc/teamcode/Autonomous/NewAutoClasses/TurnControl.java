@@ -3,12 +3,12 @@ package org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses;
 public class TurnControl {
     //Declares Varibles
     double thetaError;
-    double thetaProportionalMultiplier = .00003;
+    double thetaProportionalMultiplier = .000042;
     double thetaProportional;
     public double theta;
     double thetaSetPoint = 0;
     double thetaLastError = 0;
-    double thetaDerivativeMultiplier = .00009;
+    double thetaDerivativeMultiplier = .00018;
     double thetaDerivative;
     public double turnControl(double thetaendsetpoint, double thetaindegrees, double turnincrements){
         //Turns the robots in incriments instead of going straight to the end setpoint

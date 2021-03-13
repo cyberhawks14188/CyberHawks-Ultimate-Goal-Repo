@@ -87,6 +87,14 @@ public class RingSystem {
             intakePower = 0;
         }
     }
+
+    public void RingSystemAutonomous(double intakepower, double stopperset, double stagerpower){
+
+        stopperSet = stopperset;
+        stagerPower = stagerpower;
+        intakePower = intakepower;
+
+    }
     //returns the variables for the the intake and stager power and the stopper position
     public double intakePowerReturn(){return intakePower;}
     public double stagerPowerRetun(){return -stagerPower;}
