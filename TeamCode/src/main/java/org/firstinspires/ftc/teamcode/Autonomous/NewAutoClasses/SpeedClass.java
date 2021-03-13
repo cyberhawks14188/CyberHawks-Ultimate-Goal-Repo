@@ -17,8 +17,8 @@ public class SpeedClass {
     public double speed;
     public double speedSetpoint;
     //Sets our Proportional and Derivative multipliers
-    double speedPM = .002;
-    double speedDM = .007;
+    double speedPM = .015;
+    double speedDM = .039;
 
     public void SpeedCalc(double odoX, double odoY, double time, double speedsetpoint) {
 
@@ -68,18 +68,19 @@ public class SpeedClass {
     public double MotionProfile(double speedtarget, double accelerationdistance, double deccelerationdistance, double distance,  double distancefrom) {
         //Acceleration
         //Runs when our acceleration distance is greater than our distance traveled
-        if (accelerationdistance > distance - distancefrom) {
+
+        //When our deceleration distance is greater than our distance from then we begin deceleration
+        if (deccelerationdistance > distancefrom) {
+            //Uses y=mx + b to find what our speed setpoint during acceleration should be at a certain point
+            speedSetpoint = distancefrom * (speedtarget / deccelerationdistance);
+        }
+        else if (accelerationdistance > distance - distancefrom) {
             //Uses y = mx + b to find what our speed setpoint during acceleration should be at a certain point
             speedSetpoint = (distance - distancefrom) * (speedtarget / accelerationdistance);
             //Sets a  minimum speed
             if(speedSetpoint <= .1){
                 speedSetpoint = .1;
             }
-        }
-        //When our deceleration distance is greater than our distance from then we begin deceleration
-        else if (deccelerationdistance > distancefrom) {
-            //Uses y=mx + b to find what our speed setpoint during acceleration should be at a certain point
-            speedSetpoint = distancefrom * (speedtarget / deccelerationdistance);
         }
         //If we are not accelerating or decelerating then go at our desired speed
         else{
