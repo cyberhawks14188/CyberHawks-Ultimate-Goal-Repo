@@ -91,7 +91,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotMovement = 2; powershotStateOnce = true;
                         }
                     }else{
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 4, 4);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 0, 4);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     }
                 } else if (powershotMovement == 2) {
@@ -114,7 +114,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotStateOnce = true;
                         }
                     }else{
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 4, 4);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 0, 4);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     }
                 }else if (powershotMovement == 3) {
@@ -136,7 +136,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotControl = false;
                         }
                     }else{
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial,20, 4, 4);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,20, 0, 4);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     }
                 }
