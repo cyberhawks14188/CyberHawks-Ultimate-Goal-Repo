@@ -16,7 +16,7 @@ public class RingSystem {
         if(SOTangleset > 1.2){
             stagerMotorSet = .6;
         }else{
-            stagerMotorSet = -.75;
+            stagerMotorSet = .75;
         }
         if (gpadA && !stagerControl) {
             if (intakePower == 0) {
