@@ -14,7 +14,7 @@ public class RingSystem {
         //to set what state the FSM is in, we use our 1 button function, The function uses a boolean to tell us if the button was pressed last loop cycle
         //if the button was't and it is now: change the state we are in, Then repeat until the program shuts off
         if(SOTangleset > 1.2){
-            stagerMotorSet = -.6;
+            stagerMotorSet = .6;
         }else{
             stagerMotorSet = -.75;
         }
@@ -77,13 +77,13 @@ public class RingSystem {
                 stagerPower = 0;
             } else {
                 intakePower = -1;
-                stagerPower = -1;
+                stagerPower = 1;
             }
         }
         //stage 2 is shooting stage.
         if (ringSystemFSM == 2) {
             stopperSet = .5;
-            stagerPower = -.3;
+            stagerPower = .3;
             intakePower = 0;
         }
     }
@@ -97,6 +97,6 @@ public class RingSystem {
     }
     //returns the variables for the the intake and stager power and the stopper position
     public double intakePowerReturn(){return intakePower;}
-    public double stagerPowerRetun(){return -stagerPower;}
+    public double stagerPowerRetun(){return stagerPower;}
     public double stopperSetReturn(){return stopperSet;}
 }
