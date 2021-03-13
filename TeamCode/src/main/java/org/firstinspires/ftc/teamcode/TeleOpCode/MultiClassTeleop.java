@@ -80,7 +80,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         powershotPositionY = initialPositionY + 5; powershotPositionX = initialPositionX;
                     }
                     if (DirectionClass.distanceFromReturn() < 1) {
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial,10, 4, 0);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,10, 0, 4);
                         if (powershotShootOnce) {
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -102,7 +102,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         powershotPositionY = initialPositionY + 10; powershotPositionX = initialPositionX;
                     }
                     if (DirectionClass.distanceFromReturn() < 1) {
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial,10, 4, 0);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,10, 0, 4);
                         if (powershotShootOnce) {
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -124,7 +124,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         powershotPositionY = initialPositionY + 15; powershotPositionX = initialPositionX;
                     }
                     if (DirectionClass.distanceFromReturn() < 1) {
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial,10, 4, 0);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,10, 0, 4);
                         if (powershotShootOnce) {
                             timerStart = getRuntime();
                             powershotShootOnce = false;
