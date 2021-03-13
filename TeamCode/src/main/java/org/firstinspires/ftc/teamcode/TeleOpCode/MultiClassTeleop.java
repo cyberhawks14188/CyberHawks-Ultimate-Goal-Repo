@@ -79,19 +79,20 @@ public class MultiClassTeleop extends LinearOpMode {
                         powershotStateOnce = false; powershotShootOnce = true;
                         powershotPositionY = initialPositionY + 5; powershotPositionX = initialPositionX;
                     }
-                    Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 2, 4);
-                    RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     if (DirectionClass.distanceFromReturn() < 1) {
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,4, 0, 0);
                         if (powershotShootOnce) {
                             timerStart = getRuntime();
                             powershotShootOnce = false;
                         }else if (timerStart + .7 > getRuntime()) {
                             RingClass.RingSystemAuto(2, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                            justTurn = 1;
                         } else if (timerStart + .7 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                            powershotMovement = 2; justTurn = 0; powershotStateOnce = true;
+                            powershotMovement = 2; powershotStateOnce = true;
                         }
+                    }else{
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 2, 4);
+                        RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     }
                 } else if (powershotMovement == 2) {
                     if (powershotStateOnce) {
@@ -99,23 +100,22 @@ public class MultiClassTeleop extends LinearOpMode {
                         startPointY = OdoClass.odoYReturn();
                         powershotStateOnce = false; powershotShootOnce = true;
                         powershotPositionY = initialPositionY + 10; powershotPositionX = initialPositionX;
-
                     }
-                    Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 2, 4);
-                    RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     if (DirectionClass.distanceFromReturn() < 1) {
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,4, 0, 0);
                         if (powershotShootOnce) {
                             timerStart = getRuntime();
                             powershotShootOnce = false;
                         } else if (timerStart + .7 > getRuntime()) {
                             RingClass.RingSystemAuto(2, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                            justTurn = 1;
                         } else if (timerStart + .7 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                             powershotMovement = 3;
-                            justTurn = 0;
                             powershotStateOnce = true;
                         }
+                    }else{
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 2, 4);
+                        RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     }
                 }else if (powershotMovement == 3) {
                     if (powershotStateOnce) {
@@ -123,20 +123,23 @@ public class MultiClassTeleop extends LinearOpMode {
                         powershotStateOnce = false; powershotShootOnce = true;
                         powershotPositionY = initialPositionY + 15; powershotPositionX = initialPositionX;
                     }
-                    Movement(powershotPositionX, powershotPositionY, thetaInitial,20, 2, 4);
-                    RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     if (DirectionClass.distanceFromReturn() < 1) {
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,4, 0, 0);
                         if (powershotShootOnce) {
                             timerStart = getRuntime();
                             powershotShootOnce = false;
                         }else if (timerStart + .7 > getRuntime()) {
                             RingClass.RingSystemAuto(2, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                            justTurn = 1;
+
                         } else if (timerStart + .7 < getRuntime()) {
                             RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
-                            powershotControl = false; justTurn = 0;
+                            powershotControl = false;
                         }
-                    }}
+                    }else{
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,20, 2, 4);
+                        RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
+                    }
+                }
             if (noDriveMotor == 1) {
                 robot.WB_M.setPower(WobbleArmClass.wobblePowerReturn());
                 robot.GRIP_S.setPosition(WobbleArmClass.gripperSetReturn());
