@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.Autonomous.NewAutoClasses;
 public class TurnControl {
     //Declares Varibles
     double thetaError;
-    double thetaProportionalMultiplier = .0000191;
+    double thetaProportionalMultiplier = .000011;
     double thetaProportional;
     public double theta;
     double thetaSetPoint = 0;

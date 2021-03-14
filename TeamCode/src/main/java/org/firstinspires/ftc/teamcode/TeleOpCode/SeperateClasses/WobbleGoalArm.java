@@ -61,10 +61,10 @@ public class  WobbleGoalArm {
     //method to use the wobble goal arm in autonomous
     public void WobbleAuto(double wbpt, double wobbleEndSet, double gripperset){
         //This slowly brings the arm to the endsetpoint to ensure little wear from arm bannging on the wheels
-        if (wobbleEndSet > wobbleSet + .02) {
-            wobbleSet = wobbleSet + .02;
-        } else if (wobbleEndSet < wobbleSet - .02) {
-            wobbleSet = wobbleSet - .02;
+        if (wobbleEndSet > wobbleSet + .06) {
+            wobbleSet = wobbleSet + .06;
+        } else if (wobbleEndSet < wobbleSet - .06) {
+            wobbleSet = wobbleSet - .06;
         } else {
             wobbleSet = wobbleEndSet;
         }
