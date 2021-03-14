@@ -87,13 +87,11 @@ public class RingSystem {
             intakePower = 0;
         }
     }
-
+//method to use in autonomous if we want to set speeds manually
     public void RingSystemAutonomous(double intakepower, double stopperset, double stagerpower){
-
         stopperSet = stopperset;
         stagerPower = stagerpower;
         intakePower = intakepower;
-
     }
     //returns the variables for the the intake and stager power and the stopper position
     public double intakePowerReturn(){return intakePower;}

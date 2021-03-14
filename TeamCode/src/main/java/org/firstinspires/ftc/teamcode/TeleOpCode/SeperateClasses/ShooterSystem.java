@@ -50,14 +50,14 @@ public class ShooterSystem {
             SOTAngleSet = 1.03;
         }else if (shooterFSM == 2){//Powershot state
             if(intakepower == 0) {
-                shooterMotorSetpoint = 1200;//Shooter flywheel set point is 1900 encoder ticks per second
+                shooterMotorSetpoint = 1500;//Shooter flywheel set point is 1900 encoder ticks per second
                 timePassed = runtime - previousTime;
                 previousTime = runtime;
                 shooterMotorVelocity = Math.abs(shootermotorcurrent - previousShooterMotorEncoder) / timePassed;
                 previousShooterMotorEncoder = shootermotorcurrent;
                 shooterMotorError = shooterMotorSetpoint - shooterMotorVelocity;
                 shooterMotorCorrection = shooterMotorError * shooterMotorProportionalMultiplier;
-                SOTAngleSet = 1.275;
+                SOTAngleSet = 1.1;
             }else{
                 shooterMotorSetpoint = 0;
                 shooterMotorCorrection = 0;//we set both of these variables to ensure that neither one has power
