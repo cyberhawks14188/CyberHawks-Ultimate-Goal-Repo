@@ -27,6 +27,7 @@ public class DirectionCalcClass {
     double y;
     double xsetpoint;
     double lastxsetpoint;
+    double xyAngle;
     double lastysetpoint;
     double ysetpoint;
     double endPointX;
@@ -38,7 +39,7 @@ public class DirectionCalcClass {
     double yDM = .0009;
     double xPM = .00022;
     double xDM = .00055;
-    public void DirectionCalc(double startpointx, double startpointy, double endpointx, double endpointy, double odoX, double odoY, double theta){
+    public void DirectionCalc(double startpointx, double startpointy, double endpointx, double endpointy, double odoX, double odoY, double theta, double thetasetpoint, double theataradians){
         //Sets the parameter to othe varible
         endPointX = endpointx;
         endPointY = endpointy;
@@ -90,12 +91,16 @@ public class DirectionCalcClass {
             theta = 0;
         }
         //Motor Direction Equation
-
+        xyAngle = Math.atan2(y, x);
+        LF_M_Direction = (Math.sin((xyAngle + theataradians) - (Math.PI/4))) + theta;
+        LB_M_Direction = (Math.sin((xyAngle + theataradians) + (Math.PI/4))) + theta;
+        RF_M_Direction = (Math.sin((xyAngle + theataradians) + (Math.PI/4))) + theta;
+        RF_M_Direction = (Math.sin((xyAngle + theataradians) - (Math.PI/4))) + theta;
         //Find which direction should be turining based upon the x, y and theta correction
-        LF_M_Direction = x + (-y + theta);
-        LB_M_Direction = x - (-y - theta);
-        RF_M_Direction = x - (-y + theta);
-        RB_M_Direction = x + (-y - theta);
+        //LF_M_Direction = x + (-y + theta);
+        //LB_M_Direction = x - (-y - theta);
+        //RF_M_Direction = x - (-y + theta);
+        //RB_M_Direction = x + (-y - theta);
         //Finds what the highest motor power correction is and sets it to the bottom of the ratio
         motorPowerRatio = Math.max(Math.max(Math.abs(RF_M_Direction), Math.abs(RB_M_Direction)), Math.max(Math.abs(LF_M_Direction), Math.abs(LB_M_Direction)));
         //Puts each motor into a % of total power based on the highest motor power
@@ -111,6 +116,7 @@ public class DirectionCalcClass {
     public double distanceFromReturn(){return distanceFrom;}
     public double endpointXReturn(){return  endPointX;}
     public double endpointYReturn(){return endPointY;}
+    public double motorPowerRatioReturn(){return motorPowerRatio;}
     public double LF_M_DirectionReturn(){return LF_M_Direction;}
     public double LB_M_DirectionReturn(){return LB_M_Direction;}
     public double RF_M_DirectionReturn(){return RF_M_Direction;}

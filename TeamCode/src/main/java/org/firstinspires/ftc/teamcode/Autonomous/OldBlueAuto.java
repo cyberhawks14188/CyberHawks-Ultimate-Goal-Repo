@@ -342,7 +342,7 @@ public class OldBlueAuto extends LinearOpMode {
         targetVelocity = 30;
         //Runs movement until 100 away
         while (Distance_From >= .6 && opModeIsActive()) {
-            Movement(16, 60, 0, 6, 6);
+            Movement(9, 60, 0, 6, 2);
             SubSystem();
         }
         //Maintains position to make sure our robot is lined up with the shooter
@@ -419,7 +419,7 @@ public class OldBlueAuto extends LinearOpMode {
         }
         if(Detected == 2) {
             while (Distance_From > .6 && opModeIsActive()) {
-                Movement(36.25, 22, 0, 6, 6);
+                Movement(34.25, 22, 0, 6, 6);
                 SubSystem();
             }
         }
@@ -440,7 +440,7 @@ public class OldBlueAuto extends LinearOpMode {
             SubSystem();
         }
         stop_motors();
-        Timedloop = ((robot.LF_M.getCurrentPosition() * 0.00436111 + robot.RF_M.getCurrentPosition() * 0.00436111)/2)+3.4;
+        Timedloop = ((robot.LF_M.getCurrentPosition() * 0.00436111 + robot.RF_M.getCurrentPosition() * 0.00436111)/2)+4.8;
         while(Timedloop >= Y_Average & opModeIsActive()){
             Y_Average = (robot.LF_M.getCurrentPosition() * 0.00436111 + robot.RF_M.getCurrentPosition() * 0.00436111)/2;
             robot.LF_M.setPower(.3);
@@ -462,7 +462,7 @@ public class OldBlueAuto extends LinearOpMode {
         while(getRuntime() <= Timedloop){
             SubSystem();
         }
-        Timedloop = ((robot.LF_M.getCurrentPosition() * 0.00436111 + robot.RF_M.getCurrentPosition() * 0.00436111)/2)-3.4;
+        Timedloop = ((robot.LF_M.getCurrentPosition() * 0.00436111 + robot.RF_M.getCurrentPosition() * 0.00436111)/2)-4.8;
         while(Timedloop >= Y_Average & opModeIsActive()){
             Y_Average = (robot.LF_M.getCurrentPosition() * 0.00436111 + robot.RF_M.getCurrentPosition() * 0.00436111)/2;
             robot.LF_M.setPower(-.3);
@@ -508,7 +508,7 @@ public class OldBlueAuto extends LinearOpMode {
             targetVelocity = 30;
 
             while (Distance_From > .6 && opModeIsActive()) {
-                Movement(-13, 60, 0, 6, 6);
+                Movement(-13, 60, 0, 6, 2);
                 SubSystem();
             }
             stop_motors();
@@ -522,7 +522,7 @@ public class OldBlueAuto extends LinearOpMode {
 
 
             while (Distance_From > .6 && opModeIsActive()) {
-                Movement(12, 86, 0, 6, 6);
+                Movement(12, 86, 0, 6, 2);
                 SubSystem();
             }
             stop_motors();
@@ -535,7 +535,7 @@ public class OldBlueAuto extends LinearOpMode {
             targetVelocity = 45;
 
             while (Distance_From > .8 && opModeIsActive()) {
-                Movement(-12, 106, 0, 13, 9);
+                Movement(-19, 106, 0, 13, 2);
                 SubSystem();
             }
             stop_motors();
@@ -629,15 +629,15 @@ public class OldBlueAuto extends LinearOpMode {
         Z_PM = .45;
         Z_IM = .000000001;
         Z_DM = .55;
-        VPM = .7;
+        VPM = .75;
         VIM = .00000001;
-        VDM = .9;
+        VDM = .95;
         Slope_X_DM = .4;
         Slope_Y_PM = .4;
         Slope_X_PM = .4;
         Slope_Y_DM = .4;
         minimumAccelerationVelocity = 12;
-        minimumVelocity = 2;
+        minimumVelocity = 5.5;
         //If we only want our robot to turn we only run the Z PID by setting all other multipliers to 0
         if(JustTurn == 1){
             X_PM = 0;
