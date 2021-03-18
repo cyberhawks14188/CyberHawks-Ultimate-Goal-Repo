@@ -37,6 +37,7 @@ public class MultiClassTeleop extends LinearOpMode {
     double noDriveMotor = 0, timerStart;
     boolean powershotLoop = false;
     double thetaInitial; double justTurn = 0; double thetaSetpoint;
+    double intakeSet;
 
     @Override
     public void runOpMode() {
@@ -155,6 +156,12 @@ public class MultiClassTeleop extends LinearOpMode {
                 robot.RB_M.setPower(DrivetrainClass.RBMReturn());
                 robot.IN_M.setPower(RingClass.intakePowerReturn());
             }
+            intakeSet = (gamepad2.left_stick_y * .01) + intakeSet;
+            if(intakeSet > .78){
+                intakeSet = .78;
+            }else if(intakeSet < .3){
+                intakeSet = .3;
+            }
             //sets universal motor power
             robot.WB_M.setPower(WobbleArmClass.wobblePowerReturn());
             robot.GRIP_S.setPosition(WobbleArmClass.gripperSetReturn());
@@ -162,7 +169,9 @@ public class MultiClassTeleop extends LinearOpMode {
             robot.SOT_S.setPower(ShooterClass.sotAnglePowerReturn());
             robot.STG_M.setPower(RingClass.stagerPowerRetun());
             robot.STOP_S.setPosition(RingClass.stopperSetReturn());
+            robot.IN_S.setPosition(intakeSet);
             //Displaying Telemetry
+            telemetry.addData("intakeSet", intakeSet);
             telemetry.addData("speed variable", SpeedClass.SpeedReturn());
             telemetry.addData("powershotMovement", powershotMovement);
             telemetry.addData("powershotinitialY", powershotPositionY);
@@ -190,7 +199,7 @@ public class MultiClassTeleop extends LinearOpMode {
         //calls all the methods we need to control the robot autonomously for powershot shooting
     public void Movement ( double endpointx, double endpointy, double thetasetpoint, double targetspeed, double accelerationdistance, double deccelerationdistance){
         OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
-        DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
+       // DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
         SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn());
         SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);
         if(justTurn == 1){
