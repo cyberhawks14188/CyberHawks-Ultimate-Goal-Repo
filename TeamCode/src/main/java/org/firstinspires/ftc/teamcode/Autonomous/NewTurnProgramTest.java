@@ -94,7 +94,7 @@ public class NewTurnProgramTest extends LinearOpMode {
                 }
 
             }
-                    //Ring1Color.red > .05 || Ring2Color.red > .25 || Ring3Color.red > .25 || breakout == 0
+
             //Goes to target position
             else if(action == 2){
                 xSetpoint = 0; ySetpoint = 0; thetaSetpoint = 0; targetSpeed = 30; accelerationDistance = 1; decelerationDistance = 6;
@@ -104,7 +104,7 @@ public class NewTurnProgramTest extends LinearOpMode {
                     timepassed = getRuntime() + 2;
                 }
                 else{
-                    breakout = 1;
+                    stopProgram = 1;
                 }
             }
             //Runs all of our equations each loop cycle
