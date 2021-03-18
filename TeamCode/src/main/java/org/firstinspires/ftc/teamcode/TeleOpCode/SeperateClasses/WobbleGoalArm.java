@@ -12,7 +12,7 @@ public class  WobbleGoalArm {
     double wobbleProportionalMulitplier = 2;
     double wobblePower;
 
-    public void WobbleControl(double gpadlefttrigger, boolean dpadup, boolean dpaddown, double wbpt){
+    public void WobbleControl(double gpadlefttrigger, double wbpt){
         //finite State machine for the wobble goal.
         //We use the custom one button cycle to switch between each state.
         if (gpadlefttrigger > .05 && !WBControl) {
@@ -39,12 +39,6 @@ public class  WobbleGoalArm {
             gripperSet = .65;
         } else if (WB_FSM == 5) {//Closes Claw
             gripperSet = .1;
-        }
-        //Lets up manually change set point if needed. Set EndSet to current set point + or - t o allow the arm to go to its current position + or - the setpoint.
-        if (dpadup) {
-            wobbleEndSet = wobbleSet - .1;
-        } else if (dpaddown) {
-            wobbleEndSet = wobbleSet + .1;
         }
         //This slowly brings the arm to the endsetpoint to ensure little wear from arm bannging on the wheels
         if (wobbleEndSet > wobbleSet + .08) {

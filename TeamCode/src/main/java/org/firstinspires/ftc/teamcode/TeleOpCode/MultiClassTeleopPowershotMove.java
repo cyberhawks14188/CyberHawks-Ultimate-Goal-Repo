@@ -146,7 +146,7 @@ public class MultiClassTeleopPowershotMove extends LinearOpMode {
                 DrivetrainClass.DriveBase(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.right_bumper);
                 RingClass.RingSystemControl(gamepad1.a, gamepad1.b, Ring1Color.red, Ring2Color.red, Ring3Color.red, gamepad1.back, ShooterClass.sotAngleSetReturn());
                 ShooterClass.shooterControl(gamepad1.left_bumper, robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), RingClass.intakePowerReturn());
-                WobbleArmClass.WobbleControl(gamepad1.left_trigger, gamepad1.dpad_up, gamepad1.dpad_down, robot.WB_PT.getVoltage());
+                WobbleArmClass.WobbleControl(gamepad1.left_trigger, robot.WB_PT.getVoltage());
                 //sets motor power if we are not in the powershot subsystem because we control the motor power differently
                 robot.LF_M.setPower(DrivetrainClass.LFMReturn());
                 robot.LB_M.setPower(DrivetrainClass.LBMReturn());
