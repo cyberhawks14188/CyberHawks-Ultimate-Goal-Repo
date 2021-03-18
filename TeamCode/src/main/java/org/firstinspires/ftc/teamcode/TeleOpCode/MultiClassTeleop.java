@@ -163,7 +163,7 @@ public class MultiClassTeleop extends LinearOpMode {
             robot.SOT_S.setPower(ShooterClass.sotAnglePowerReturn());
             robot.STG_M.setPower(RingClass.stagerPowerRetun());
             robot.STOP_S.setPosition(RingClass.stopperSetReturn());
-            robot.IN_S.setPosition(intakeSet);
+            robot.IN_S.setPosition(RingClass.intakePositionReturn());
             //Displaying Telemetry
             telemetry.addData("intakeSet", intakeSet);
             telemetry.addData("speed variable", SpeedClass.SpeedReturn());
