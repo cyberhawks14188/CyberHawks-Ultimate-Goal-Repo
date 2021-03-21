@@ -33,6 +33,7 @@ public class RobotHardware{
     public CRServo SOT_S;
     public Servo STOP_S;
     public Servo IN_S;
+    public CRServo Sweeper_S;
 
     public AnalogInput WB_PT;
     public Servo GRIP_S;
@@ -69,6 +70,7 @@ public class RobotHardware{
         SOT_S = hardwareMap.get(CRServo.class, "SOT_S");
         GRIP_S = hardwareMap.get(Servo.class, "GRIP_S");
         IN_S = hardwareMap.get(Servo.class, "IN_S");
+        Sweeper_S = hardwareMap.get(CRServo.class, "Sweeper_S");
         SOT_PT = hardwareMap.get(AnalogInput.class, "SOT_PT");
         STOP_S = hardwareMap.get(Servo.class, "STOP_S");
         WB_PT = hardwareMap.get(AnalogInput.class, "WB_PT");

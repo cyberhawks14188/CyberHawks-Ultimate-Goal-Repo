@@ -37,7 +37,7 @@ public class MultiClassTeleop extends LinearOpMode {
     double noDriveMotor = 0, timerStart;
     boolean powershotLoop = false;
     double thetaInitial; double justTurn = 0; double thetaSetpoint;
-    double intakeSet;
+    double intakeSet; double sweeperPower = 0;
 
     @Override
     public void runOpMode() {
@@ -156,6 +156,7 @@ public class MultiClassTeleop extends LinearOpMode {
                 robot.RB_M.setPower(DrivetrainClass.RBMReturn());
                 robot.IN_M.setPower(RingClass.intakePowerReturn());
             }
+            sweeperPower = sweeperPower + (gamepad2.left_stick_y * .01);
             //sets universal motor power
             robot.WB_M.setPower(WobbleArmClass.wobblePowerReturn());
             robot.GRIP_S.setPosition(WobbleArmClass.gripperSetReturn());
@@ -164,7 +165,9 @@ public class MultiClassTeleop extends LinearOpMode {
             robot.STG_M.setPower(RingClass.stagerPowerRetun());
             robot.STOP_S.setPosition(RingClass.stopperSetReturn());
             robot.IN_S.setPosition(RingClass.intakePositionReturn());
+            robot.Sweeper_S.setPower(sweeperPower);
             //Displaying Telemetry
+            telemetry.addData("sweeper", sweeperPower);
             telemetry.addData("intakeSet", intakeSet);
             telemetry.addData("speed variable", SpeedClass.SpeedReturn());
             telemetry.addData("powershotMovement", powershotMovement);
