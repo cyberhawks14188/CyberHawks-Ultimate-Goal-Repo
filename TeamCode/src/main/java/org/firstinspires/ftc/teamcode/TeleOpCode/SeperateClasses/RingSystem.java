@@ -60,15 +60,20 @@ public class RingSystem {
         if (gpadback) {
             intakePower = 1;
         }
-        if(dpadup){//changes position for intake
-            intakePosition = .3;//stored
-        }else if(dpaddown){
-            intakePosition = .78;//intaking
-        }else if(dpadleft){
-            intakePosition = .6;//mid low
-        }else if(dpadright){
-            intakePosition = .45;//mid high
-        }
+       // if(dpadup){//changes position for intake
+       //     intakePosition = .3;//stored
+      //  }else if(dpaddown){
+      //      intakePosition = .78;//intaking
+      //  }else if(dpadleft){
+       //     intakePosition = .6;//mid low
+     //   }else if(dpadright){
+     //       intakePosition = .45;//mid high
+     //   }
+       if(dpadup){
+           intakePosition = intakePosition -.01;
+       } else if(dpaddown){
+           intakePosition = intakePosition + .01;
+       }
     }
     //Method to use the intake/stager in autonomous
     public void RingSystemAuto(double ringSystemFSM, double colorSensor1, double colorSensor2, double colorSensor3){
