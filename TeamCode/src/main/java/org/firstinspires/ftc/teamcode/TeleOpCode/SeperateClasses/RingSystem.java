@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses;
 
+import org.firstinspires.ftc.teamcode.Intake_rings;
+
 public class RingSystem {
     //variables to control the Finite State Machine
     boolean stagerControl = false;
@@ -10,6 +12,7 @@ public class RingSystem {
     double stopperSet;
     double stagerMotorSet;
     double intakePosition = .78;
+    double intakePositionSet = .78;
     public void RingSystemControl(boolean dpaddown, boolean dpadup, boolean dpadright, boolean dpadleft, boolean gpadA, boolean gpadB, double colorSensor1, double colorSensor2, double colorSensor3, boolean gpadback, double SOTangleset){
         //uses a Finite State Machine to turn the intake and stager motors on or off and set the position of the stopper servo
         //to set what state the FSM is in, we use our 1 button function, The function uses a boolean to tell us if the button was pressed last loop cycle
@@ -107,7 +110,14 @@ public class RingSystem {
         stopperSet = stopperset;
         stagerPower = stagerpower;
         intakePower = intakepower;
-        intakePosition = intakeposition;
+        intakePositionSet = intakeposition;
+        if (intakePositionSet > intakePosition + .005){
+            intakePosition = intakePosition + .005;
+        }else if (intakePositionSet < intakePosition - .005){
+            intakePosition = intakePosition - .005;
+        }else{
+            intakePosition = intakePositionSet;
+        }
     }
     //returns the variables for the the intake and stager power and the stopper position
     public double intakePowerReturn(){return intakePower;}
