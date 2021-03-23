@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses;
 public class ShooterSystem {
     //Sets varibles to use in the method
     boolean shooterControlBoolean;
-    double SOTAngleSet = 1.12;
+    double SOTAngleSet = 1.07;
     double SOTAngleError;
     double SOTAngleLastError = 0;
     double SOTAngleDerivitveMultiplier = -2;
@@ -36,7 +36,7 @@ public class ShooterSystem {
             shooterMotorCorrection = 0;//we set both of these variables to ensure that neither one has power
         }else if(shooterFSM == 1){//Top Goal state
             if(intakepower == 0){
-                shooterMotorSetpoint = 1900;//Shooter flywheel set point is 1900 encoder ticks per second
+                shooterMotorSetpoint = 1700;//Shooter flywheel set point is 1900 encoder ticks per second
                 timePassed = runtime - previousTime;
                 previousTime = runtime;
                 shooterMotorVelocity = Math.abs(shootermotorcurrent - previousShooterMotorEncoder) / timePassed;

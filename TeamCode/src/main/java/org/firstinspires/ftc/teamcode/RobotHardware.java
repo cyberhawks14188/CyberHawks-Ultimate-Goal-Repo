@@ -5,6 +5,7 @@ import android.net.http.SslCertificate;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -33,7 +34,7 @@ public class RobotHardware{
     public CRServo SOT_S;
     public Servo STOP_S;
     public Servo IN_S;
-    public CRServo Sweeper_S;
+
 
     public AnalogInput WB_PT;
     public Servo GRIP_S;
@@ -70,7 +71,6 @@ public class RobotHardware{
         SOT_S = hardwareMap.get(CRServo.class, "SOT_S");
         GRIP_S = hardwareMap.get(Servo.class, "GRIP_S");
         IN_S = hardwareMap.get(Servo.class, "IN_S");
-        Sweeper_S = hardwareMap.get(CRServo.class, "Sweeper_S");
         SOT_PT = hardwareMap.get(AnalogInput.class, "SOT_PT");
         STOP_S = hardwareMap.get(Servo.class, "STOP_S");
         WB_PT = hardwareMap.get(AnalogInput.class, "WB_PT");
@@ -79,6 +79,7 @@ public class RobotHardware{
         Ring3_CS = hardwareMap.get(NormalizedColorSensor.class, "Ring3_CS");
         NormalizedColorSensor colorSensor;
         imu.initialize(parameters);
+
         //servo = hardwareMap.get(Servo.class, "servo");
 
         // Set all motors to zero power

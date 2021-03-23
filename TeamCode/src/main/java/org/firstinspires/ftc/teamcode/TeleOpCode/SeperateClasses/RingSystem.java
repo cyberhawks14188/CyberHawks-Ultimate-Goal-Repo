@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+
 import org.firstinspires.ftc.teamcode.Intake_rings;
 
 public class RingSystem {
@@ -13,6 +15,8 @@ public class RingSystem {
     double stagerMotorSet;
     double intakePosition = .78;
     double intakePositionSet = .78;
+
+
     public void RingSystemControl(boolean dpaddown, boolean dpadup, boolean dpadright, boolean dpadleft, boolean gpadA, boolean gpadB, double colorSensor1, double colorSensor2, double colorSensor3, boolean gpadback, double SOTangleset){
         //uses a Finite State Machine to turn the intake and stager motors on or off and set the position of the stopper servo
         //to set what state the FSM is in, we use our 1 button function, The function uses a boolean to tell us if the button was pressed last loop cycle
@@ -63,20 +67,15 @@ public class RingSystem {
         if (gpadback) {
             intakePower = 1;
         }
-       // if(dpadup){//changes position for intake
-       //     intakePosition = .3;//stored
-      //  }else if(dpaddown){
-      //      intakePosition = .78;//intaking
-      //  }else if(dpadleft){
-       //     intakePosition = .6;//mid low
-     //   }else if(dpadright){
-     //       intakePosition = .45;//mid high
-     //   }
-       if(dpadup){
-           intakePosition = intakePosition -.01;
-       } else if(dpaddown){
-           intakePosition = intakePosition + .01;
-       }
+        if(dpadup){//changes position for intake
+           intakePosition = .3;//stored
+        }else if(dpaddown){
+            intakePosition = .78;//intaking
+        }else if(dpadleft){
+           intakePosition = .6;//mid low
+        }else if(dpadright){
+            intakePosition = .45;//mid high
+        }
     }
     //Method to use the intake/stager in autonomous
     public void RingSystemAuto(double ringSystemFSM, double colorSensor1, double colorSensor2, double colorSensor3){

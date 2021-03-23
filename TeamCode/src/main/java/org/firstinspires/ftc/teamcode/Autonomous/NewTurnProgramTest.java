@@ -112,7 +112,7 @@ public class NewTurnProgramTest extends LinearOpMode {
             Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), shooterSetpoint, shooterAngleSetpoint);
             //Stager.RingSystemAuto();
             Wobble.WobbleAuto(robot.WB_PT.getVoltage(), wobbleSetpoint, gripSetpoint);
-            Stager.RingSystemAutonomous(intakeSetpoint, stopperSetpoint, stagerSetpoint);
+            //Stager.RingSystemAutonomous(intakeSetpoint, stopperSetpoint, stagerSetpoint);
             if(robot.WB_PT.getVoltage() < 1.2){
                 gripSetpoint = .1;
             }

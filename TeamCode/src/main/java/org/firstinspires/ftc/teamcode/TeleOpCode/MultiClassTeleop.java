@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.TeleOpCode;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
@@ -37,14 +38,16 @@ public class MultiClassTeleop extends LinearOpMode {
     double noDriveMotor = 0, timerStart;
     boolean powershotLoop = false;
     double thetaInitial; double justTurn = 0; double thetaSetpoint;
-    double intakeSet; double sweeperPower = 0;
-
+    double intakeSet;
+    RevBlinkinLedDriver blinkinLedDriver;
+    RevBlinkinLedDriver.BlinkinPattern pattern;
     @Override
     public void runOpMode() {
         //Calling upon the HardwareMap
         robot.init(hardwareMap);
         //setting gain on color sensors
         robot.Ring1_CS.setGain(15); robot.Ring2_CS.setGain(15); robot.Ring3_CS.setGain(15);
+
 
         waitForStart();//Waits for the play button to be pressed
 
@@ -156,7 +159,15 @@ public class MultiClassTeleop extends LinearOpMode {
                 robot.RB_M.setPower(DrivetrainClass.RBMReturn());
                 robot.IN_M.setPower(RingClass.intakePowerReturn());
             }
-            sweeperPower = sweeperPower + (gamepad2.left_stick_y * .01);
+            if(Ring1Color.red > .05 && Ring2Color.red < .25 && Ring3Color.red < .25){
+                pattern = RevBlinkinLedDriver.BlinkinPattern.RED;
+            }else if(Ring1Color.red > .05 && Ring2Color.red > .25 && Ring3Color.red < .25){
+                pattern = RevBlinkinLedDriver.BlinkinPattern.ORANGE;
+            }else if(Ring1Color.red > .05 && Ring2Color.red > .25 && Ring3Color.red > .25){
+                pattern = RevBlinkinLedDriver.BlinkinPattern.GREEN;
+            }else {
+                pattern = RevBlinkinLedDriver.BlinkinPattern.BLUE;
+            }
             //sets universal motor power
             robot.WB_M.setPower(WobbleArmClass.wobblePowerReturn());
             robot.GRIP_S.setPosition(WobbleArmClass.gripperSetReturn());
@@ -165,9 +176,8 @@ public class MultiClassTeleop extends LinearOpMode {
             robot.STG_M.setPower(RingClass.stagerPowerRetun());
             robot.STOP_S.setPosition(RingClass.stopperSetReturn());
             robot.IN_S.setPosition(RingClass.intakePositionReturn());
-            robot.Sweeper_S.setPower(sweeperPower);
+            blinkinLedDriver.setPattern(pattern);
             //Displaying Telemetry
-            telemetry.addData("sweeper", sweeperPower);
             telemetry.addData("intakeSet", intakeSet);
             telemetry.addData("speed variable", SpeedClass.SpeedReturn());
             telemetry.addData("powershotMovement", powershotMovement);
