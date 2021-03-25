@@ -6,7 +6,7 @@ public class ShooterSystem {
     double SOTAngleSet = 1.03;
     double SOTAngleError;
     double SOTAngleLastError = 0;
-    double SOTAngleDerivitveMultiplier = -2;
+    double SOTAngleDerivitveMultiplier = -5;
     double SOTAnglePropotionalMultiplier = -5;
     double SOTAnglePower;
     double shooterMotorSetpoint = 0;
