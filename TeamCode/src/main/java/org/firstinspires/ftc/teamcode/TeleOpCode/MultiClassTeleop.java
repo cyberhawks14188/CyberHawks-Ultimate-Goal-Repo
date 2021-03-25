@@ -41,8 +41,10 @@ public class MultiClassTeleop extends LinearOpMode {
     double intakeSet;
     RevBlinkinLedDriver blinkinLedDriver;
     RevBlinkinLedDriver.BlinkinPattern pattern;
+
     @Override
     public void runOpMode() {
+        blinkinLedDriver = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
         //Calling upon the HardwareMap
         robot.init(hardwareMap);
         //setting gain on color sensors
@@ -160,13 +162,13 @@ public class MultiClassTeleop extends LinearOpMode {
                 robot.IN_M.setPower(RingClass.intakePowerReturn());
             }
             if(Ring1Color.red > .05 && Ring2Color.red < .25 && Ring3Color.red < .25){
-                pattern = RevBlinkinLedDriver.BlinkinPattern.RED;
+                pattern = RevBlinkinLedDriver.BlinkinPattern.GREEN;//one ring
             }else if(Ring1Color.red > .05 && Ring2Color.red > .25 && Ring3Color.red < .25){
-                pattern = RevBlinkinLedDriver.BlinkinPattern.ORANGE;
+                pattern = RevBlinkinLedDriver.BlinkinPattern.YELLOW;//2 rings
             }else if(Ring1Color.red > .05 && Ring2Color.red > .25 && Ring3Color.red > .25){
-                pattern = RevBlinkinLedDriver.BlinkinPattern.GREEN;
+                pattern = RevBlinkinLedDriver.BlinkinPattern.RED;//3 rings
             }else {
-                pattern = RevBlinkinLedDriver.BlinkinPattern.BLUE;
+                pattern = RevBlinkinLedDriver.BlinkinPattern.BLUE;//no rings
             }
             //sets universal motor power
             robot.WB_M.setPower(WobbleArmClass.wobblePowerReturn());
@@ -177,6 +179,7 @@ public class MultiClassTeleop extends LinearOpMode {
             robot.STOP_S.setPosition(RingClass.stopperSetReturn());
             robot.IN_S.setPosition(RingClass.intakePositionReturn());
             blinkinLedDriver.setPattern(pattern);
+
             //Displaying Telemetry
             telemetry.addData("intakeSet", intakeSet);
             telemetry.addData("speed variable", SpeedClass.SpeedReturn());
