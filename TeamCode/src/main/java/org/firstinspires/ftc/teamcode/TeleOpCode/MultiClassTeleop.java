@@ -205,7 +205,7 @@ public class MultiClassTeleop extends LinearOpMode {
             telemetry.addData("Ring2RedValue", Ring2Color.red);
             telemetry.addData("Ring3RedValue", Ring3Color.red);
             telemetry.update();
-        }blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLUE);
+        }blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.LIGHT_CHASE_BLUE);
 
     }
     //calls all the methods we need to control the robot autonomously for powershot shooting
