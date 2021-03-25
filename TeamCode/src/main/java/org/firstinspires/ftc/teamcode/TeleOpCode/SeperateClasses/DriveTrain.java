@@ -27,7 +27,7 @@ public class DriveTrain {
         //Since we use highest motor power to make sure no motor power goes over 1, there will always be a motor going full power
         //We use the joysticks again to make apply a ratio and the set motor power
         leftStickCombined = Math.sqrt((x * x) + (y * y));
-        if(leftStickCombined + Math.abs(z)<.01){
+        if(leftStickCombined + Math.abs(z)>.01){
             speed = leftStickCombined + Math.abs(z);
         }
         //Uses the calculations above to calculate the desired motor power
