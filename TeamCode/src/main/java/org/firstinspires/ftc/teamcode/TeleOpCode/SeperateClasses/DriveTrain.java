@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses;
 
+import android.mtp.MtpConstants;
+
 public class DriveTrain {
 
     //Decalaring Variables to use in the method
@@ -25,12 +27,8 @@ public class DriveTrain {
         //Since we use highest motor power to make sure no motor power goes over 1, there will always be a motor going full power
         //We use the joysticks again to make apply a ratio and the set motor power
         leftStickCombined = Math.sqrt((x * x) + (y * y));
-        if (Math.abs(z) < .01) {
-            speed = leftStickCombined;
-        } else if (Math.abs(x + y) < .02) {
-            speed = Math.abs(z);
-        } else {
-            speed = (leftStickCombined + Math.abs(z)) / 2;
+        if(leftStickCombined + Math.abs(z)<.01){
+            speed = leftStickCombined + Math.abs(z);
         }
         //Uses the calculations above to calculate the desired motor power
         LFM = ((LFM / highestMotorPower) * speed) * speedSetPoint;
