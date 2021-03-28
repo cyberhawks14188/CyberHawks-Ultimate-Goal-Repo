@@ -21,7 +21,7 @@ public class RingSystem {
         //uses a Finite State Machine to turn the intake and stager motors on or off and set the position of the stopper servo
         //to set what state the FSM is in, we use our 1 button function, The function uses a boolean to tell us if the button was pressed last loop cycle
         //if the button was't and it is now: change the state we are in, Then repeat until the program shuts off
-        if(SOTangleset > 1.2){
+        if(SOTangleset > 1.1){
             stagerMotorSet = .6;
         }else{
             stagerMotorSet = .75;
