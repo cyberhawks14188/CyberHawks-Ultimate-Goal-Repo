@@ -153,7 +153,7 @@ public class MultiClassTeleop extends LinearOpMode {
                     powershotControl = false; powershotOnlyOnce = true;
                 }
                 //runs the shooter to always be running so we keep constant speed
-                ShooterClass.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1900, 1.275);
+                ShooterClass.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1700, 1.22);
                 //sets drive motors if we are in the powershot subsytem because we control the robot differently than TeleOp
                 robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.speed + .35));
                 robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .35));
