@@ -84,11 +84,6 @@ public class DirectionCalcClass {
         x = xPorportional + xDerivitive;
         //Makes sure our purepuresuit distance never goes backwards
         //When we are close to the desired point hold there
-        if(distanceFrom <= .15){
-            x = 0;
-            y = 0;
-            theta = 0;
-        }
         //Motor Direction Equation
 
         //Find which direction should be turining based upon the x, y and theta correction
@@ -98,8 +93,8 @@ public class DirectionCalcClass {
         RB_M_Direction = x + (-y - theta);
         //Finds what the highest motor power correction is and sets it to the bottom of the ratio
         motorPowerRatio = Math.max(Math.max(Math.abs(RF_M_Direction), Math.abs(RB_M_Direction)), Math.max(Math.abs(LF_M_Direction), Math.abs(LB_M_Direction)));
-        if(motorPowerRatio <= .01){
-            motorPowerRatio = .01;
+        if(motorPowerRatio <= .05){
+            motorPowerRatio = .05;
         }
 
         //Puts each motor into a % of total power based on the highest motor power
@@ -109,6 +104,8 @@ public class DirectionCalcClass {
         RB_M_Direction = RB_M_Direction/motorPowerRatio;
     }
     public double XSetpointReturn(){return xsetpoint;}
+    public double XReturn(){return x;}
+    public double YReturn(){return y;}
     public double YSetpointReturn(){return ysetpoint;}
     public double DistanceFromSetReturn(){return distanceFromSet;}
     public double distanceReturn(){return distance;}

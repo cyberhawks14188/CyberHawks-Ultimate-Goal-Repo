@@ -72,7 +72,7 @@ public class SpeedClass {
         //When our deceleration distance is greater than our distance from then we begin deceleration
 
         if(slowmovementdistance > distancefrom){
-            speedSetpoint = 1;
+            speedSetpoint = .75;
         }
         else if (deccelerationdistance + slowmovementdistance > distancefrom) {
             //Uses y=mx + b to find what our speed setpoint during acceleration should be at a certain point
