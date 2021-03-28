@@ -78,11 +78,10 @@ public class MultiClassTeleop extends LinearOpMode {
                     if (powershotStateOnce) {//runs these 3 lines of code to tell us how to get to our endpoint
                         startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn();
                         powershotStateOnce = false; powershotShootOnce = true;//makers sure we run the correct things in the next loop cycles
-                        powershotPositionY = initialPositionY; powershotPositionX = initialPositionX;//sets endpoints and the line to follow
-                        thetaSetpoint = thetaInitial + 5; justTurn = 1;
+                        powershotPositionY = initialPositionY + 5; powershotPositionX = initialPositionX;//sets endpoints and the line to follow
                     }
-                    if (DirectionClass.distanceFromReturn() < 1 && OdoClass.thetaInDegreesReturn() < (thetaInitial - thetaSetpoint)) {//once we are within 1 inch of our target position we shoot for 1.5 seconds then move on the 2nd powershot
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, 0, 4);//holds position to ensure accuracy when shooting
+                    if (DirectionClass.distanceFromReturn() < 1) {//once we are within 1 inch of our target position we shoot for 1.5 seconds then move on the 2nd powershot
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,10, 0, 4);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -94,18 +93,17 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotMovement = 2; powershotStateOnce = true;
                         }
                     }else{//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, 0, 4);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 0, 4);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 2) {//2nd powershot subsystem
                     if (powershotStateOnce) {//runs these 3 lines of code to tell us how to get to our endpoint
                         startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn();
                         powershotStateOnce = false; powershotShootOnce = true;//makers sure we run the correct things in the next loop cycles
-                        powershotPositionY = initialPositionY; powershotPositionX = initialPositionX;//sets endpoints and the line to follow
-                        thetaSetpoint = thetaInitial + 10; justTurn = 1;
+                        powershotPositionY = initialPositionY + 10; powershotPositionX = initialPositionX;//sets endpoints and the line to follow
                     }
                     if (DirectionClass.distanceFromReturn() < 1) {//once we are within 1 inch of our target position we shoot for 1.5 seconds then move on the 2nd powershot
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, 0, 4);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,10, 0, 4);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -117,18 +115,17 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotMovement = 3; powershotStateOnce = true;
                         }
                     }else{//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, 0, 4);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 0, 4);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     }
                 }else if (powershotMovement == 3) {//3rd powershot subsystem
                     if (powershotStateOnce) {//runs these 3 lines of code to tell us how to get to our endpoint
                         startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn();
                         powershotStateOnce = false; powershotShootOnce = true;
-                        powershotPositionY = initialPositionY; powershotPositionX = initialPositionX;//sets endpoints and the line to follow
-                        thetaSetpoint = thetaInitial + 15; justTurn = 1;
+                        powershotPositionY = initialPositionY + 15; powershotPositionX = initialPositionX;
                     }
                     if (DirectionClass.distanceFromReturn() < 1) {//once we are within 1 inch of our target position we shoot for 1.5 seconds then move on the 2nd powershot
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, 0, 4);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,10, 0, 4);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -137,7 +134,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             RingClass.RingSystemAuto(2, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                         } else if (timerStart + 1.5 < getRuntime()) {powershotControl = false;}//gets out of the powershot subsystem to continue teleOp
                     }else{//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, 0, 4);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,20, 0, 4);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);
                     }
                 }
@@ -152,7 +149,7 @@ public class MultiClassTeleop extends LinearOpMode {
                 //runs the calculations for TeleOp if we are not in the powershot subsytem to let us run a normal TeleOp
                 DrivetrainClass.DriveBase(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.right_bumper);
                 RingClass.RingSystemControl(gamepad1.dpad_down, gamepad1.dpad_up, gamepad1.dpad_right, gamepad1.dpad_left, gamepad1.a, gamepad1.b, Ring1Color.red, Ring2Color.red, Ring3Color.red, gamepad1.back, ShooterClass.sotAngleSetReturn());
-                ShooterClass.shooterControl(gamepad1.left_bumper, robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), RingClass.intakePowerReturn(), gamepad2.right_stick_y);
+                ShooterClass.shooterControl(gamepad1.left_bumper, robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), RingClass.intakePowerReturn());
                 WobbleArmClass.WobbleControl(gamepad1.left_trigger, robot.WB_PT.getVoltage());
                 //sets motor power if we are not in the powershot subsystem because we control the motor power differently
                 robot.LF_M.setPower(DrivetrainClass.LFMReturn());
