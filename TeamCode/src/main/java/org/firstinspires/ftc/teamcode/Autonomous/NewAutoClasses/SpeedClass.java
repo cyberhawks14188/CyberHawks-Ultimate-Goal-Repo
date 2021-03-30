@@ -20,6 +20,7 @@ public class SpeedClass {
     double speedPM = .017;
     double speedDM = .051;
     double thetaError;
+    double thetaLastError;
     double lastTheta;
     double thetaSpeedCurrent;
     double thetaPM;
@@ -27,6 +28,7 @@ public class SpeedClass {
     double thetaSpeedError;
     double thetaProportional;
     double thetaDerivitave;
+    double thetaSpeed;
 
     public void SpeedCalc(double odoX, double odoY, double odoTheta, double time, double speedsetpoint, double thetaspeedsetpoint) {
 
@@ -56,6 +58,13 @@ public class SpeedClass {
         //theta speed PD
         thetaSpeedError = thetaspeedsetpoint - speedCurrent;
         //theta speed proportional
+        thetaProportional = thetaSpeedError * thetaPM;
+        //theta speed dervitave
+        thetaDerivitave = (thetaSpeedError - thetaLastError) * thetaDM;
+        //theta last error for derivitave last loop
+        thetaLastError = thetaError;
+        //theta speed
+        thetaSpeed = thetaSpeed + (thetaProportional + thetaDerivitave);
 
 
 
@@ -70,7 +79,7 @@ public class SpeedClass {
         speedLastError = speedError;
         //Speed at which the motor %'s will be going
         //We add speed to speed to allows the robot to always incress speed if it is going to slow
-        speed = Math.abs(speed + ((speedDerivative + speedPorportional)));
+        speed = Math.abs((speed + (speedDerivative + speedPorportional)) + thetaSpeed);
         //Speed limits
         if (speed <= 0){
             speed = 0;
