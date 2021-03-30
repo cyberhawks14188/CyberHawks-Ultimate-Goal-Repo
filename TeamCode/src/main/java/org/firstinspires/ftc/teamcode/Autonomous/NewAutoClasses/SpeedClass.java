@@ -65,18 +65,18 @@ public class SpeedClass {
     //Returns the distance traveled in the loop cycle
     public double DistanceDelta(){return distanceDelta;}
 
-    public double MotionProfile(double speedtarget, double accelerationdistance, double deccelerationdistance, double slowmovementdistance, double distance,  double distancefrom) {
+    public double MotionProfile(double speedtarget, double accelerationdistance, double deccelerationdistance, double slowmovementdistance, double distance,  double distancefrom, double slowmovespeed) {
         //Acceleration
-        //Runs when our acceleration distance is greater than our distance traveled
+        //Runs when our /acceleration distance is greater than our distance traveled
 
         //When our deceleration distance is greater than our distance from then we begin deceleration
 
         if(slowmovementdistance > distancefrom){
-            speedSetpoint = .75;
+            speedSetpoint = distancefrom * (slowmovespeed / slowmovementdistance);
         }
         else if (deccelerationdistance + slowmovementdistance > distancefrom) {
             //Uses y=mx + b to find what our speed setpoint during acceleration should be at a certain point
-            speedSetpoint = distancefrom * (speedtarget / deccelerationdistance);
+            speedSetpoint = (((speedtarget-slowmovespeed)/deccelerationdistance) * (distancefrom -slowmovementdistance)) + slowmovespeed;
         }
         else if (accelerationdistance > distance - distancefrom) {
             //Uses y = mx + b to find what our speed setpoint during acceleration should be at a certain point

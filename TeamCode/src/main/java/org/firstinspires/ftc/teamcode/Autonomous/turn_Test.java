@@ -55,6 +55,7 @@ public class turn_Test extends LinearOpMode {
     double wobbleSetpoint;
     double gripSetpoint;
     double intakeServoSetpoint;
+    double slowMoveSpeed;
     double intakeSetpoint;
     double timepassed;
     double lastEndPointX;
@@ -78,46 +79,6 @@ public class turn_Test extends LinearOpMode {
     public void runOpMode() {
         robot.init(hardwareMap);
 /*
-        //Intializes Vuforia
-        initVuforia();
-        //Intializes TensorFlow
-        initTfod();
-        if (tfod != null) {
-            tfod.activate();
-        }
-        while (isStarted() != true) {
-            //Sets up a ratio for our webcam to look at
-            //Allows our camera to focus only on the ring stack
-            tfod.setZoom(3, 1.78);
-            //Runs Tenosor Flow to detect the ring stack
-            if (tfod != null) {
-                List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
-                if (updatedRecognitions != null) {
-                    telemetry.addData("# Object Detected", updatedRecognitions.size());
-                    // step through the list of recognitions and display boundary info.
-                    int i = 0;
-                    for (Recognition recognition : updatedRecognitions) {
-                        telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
-                        telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
-                                recognition.getLeft(), recognition.getTop());
-                        telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
-                                recognition.getRight(), recognition.getBottom());
-                        //If we see 1 ring set Detected to 1
-                        if (recognition.getLabel() == "Single") {
-                            Detected = 1;
-                        }
-                        //If we see 4 rings set detected to 2
-                        if (recognition.getLabel() == "Quad")
-                            Detected = 2;
-                    }
-
-                    Telemetry();
-                    telemetry.update();
-                }
-            }
-            Wobble.WobbleAuto(robot.WB_PT.getVoltage(), .32, .09);
-            PowerSetting();
-        }
 
 
  */
@@ -128,28 +89,24 @@ public class turn_Test extends LinearOpMode {
         stopperSetpoint = .3;
         wobbleSetpoint = 1.4;
         shooterAngleSetpoint = 1.22;
-        shooterSetpoint = 0;
+        shooterSetpoint = 1700;
         gripSetpoint = .1;
         Detected = 2;
         while(opModeIsActive() && stopProgram == 0) {
             //Moves to first power shot shooting position
             if(action == 1){
                 wobbleSetpoint = .6;
-                xSetpoint = 0; ySetpoint = 0; thetaSetpoint = -90; targetSpeed = 15; accelerationDistance = 0; decelerationDistance = 0; slowmovedistance = 0; turnIncriments = 1;
-                if (OdoClass.thetaInDegreesReturn() < -85 ){
+                xSetpoint = 51; ySetpoint = -37.5; thetaSetpoint = 0; targetSpeed = 70; accelerationDistance = .5; decelerationDistance = 20; slowmovedistance = 2; turnIncriments = .6;
+                if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .4 && OdoClass.thetaInDegreesReturn() > -.4)){
                     StopMotors();
                     action = 2; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
-                    timepassed = getRuntime() + .4;
+                    timepassed = getRuntime() + .2;
                 }
                 else{
                     breakout = 1;
                 }
             }
-            else if(action == 2){
-                wobbleSetpoint = .6;
-                xSetpoint = 0; ySetpoint = 0; thetaSetpoint = -90; targetSpeed = 7; accelerationDistance = 0; decelerationDistance = 3; slowmovedistance = .2; turnIncriments = 1;
-            }
-            //Shoots 1st powershot
+
             else{
                 stopProgram = 1;
             }
@@ -160,7 +117,7 @@ public class turn_Test extends LinearOpMode {
             Stager.RingSystemAutonomous(intakeSetpoint, stopperSetpoint, stagerSetpoint, intakeServoSetpoint);
             if(robot.WB_PT.getVoltage() < 1.2){
                 gripSetpoint = .1;
-            }
+        }
             Telemetry();
             PowerSetting();
         }
@@ -182,6 +139,9 @@ public class turn_Test extends LinearOpMode {
         telemetry.addData("Odo X", OdoClass.odoXReturn());
         telemetry.addData("Odo Y", OdoClass.odoYReturn());
         telemetry.addData("Theta Angle", OdoClass.thetaInDegreesReturn());
+        telemetry.addData("X", DirectionClass.XReturn());
+        telemetry.addData("Y", DirectionClass.YReturn());
+        telemetry.addData("Theta", TurnControl.theta);
         telemetry.addData("Distance", DirectionClass.distanceReturn());
         telemetry.addData("Distance From", DirectionClass.distanceFromReturn());
         telemetry.addData("Speed", SpeedClass.SpeedReturn());
@@ -196,13 +156,14 @@ public class turn_Test extends LinearOpMode {
         telemetry.addData("Motor Power Ratio", DirectionClass.motorPowerRatioReturn());
         telemetry.addData("WB PT", robot.WB_PT.getVoltage());
         telemetry.addData("Shooter Motor", robot.SOT_M.getPower());
+        telemetry.addData("STG_M", robot.STG_M.getPower());
         telemetry.addData("Action", action);
         telemetry.update();
     }
     public void Movement ( double endpointx, double endpointy, double thetasetpoint, double targetspeed, double accelerationdistance, double deccelerationdistance, double slowmovedistance, double turnincriments){
         OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
         DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
-        SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, slowmovedistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn());
+        SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, slowmovedistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn(), slowMoveSpeed);
         SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);
         if(justTurn == 1){
             TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), turnincriments);
@@ -221,10 +182,10 @@ public class turn_Test extends LinearOpMode {
         robot.STOP_S.setPosition(Stager.stopperSetReturn());
         robot.IN_S.setPosition(Stager.intakePositionReturn());
         robot.IN_M.setPower(Stager.intakePowerReturn());
-        robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .19));
-        robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .19));
-        robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .19));
-        robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .19));
+        robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
+        robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
+        robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
+        robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
     }
     public void StopMotors () {
         robot.LF_M.setPower(0);
