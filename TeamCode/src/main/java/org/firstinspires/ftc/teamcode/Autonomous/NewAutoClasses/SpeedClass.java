@@ -19,8 +19,27 @@ public class SpeedClass {
     //Sets our Proportional and Derivative multipliers
     double speedPM = .017;
     double speedDM = .051;
+    double thetaError;
+    double thetaLastError;
+    double lastTheta;
+    double thetaSpeedCurrent;
+    double thetaPM;
+    double thetaDM;
+    double thetaSpeedError;
+    double thetaProportional;
+    double thetaDerivitave;
+    double thetaSpeed;
 
-    public void SpeedCalc(double odoX, double odoY, double time, double speedsetpoint) {
+    public void SpeedCalc(double odoX, double odoY, double odoTheta, double time, double speedsetpoint, double thetaspeedsetpoint) {
+
+        //Finds the difference in the thate position from last loop cycle to the current loop cycle
+        thetaError = Math.abs(odoTheta - lastTheta);
+        //Set lastTheta for use in next loop cycle
+        lastTheta = odoTheta;
+        //Finds the speed of theta for this loop cycle
+        thetaSpeedCurrent = thetaError/(time - timePrevious);
+
+
 
             //Finds the difference between loop cycles in position
             //Uses absolute value since distances can't be negative
@@ -36,6 +55,17 @@ public class SpeedClass {
             //Sets the previous time to our current time
             timePrevious = time;
 
+        //theta speed PD
+        thetaSpeedError = thetaspeedsetpoint - speedCurrent;
+        //theta speed proportional
+        thetaProportional = thetaSpeedError * thetaPM;
+        //theta speed dervitave
+        thetaDerivitave = (thetaSpeedError - thetaLastError) * thetaDM;
+        //theta last error for derivitave last loop
+        thetaLastError = thetaError;
+        //theta speed
+        thetaSpeed = thetaSpeed + (thetaProportional + thetaDerivitave);
+
 
 
         //Speed PD
@@ -49,7 +79,7 @@ public class SpeedClass {
         speedLastError = speedError;
         //Speed at which the motor %'s will be going
         //We add speed to speed to allows the robot to always incress speed if it is going to slow
-        speed = Math.abs(speed + ((speedDerivative + speedPorportional)));
+        speed = Math.abs((speed + (speedDerivative + speedPorportional)) + thetaSpeed);
         //Speed limits
         if (speed <= 0){
             speed = 0;
@@ -95,6 +125,7 @@ public class SpeedClass {
             speedSetpoint = speedtarget;
         }
         //returns the setpoint to be used in the speedCalc method
+
     return speedSetpoint;
     }
 
