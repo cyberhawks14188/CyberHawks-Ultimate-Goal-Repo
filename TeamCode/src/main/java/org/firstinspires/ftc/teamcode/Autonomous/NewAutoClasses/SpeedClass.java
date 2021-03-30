@@ -19,8 +19,25 @@ public class SpeedClass {
     //Sets our Proportional and Derivative multipliers
     double speedPM = .017;
     double speedDM = .051;
+    double thetaError;
+    double lastTheta;
+    double thetaSpeedCurrent;
+    double thetaPM;
+    double thetaDM;
+    double thetaSpeedError;
+    double thetaProportional;
+    double thetaDerivitave;
 
-    public void SpeedCalc(double odoX, double odoY, double time, double speedsetpoint) {
+    public void SpeedCalc(double odoX, double odoY, double odoTheta, double time, double speedsetpoint, double thetaspeedsetpoint) {
+
+        //Finds the difference in the thate position from last loop cycle to the current loop cycle
+        thetaError = Math.abs(odoTheta - lastTheta);
+        //Set lastTheta for use in next loop cycle
+        lastTheta = odoTheta;
+        //Finds the speed of theta for this loop cycle
+        thetaSpeedCurrent = thetaError/(time - timePrevious);
+
+
 
             //Finds the difference between loop cycles in position
             //Uses absolute value since distances can't be negative
@@ -35,6 +52,10 @@ public class SpeedClass {
             speedCurrent = distanceDelta / (time - timePrevious);
             //Sets the previous time to our current time
             timePrevious = time;
+
+        //theta speed PD
+        thetaSpeedError = thetaspeedsetpoint - speedCurrent;
+        //theta speed proportional
 
 
 
@@ -95,6 +116,7 @@ public class SpeedClass {
             speedSetpoint = speedtarget;
         }
         //returns the setpoint to be used in the speedCalc method
+
     return speedSetpoint;
     }
 
