@@ -166,7 +166,7 @@ public class BlueAuto extends LinearOpMode {
             //Goes to 2nd power shot
             else if(action == 3){
                     xSetpoint = 51; ySetpoint = -33.1;  accelerationDistance = 0; decelerationDistance = 0; targetSpeed = 5;
-                slowmovedistance = 1.5; slowMoveSpeed = .5;; thetaDeccelerationDegree = 3; thetaTargetSpeed = .3;
+                slowmovedistance = 1.5; slowMoveSpeed = .5; thetaDeccelerationDegree = 3; thetaTargetSpeed = .3;
                 if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .2 && OdoClass.thetaInDegreesReturn() > -.2)){
                     StopMotors();
                     action = 4; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -188,6 +188,7 @@ public class BlueAuto extends LinearOpMode {
             //Goes to 3rd power shot
             else if(action == 5) {
                     xSetpoint = 51; ySetpoint = -28;  accelerationDistance = 0; decelerationDistance = 0; targetSpeed = 8;
+                  slowmovedistance = 1.5; slowMoveSpeed = .5;
                 if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .2 && OdoClass.thetaInDegreesReturn() > -.2)){
                     StopMotors();
                     action = 6; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -479,8 +480,11 @@ public class BlueAuto extends LinearOpMode {
             telemetry.addData("X", DirectionClass.XReturn());
             telemetry.addData("Y", DirectionClass.YReturn());
             telemetry.addData("Theta", TurnControl.theta);
+            telemetry.addData("SlowMoveSpeed", slowMoveSpeed);
+            telemetry.addData("SlowMoveDistance", slowmovedistance);
             telemetry.addData("Distance", DirectionClass.distanceReturn());
             telemetry.addData("Distance From", DirectionClass.distanceFromReturn());
+            telemetry.addData("Speed Setpoint", SpeedClass.speedSetpoint());
             telemetry.addData("Speed", SpeedClass.SpeedReturn());
             telemetry.addData("time", getRuntime());
             telemetry.addData("Distance Delta", SpeedClass.DistanceDelta());
@@ -501,7 +505,7 @@ public class BlueAuto extends LinearOpMode {
         TurnControl.turnControl(thetaSetpoint , OdoClass.thetaInDegreesReturn());
         DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
         SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, slowmovedistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn(), slowMoveSpeed, thetaDeccelerationDegree, thetasetpoint, thetaTargetSpeed, OdoClass.thetaInDegreesReturn());
-        SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), OdoClass.thetaInDegreesReturn(), getRuntime(), SpeedClass.speedSetpoint, SpeedClass.thetaSpeedSetpoint());
+        SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), OdoClass.thetaInDegreesReturn(), getRuntime(), SpeedClass.speedSetpoint(), SpeedClass.thetaSpeedSetpoint());
     }
 
         public void PowerSetting () {
