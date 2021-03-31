@@ -200,8 +200,13 @@ public class MultiClassTeleop extends LinearOpMode {
                 if(topGoalOnce) {
                     topGoalYStart = OdoClass.odoYReturn(); topGoalXStart = OdoClass.odoXReturn();
                     topGoalOnce = false;
+                }else{
+                    if(DirectionClass.distanceFromReturn() < 2 && (Math.abs(thetaInitial - OdoClass.thetaInDegreesReturn()) < 1)){
+                        topGoalShoot = false;
+                    }
                 }
-                Movement(topGoalXPos,topGoalYPos,topGoalThetaPos,0,0,0,0,0,0,0);
+                Movement(topGoalXPos,topGoalYPos,topGoalThetaPos,50,.3,4,.5,0,5,1.5);
+
             }else{
                 //runs the calculations for TeleOp if we are not in the powershot subsytem to let us run a normal TeleOp
                 DrivetrainClass.DriveBase(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.right_bumper);
