@@ -134,7 +134,9 @@ public class BlueAuto extends LinearOpMode {
         shooterSetpoint = 1700;
         gripSetpoint = .1;
         Detected = 2;
+        robot.Ring1_CS.setGain(15); robot.Ring2_CS.setGain(15); robot.Ring3_CS.setGain(15);
         while(opModeIsActive() && stopProgram == 0) {
+            NormalizedRGBA Ring1Color = robot.Ring1_CS.getNormalizedColors(); NormalizedRGBA Ring2Color = robot.Ring2_CS.getNormalizedColors(); NormalizedRGBA Ring3Color = robot.Ring3_CS.getNormalizedColors();
             //Moves to first power shot shooting position
             if(action == 1){
                 wobbleSetpoint = .6;
@@ -339,7 +341,7 @@ public class BlueAuto extends LinearOpMode {
             else if(action == 17){
                 shooterAngleSetpoint = 1.13;
                 targetSpeed = 3; decelerationDistance = 5; slowmovedistance =  10; intakeServoSetpoint = .72;
-                if (robot.IN_S.getPosition() >= .65 && breakout != 0){
+                if (Ring1Color.red > .05 && Ring2Color.red > .25 && Ring3Color.red > .25 && breakout != 0){
                     StopMotors();
                     action = 18; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
                     timepassed = getRuntime() + 1.25;
