@@ -110,10 +110,10 @@ public class RingSystem {
         stagerPower = stagerpower;
         intakePower = intakepower;
         intakePositionSet = intakeposition;
-        if (intakePositionSet > intakePosition + .005){
-            intakePosition = intakePosition + .005;
-        }else if (intakePositionSet < intakePosition - .005){
-            intakePosition = intakePosition - .005;
+        if (intakePositionSet > intakePosition + .003){
+            intakePosition = intakePosition + .003;
+        }else if (intakePositionSet < intakePosition - .003){
+            intakePosition = intakePosition - .003;
         }else{
             intakePosition = intakePositionSet;
         }

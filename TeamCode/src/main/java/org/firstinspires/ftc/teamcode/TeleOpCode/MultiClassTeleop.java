@@ -223,13 +223,13 @@ public class MultiClassTeleop extends LinearOpMode {
     public void Movement ( double endpointx, double endpointy, double thetasetpoint, double targetspeed, double accelerationdistance, double deccelerationdistance){
         OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
         DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
-        SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, .3, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn());
-        SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);
-        if(justTurn == 1){
-            TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 3);
-        }
-        else{
-            TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 1);
-        }
+       // SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, .3, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn());
+      //  SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);
+        //if(justTurn == 1){
+           // TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 3);
+      //  }
+        //else{
+           // TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 1);
+       // }
         //telemetry.addData("Speed Setpoint", SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn()));
     }}

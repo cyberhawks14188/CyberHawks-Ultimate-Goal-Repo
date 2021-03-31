@@ -68,6 +68,8 @@ public class BlueAuto extends LinearOpMode {
     double slowMoveSpeed;
     double decelerationDistance;
     double slowmovedistance;
+    double thetaTargetSpeed;
+    double thetaDeccelerationDegree;
     double targetSpeed;
     double stopProgram;
     double timepassed2;
@@ -136,8 +138,10 @@ public class BlueAuto extends LinearOpMode {
             //Moves to first power shot shooting position
             if(action == 1){
                 wobbleSetpoint = .6;
-                    xSetpoint = 51; ySetpoint = -37.5; thetaSetpoint = 0; targetSpeed = 70; accelerationDistance = .5; decelerationDistance = 20; slowmovedistance = 2; turnIncriments = .6;
-                if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .4 && OdoClass.thetaInDegreesReturn() > -.4)){
+                    xSetpoint = 51; ySetpoint = -40.5; thetaSetpoint = 0; targetSpeed = 70; accelerationDistance = .5; decelerationDistance = 5;
+                     slowmovedistance = 5; slowMoveSpeed = 2; thetaDeccelerationDegree = 2; thetaTargetSpeed = .5;
+
+                if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .2 && OdoClass.thetaInDegreesReturn() > -.2)){
                     StopMotors();
                     action = 2; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
                     timepassed = getRuntime() + .2;
@@ -160,7 +164,8 @@ public class BlueAuto extends LinearOpMode {
             //Goes to 2nd power shot
             else if(action == 3){
                     xSetpoint = 51; ySetpoint = -32.8;  accelerationDistance = 0; decelerationDistance = 0; targetSpeed = 8;
-                if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .4 && OdoClass.thetaInDegreesReturn() > -.4)){
+                slowmovedistance = 5; slowMoveSpeed = 2; thetaDeccelerationDegree = 3; thetaTargetSpeed = .5;
+                if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .2 && OdoClass.thetaInDegreesReturn() > -.2)){
                     StopMotors();
                     action = 4; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
                     timepassed = getRuntime() + .2;
@@ -181,7 +186,7 @@ public class BlueAuto extends LinearOpMode {
             //Goes to 3rd power shot
             else if(action == 5) {
                     xSetpoint = 51; ySetpoint = -27;  accelerationDistance = 0; decelerationDistance = 0; targetSpeed =8;
-                if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .4 && OdoClass.thetaInDegreesReturn() > -.4)){
+                if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .2 && OdoClass.thetaInDegreesReturn() > -.2)){
                     StopMotors();
                     action = 6; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
                     timepassed = getRuntime() + .2;
@@ -201,7 +206,7 @@ public class BlueAuto extends LinearOpMode {
             //Goes to the 1st wobble goal
             else if(action == 7) {
                 wobbleSetpoint = 1.8;
-                turnIncriments = .6;
+                
                 if(Detected == 0){
                     xSetpoint = 30; ySetpoint = -31;  accelerationDistance = 1; decelerationDistance = 4; targetSpeed = 70;
                 }
@@ -259,7 +264,8 @@ public class BlueAuto extends LinearOpMode {
             }
 
             else if(action == 11){
-                thetaSetpoint = -82; targetSpeed = 4; accelerationDistance = 0; decelerationDistance = 0; slowmovedistance = 0; turnIncriments = 10;
+                thetaSetpoint = -82; targetSpeed = 4; accelerationDistance = 0; decelerationDistance = 0; slowmovedistance = 0;
+                thetaDeccelerationDegree = 10; thetaTargetSpeed = 10;
                 if (OdoClass.thetaInDegreesReturn() <= -80 && breakout != 0){
                     StopMotors();
                     action = 12; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -276,7 +282,7 @@ public class BlueAuto extends LinearOpMode {
                 robot.RF_M.setPower(.55);
                 robot.RB_M.setPower(.55);
                  thetaSetpoint = -90; targetSpeed = 0; accelerationDistance = 0; decelerationDistance = 0; slowmovedistance = 0;
-                if (OdoClass.odoXReturn() >= 27 && breakout != 0){
+                if (OdoClass.odoXReturn() >= 25.5 && breakout != 0){
                     StopMotors();
                     gripSetpoint = .1;
 
@@ -296,7 +302,7 @@ public class BlueAuto extends LinearOpMode {
                 }
             }
             else if(action == 14){
-                thetaSetpoint = 0; targetSpeed = 6; accelerationDistance = 0; decelerationDistance = 0; slowmovedistance = 0; turnIncriments = 6;
+                thetaSetpoint = 0; targetSpeed = 6; accelerationDistance = 0; decelerationDistance = 0; slowmovedistance = 0;
                 if (OdoClass.thetaInDegreesReturn() >= -5 && breakout != 0){
                     StopMotors();
                     action = 15; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -307,8 +313,9 @@ public class BlueAuto extends LinearOpMode {
                 }
             }
             else if(action == 15){
+                slowmovedistance = 5; slowMoveSpeed = 3; thetaDeccelerationDegree = 5; thetaTargetSpeed = 2;
                 wobbleSetpoint = .6;
-                xSetpoint = 27; ySetpoint = -4; thetaSetpoint = 0; targetSpeed = 20; accelerationDistance = 1; decelerationDistance = 1; slowmovedistance = .5; turnIncriments = .6;
+                xSetpoint = 31.5; ySetpoint = -3; thetaSetpoint = 10; targetSpeed = 20; accelerationDistance = 1; decelerationDistance = 1; slowmovedistance = .5;
                 if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0){
                     StopMotors();
                     action = 16; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -319,7 +326,7 @@ public class BlueAuto extends LinearOpMode {
                 }
             }
             else if(action == 16){
-                xSetpoint = 32.25; targetSpeed = 10; decelerationDistance = .25; slowmovedistance = .1; accelerationDistance = 0; intakeSetpoint = -.9; stagerSetpoint = .7;
+                xSetpoint = 33.1; targetSpeed = 10; decelerationDistance = .25; slowmovedistance = .1; accelerationDistance = 0; intakeSetpoint = -.9; stagerSetpoint = .7;
                 if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0){
                     StopMotors();
                     action = 17; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -331,7 +338,7 @@ public class BlueAuto extends LinearOpMode {
             }
             else if(action == 17){
                 shooterAngleSetpoint = 1.13;
-                targetSpeed = 3; decelerationDistance = 10; slowmovedistance = .5; intakeServoSetpoint = .72;
+                targetSpeed = 3; decelerationDistance = 5; slowmovedistance =  10; intakeServoSetpoint = .72;
                 if (robot.IN_S.getPosition() >= .65 && breakout != 0){
                     StopMotors();
                     action = 18; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -350,7 +357,7 @@ public class BlueAuto extends LinearOpMode {
             }
 
             else if(action == 19){
-                thetaSetpoint = 10;  targetSpeed = 3; decelerationDistance = 0; slowmovedistance = 0; accelerationDistance = 0; intakeSetpoint = -1;
+                thetaSetpoint = 10;  targetSpeed = 3; decelerationDistance = 5; slowmovedistance = 5; accelerationDistance = 0; intakeSetpoint = -1;
                 if ((OdoClass.thetaInDegreesReturn() >= 9.5 && OdoClass.thetaInDegreesReturn() <= 10.5) && breakout != 0){
                     StopMotors();
                     action = 20; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -365,19 +372,24 @@ public class BlueAuto extends LinearOpMode {
                 if (timepassed <= getRuntime()){
                     StopMotors();
                     action = 21; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
-                    timepassed = getRuntime() + 1;
+                    timepassed = getRuntime() + 2.5;
                 }
             }
             else if(action == 21) {
-                targetSpeed = 7;
+                targetSpeed = 5;
+                if (breakout == 0){
+                    breakout = 1;
+                    xSetpoint = xSetpoint + 1;
+                }
                 decelerationDistance = 10;
-                slowmovedistance = 2;
+                slowmovedistance = 9;
                 stagerSetpoint = .5;
                 stopperSetpoint = .5;
                 if(timepassed <= getRuntime()){
                     action = 22; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
                     timepassed = getRuntime() + 2.5;
                 }
+
             }
             else if (action == 22){
                 stagerSetpoint = .5;
@@ -389,11 +401,11 @@ public class BlueAuto extends LinearOpMode {
             }
             else if(action == 23) {
 
-                xSetpoint = 96; ySetpoint = -10; thetaSetpoint = 0;  accelerationDistance = 1; decelerationDistance = 10; targetSpeed = 70;
+                xSetpoint = 112; ySetpoint = 10; thetaSetpoint = 0;  accelerationDistance = 1; decelerationDistance = 3; targetSpeed = 70;
                 if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0){
                     StopMotors();
                     action = 24; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
-                    timepassed = getRuntime() + .2;
+                    timepassed = getRuntime() + 1.5;
                 }
                 else{
                     breakout = 1;
@@ -408,6 +420,17 @@ public class BlueAuto extends LinearOpMode {
                     action = 25; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
                 }
             }
+            else if(action == 25) {
+                xSetpoint = 70; ySetpoint = 10; thetaSetpoint = 0;  accelerationDistance = 1; decelerationDistance = 10; targetSpeed = 50;
+                if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0){
+                    StopMotors();
+                    action = 26; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
+                }
+                else{
+                    breakout = 1;
+                }
+            }
+
 
 
             /*
@@ -431,7 +454,7 @@ public class BlueAuto extends LinearOpMode {
                 stopProgram = 1;
             }
             //Runs all of our equations each loop cycle
-            Movement(xSetpoint, ySetpoint, thetaSetpoint, targetSpeed, accelerationDistance, decelerationDistance, slowmovedistance, turnIncriments);
+            Movement(xSetpoint, ySetpoint, thetaSetpoint, targetSpeed, thetaTargetSpeed, thetaDeccelerationDegree, slowMoveSpeed, accelerationDistance, decelerationDistance, slowmovedistance);
             Shooter.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), shooterSetpoint, shooterAngleSetpoint);
             Wobble.WobbleAuto(robot.WB_PT.getVoltage(), wobbleSetpoint, gripSetpoint);
             Stager.RingSystemAutonomous(intakeSetpoint, stopperSetpoint, stagerSetpoint, intakeServoSetpoint);
@@ -465,7 +488,6 @@ public class BlueAuto extends LinearOpMode {
             telemetry.addData("Distance", DirectionClass.distanceReturn());
             telemetry.addData("Distance From", DirectionClass.distanceFromReturn());
             telemetry.addData("Speed", SpeedClass.SpeedReturn());
-            telemetry.addData("Current Speed", SpeedClass.CurrentSpeed());
             telemetry.addData("time", getRuntime());
             telemetry.addData("Distance Delta", SpeedClass.DistanceDelta());
             telemetry.addData("XSetpoint", DirectionClass.XSetpointReturn());
@@ -480,18 +502,13 @@ public class BlueAuto extends LinearOpMode {
             telemetry.addData("Action", action);
             telemetry.update();
         }
-        public void Movement ( double endpointx, double endpointy, double thetasetpoint, double targetspeed, double accelerationdistance, double deccelerationdistance, double slowmovedistance, double turnincriments){
-            OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
-            DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
-            SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, slowmovedistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn(), slowMoveSpeed);
-            SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);
-            if(justTurn == 1){
-                TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), turnincriments);
-            }
-            else{
-                TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), turnincriments);
-            }
-        }
+    public void Movement (double endpointx, double endpointy, double thetasetpoint, double targetspeed, double thetaTargetSpeed, double thetaDeccelerationDegree,double slowMoveSpeed, double accelerationdistance, double deccelerationdistance, double slowmovedistanc){
+        OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
+        TurnControl.turnControl(thetaSetpoint , OdoClass.thetaInDegreesReturn());
+        DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
+        SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, slowmovedistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn(), slowMoveSpeed, thetaDeccelerationDegree, thetasetpoint, thetaTargetSpeed, OdoClass.thetaInDegreesReturn());
+        SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), OdoClass.thetaInDegreesReturn(), getRuntime(), SpeedClass.speedSetpoint, SpeedClass.thetaSpeedSetpoint());
+    }
         public void PowerSetting () {
 
             robot.WB_M.setPower(Wobble.wobblePowerReturn());
@@ -502,10 +519,10 @@ public class BlueAuto extends LinearOpMode {
             robot.STOP_S.setPosition(Stager.stopperSetReturn());
             robot.IN_S.setPosition(Stager.intakePositionReturn());
             robot.IN_M.setPower(Stager.intakePowerReturn());
-            robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
-            robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
-            robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
-            robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .2));
+            robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .1));
+            robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .1));
+            robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .1));
+            robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.SpeedReturn() + .1));
         }
         public void StopMotors () {
             robot.LF_M.setPower(0);
