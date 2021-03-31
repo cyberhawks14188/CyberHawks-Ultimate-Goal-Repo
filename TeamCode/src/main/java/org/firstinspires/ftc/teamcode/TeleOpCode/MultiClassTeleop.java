@@ -41,6 +41,7 @@ public class MultiClassTeleop extends LinearOpMode {
     double intakeSet; boolean shootMethod = false;
     RevBlinkinLedDriver blinkinLedDriver;
     RevBlinkinLedDriver.BlinkinPattern pattern;
+    boolean breakOut = false;
 
     @Override
     public void runOpMode() {
@@ -79,9 +80,12 @@ public class MultiClassTeleop extends LinearOpMode {
                         startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn();
                         powershotStateOnce = false; shootMethod = false; powershotShootOnce = true;//makers sure we run the correct things in the next loop cycles
                         powershotPositionY = initialPositionY + 5; powershotPositionX = initialPositionX;//sets endpoints and the line to follow
+                        breakOut = false; //This lets us calculate where the robot is before telling the robot to stop if withing a certain distance
                     }
-                    if (DirectionClass.distanceFromReturn() < .5 && (OdoClass.thetaInDegreesReturn() < (thetaInitial + .5)&& OdoClass.thetaInDegreesReturn() > thetaInitial - .5 )) {//TODO add theta correct //once we are within 1 inch of our target position we shoot for 1.5 seconds then move on the 2nd powershot
+                    if (DirectionClass.distanceFromReturn() < .5 && (OdoClass.thetaInDegreesReturn() < (thetaInitial + .5)&& OdoClass.thetaInDegreesReturn() > thetaInitial - .5 ) && breakOut) {//TODO add theta correct //once we are within 1 inch of our target position we shoot for 1.5 seconds then move on the 2nd powershot
                         shootMethod = true;
+                    }else{
+                        breakOut = true;
                     }
                     if(shootMethod){
                         Movement(powershotPositionX, powershotPositionY, thetaInitial,8, .5, 2, 2, .5, 2, 5);//holds position to ensure accuracy when shooting
@@ -104,9 +108,12 @@ public class MultiClassTeleop extends LinearOpMode {
                         startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn();
                         powershotStateOnce = false; shootMethod = false; powershotShootOnce = true;//makers sure we run the correct things in the next loop cycles
                         powershotPositionY = initialPositionY + 10; powershotPositionX = initialPositionX;//sets endpoints and the line to follow
+                        breakOut = false; //This lets us calculate where the robot is before telling the robot to stop if withing a certain distance
                     }
                     if (DirectionClass.distanceFromReturn() < .5 && (OdoClass.thetaInDegreesReturn() < (thetaInitial + .5)&& OdoClass.thetaInDegreesReturn() > thetaInitial - .5 )) {//TODO add theta correct //once we are within 1 inch of our target position we shoot for 1.5 seconds then move on the 2nd powershot
                         shootMethod = true;
+                    }else{
+                        breakOut = true;
                     }
                     if(shootMethod){
                         Movement(powershotPositionX, powershotPositionY, thetaInitial,8, .5, 2, 2, .5, 2, 5);//holds position to ensure accuracy when shooting
@@ -129,9 +136,12 @@ public class MultiClassTeleop extends LinearOpMode {
                         startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn();
                         powershotStateOnce = false; shootMethod = false; powershotShootOnce = true;//makers sure we run the correct things in the next loop cycles
                         powershotPositionY = initialPositionY + 15; powershotPositionX = initialPositionX;//sets endpoints and the line to follow
+                        breakOut = false; //This lets us calculate where the robot is before telling the robot to stop if withing a certain distance
                     }
                     if (DirectionClass.distanceFromReturn() < .5 && (OdoClass.thetaInDegreesReturn() < (thetaInitial + .5)&& OdoClass.thetaInDegreesReturn() > thetaInitial - .5 )) {//TODO add theta correct //once we are within 1 inch of our target position we shoot for 1.5 seconds then move on the 2nd powershot
                         shootMethod = true;
+                    }else{
+                        breakOut = true;
                     }
                     if(shootMethod){
                         Movement(powershotPositionX, powershotPositionY, thetaInitial,8, .5, 2, 2, .5, 2, 5);//holds position to ensure accuracy when shooting
