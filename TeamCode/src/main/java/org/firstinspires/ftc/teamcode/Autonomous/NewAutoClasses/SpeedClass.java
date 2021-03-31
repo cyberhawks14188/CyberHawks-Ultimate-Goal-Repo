@@ -82,7 +82,7 @@ public class SpeedClass {
         speedLastError = speedError;
         //Speed at which the motor %'s will be going
         //We add speed to speed to allows the robot to always incress speed if it is going to slow
-        speed = Math.abs((speed + (speedDerivative + speedPorportional)));
+        speed = Math.abs((speed + (speedDerivative + speedPorportional)) + thetaSpeed);
         //Speed limits
         if (speed <= 0) {
             speed = 0;
