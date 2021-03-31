@@ -135,7 +135,7 @@ public class SpeedClass {
             speedSetpoint = speedtarget;
         }
         //If do not want to accelerate or decelerate then immediately go to the desired speed
-        if (accelerationdistance == 0 && deccelerationdistance == 0) {
+        if (accelerationdistance == 0 && deccelerationdistance == 0 && slowmovementdistance == 0) {
             speedSetpoint = speedtarget;
         }
         //returns the setpoint to be used in the speedCalc method
