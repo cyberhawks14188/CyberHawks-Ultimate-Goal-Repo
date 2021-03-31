@@ -103,7 +103,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         breakOut = true;
                     }
                     if (shootMethod) {
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .5, 2, 2, .5, 2, 5);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .3, 3, 1, 0, 2, 1.5);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -136,7 +136,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         breakOut = true;
                     }
                     if (shootMethod) {
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .5, 2, 2, .5, 2, 5);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .3, 3, 1, 0, 2, 1.5);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -169,7 +169,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         breakOut = true;
                     }
                     if (shootMethod) {
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .5, 2, 2, .5, 2, 5);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .3, 3, 1, 0, 2, 1.5);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
