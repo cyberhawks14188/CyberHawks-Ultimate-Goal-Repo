@@ -84,7 +84,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         shootMethod = true;
                     }
                     if(shootMethod){
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, 0, 4);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, .5, 2, 2, .5, 2, 5);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -96,7 +96,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotMovement = 2; powershotStateOnce = true;
                         }
                     }else{//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 0, 4);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, .5, 2, 2, .5, 0, 5);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 }else if(powershotMovement == 2){
@@ -109,7 +109,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         shootMethod = true;
                     }
                     if(shootMethod){
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, 0, 4);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, .5, 2, 2, .5, 2, 5);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -121,7 +121,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotMovement = 3; powershotStateOnce = true;
                         }
                     }else{//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 0, 4);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, .5, 2, 2, .5, 0, 5);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 }else if(powershotMovement == 3){
@@ -134,7 +134,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         shootMethod = true;
                     }
                     if(shootMethod){
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, 0, 4);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, .5, 2, 2, .5, 2, 5);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -146,7 +146,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotMovement = 4; powershotStateOnce = true;
                         }
                     }else{//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 20, 0, 4);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial,8, .5, 2, 2, .5, 0, 5);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 }else if(powershotMovement == 4){
@@ -220,16 +220,10 @@ public class MultiClassTeleop extends LinearOpMode {
 
     }
     //calls all the methods we need to control the robot autonomously for powershot shooting
-    public void Movement ( double endpointx, double endpointy, double thetasetpoint, double targetspeed, double accelerationdistance, double deccelerationdistance){
+    public void Movement (double endpointx, double endpointy, double thetasetpoint, double targetspeed, double thetaTargetSpeed, double thetaDeccelerationDegree,double slowMoveSpeed, double accelerationdistance, double deccelerationdistance, double slowmovedistance){
         OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
+        TurnControl.turnControl(thetaSetpoint , OdoClass.thetaInDegreesReturn());
         DirectionClass.DirectionCalc(startPointX, startPointY, endpointx, endpointy, OdoClass.odoXReturn(), OdoClass.odoYReturn(), TurnControl.theta);
-       // SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, .3, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn());
-      //  SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), getRuntime(), SpeedClass.speedSetpoint);
-        //if(justTurn == 1){
-           // TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 3);
-      //  }
-        //else{
-           // TurnControl.turnControl(thetasetpoint, OdoClass.thetaInDegreesReturn(), 1);
-       // }
-        //telemetry.addData("Speed Setpoint", SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn()));
+        SpeedClass.MotionProfile(targetspeed, accelerationdistance, deccelerationdistance, slowmovedistance, DirectionClass.distanceReturn(), DirectionClass.distanceFromReturn(), slowMoveSpeed, thetaDeccelerationDegree, thetasetpoint, thetaTargetSpeed, OdoClass.thetaInDegreesReturn());
+        SpeedClass.SpeedCalc(OdoClass.odoXReturn(), OdoClass.odoYReturn(), OdoClass.thetaInDegreesReturn(), getRuntime(), SpeedClass.speedSetpoint, SpeedClass.thetaSpeedSetpoint());
     }}
