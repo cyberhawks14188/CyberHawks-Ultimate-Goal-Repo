@@ -202,10 +202,10 @@ public class MultiClassTeleop extends LinearOpMode {
                 //runs the shooter to always be running so we keep constant speed
                 ShooterClass.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1700, 1.22);
                 //sets drive motors if we are in the powershot subsytem because we control the robot differently than TeleOp
-                robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.speed + .35));
-                robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .35));
-                robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.speed + .35));
-                robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.speed + .35));
+                robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.speed + .1));
+                robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .1));
+                robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.speed + .1));
+                robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.speed + .1));
 /*TOP GOAL*/}else if(topGoalShoot){
                 if(topGoalOnce) {
                     topGoalYStart = OdoClass.odoYReturn(); topGoalXStart = OdoClass.odoXReturn();
@@ -216,7 +216,10 @@ public class MultiClassTeleop extends LinearOpMode {
                     }
                 }
                 Movement(topGoalXPos,topGoalYPos,topGoalThetaPos,50,.3,4,.5,0,5,1.5);
-
+                robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.speed + .1));
+                robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .1));
+                robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.speed + .1));
+                robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.speed + .1));
             }else{
                 //runs the calculations for TeleOp if we are not in the powershot subsytem to let us run a normal TeleOp
                 DrivetrainClass.DriveBase(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.right_bumper);
