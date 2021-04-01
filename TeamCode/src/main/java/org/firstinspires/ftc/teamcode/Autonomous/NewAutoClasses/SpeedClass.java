@@ -82,7 +82,7 @@ public class SpeedClass {
         speedLastError = speedError;
         //Speed at which the motor %'s will be going
         //We add speed to speed to allows the robot to always incress speed if it is going to slow
-        speed = Math.abs((speed + (speedDerivative + speedPorportional)));
+        speed = Math.abs((speed + (speedDerivative + speedPorportional)) + thetaSpeed);
         //Speed limits
         if (speed <= 0) {
             speed = 0;
@@ -139,7 +139,7 @@ public class SpeedClass {
             speedSetpoint = speedtarget;
         }
         //returns the setpoint to be used in the speedCalc method
-        if (distancefrom <= 2) {
+        if (distancefrom <= 1) {
             if(thetaDecclerationDegree > Math.abs(thetaSetpoint - OdoTheta)) {
                 thetaSpeedSetpoint = (thetaTargetSpeed / thetaDecclerationDegree) * Math.abs(thetaSetpoint - OdoTheta);
             }
