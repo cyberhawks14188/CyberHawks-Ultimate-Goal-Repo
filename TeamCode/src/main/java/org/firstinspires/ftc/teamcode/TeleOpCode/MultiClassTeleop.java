@@ -126,7 +126,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotStateOnce = true;
                         }
                     } else {//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .3, 4, 2, .5, 0, 5);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .5, 4, 1, .5, 0, 5);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 2) {
@@ -159,7 +159,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotStateOnce = true;
                         }
                     } else {//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .3, 4, 2, .5, 0, 5);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .5, 4, 1, .5, 0, 5);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 3) {
@@ -192,7 +192,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotStateOnce = true;
                         }
                     } else {//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .5, 4, 2, .5, 0, 5);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .5, 4, 1, .5, 0, 5);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 4) {
