@@ -45,7 +45,7 @@ public class MultiClassTeleop extends LinearOpMode {
     boolean topGoalShoot = false; boolean topGoalOnce;
     double topGoalXPos; double topGoalYPos; double topGoalThetaPos;
     double topGoalXStart; double topGoalYStart;
-
+    boolean topGoalLoop = false;
     @Override
     public void runOpMode() {
         blinkinLedDriver = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
@@ -77,15 +77,15 @@ public class MultiClassTeleop extends LinearOpMode {
             } else if (!gamepad1.y) {
                 powershotLoop = false;
             }
-            if (gamepad1.right_trigger > .05 && !powershotLoop) {//our one button system to control if we are going to run our powershot autonomous section
+            if (gamepad1.right_trigger > .05 && !topGoalLoop) {//our one button system to control if we are going to run our powershot autonomous section
                 if (topGoalShoot) {
                     topGoalShoot = false;
                 } else {
                     topGoalShoot = true;
                 }
-                powershotLoop = true;
+                topGoalLoop = true;
             } else if (gamepad1.right_trigger < .05) {
-                powershotLoop = false;
+                topGoalLoop = false;
             }
             if (powershotControl) {
                 if (powershotOnlyOnce) {//runs these 3 lines of code that set follow positions only once to ensure we are following the correct position
@@ -140,7 +140,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         powershotPositionX = initialPositionX;//sets endpoints and the line to follow
                         breakOut = false; //This lets us calculate where the robot is before telling the robot to stop if withing a certain distance
                     }
-                    if (DirectionClass.distanceFromReturn() < .5 && (OdoClass.thetaInDegreesReturn() < (thetaInitial + 1) && OdoClass.thetaInDegreesReturn() > thetaInitial - 1)) {//TODO add theta correct //once we are within 1 inch of our target position we shoot for 1.5 seconds then move on the 2nd powershot
+                    if (DirectionClass.distanceFromReturn() < .5 && (OdoClass.thetaInDegreesReturn() < (thetaInitial + 1) && OdoClass.thetaInDegreesReturn() > thetaInitial - 1) && breakOut) {//TODO add theta correct //once we are within 1 inch of our target position we shoot for 1.5 seconds then move on the 2nd powershot
                         shootMethod = true;
                     } else {
                         breakOut = true;
@@ -173,7 +173,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         powershotPositionX = initialPositionX;//sets endpoints and the line to follow
                         breakOut = false; //This lets us calculate where the robot is before telling the robot to stop if withing a certain distance
                     }
-                    if (DirectionClass.distanceFromReturn() < .5 && (OdoClass.thetaInDegreesReturn() < (thetaInitial + 1) && OdoClass.thetaInDegreesReturn() > thetaInitial - 1)) {//TODO add theta correct //once we are within 1 inch of our target position we shoot for 1.5 seconds then move on the 2nd powershot
+                    if (DirectionClass.distanceFromReturn() < .5 && (OdoClass.thetaInDegreesReturn() < (thetaInitial + 1) && OdoClass.thetaInDegreesReturn() > thetaInitial - 1) && breakOut) {//TODO add theta correct //once we are within 1 inch of our target position we shoot for 1.5 seconds then move on the 2nd powershot
                         shootMethod = true;
                     } else {
                         breakOut = true;
