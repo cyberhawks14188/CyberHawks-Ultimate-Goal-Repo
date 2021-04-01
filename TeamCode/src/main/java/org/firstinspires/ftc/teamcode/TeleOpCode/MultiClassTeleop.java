@@ -113,7 +113,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         breakOut = true;
                     }
                     if (shootMethod) {
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .3, 5, 1, 0, 2, 1.5);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.125, .3, 3, 2.5, 0, .3, 1);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -126,7 +126,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotStateOnce = true;
                         }
                     } else {//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .5, 4, 1, .5, 0, 5);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.125, .3, 3, 2.5, 0, .3, 1);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 2) {
@@ -146,7 +146,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         breakOut = true;
                     }
                     if (shootMethod) {
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .3, 5, 1, 0, 2, 1.5);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.125, .3, 3, 2.5, 0, .3, 1);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -159,7 +159,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotStateOnce = true;
                         }
                     } else {//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .5, 4, 1, .5, 0, 5);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.125, .3, 3, 2.5, 0, .3, 1);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 3) {
@@ -179,7 +179,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         breakOut = true;
                     }
                     if (shootMethod) {
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .3, 5, 1, 0, 2, 1.5);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.125, .3, 3, 2.5, 0, .3, 1);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -192,7 +192,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotStateOnce = true;
                         }
                     } else {//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 8, .5, 4, 1, .5, 0, 5);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.125, .3, 3, 2.5, 0, .3, 1);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 4) {
@@ -201,6 +201,7 @@ public class MultiClassTeleop extends LinearOpMode {
                 }
                 //runs the shooter to always be running so we keep constant speed
                 ShooterClass.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1700, 1.22);
+                WobbleArmClass.WobbleControl(gamepad1.left_trigger, robot.WB_PT.getVoltage());
                 //sets drive motors if we are in the powershot subsytem because we control the robot differently than TeleOp
                 robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.speed + .1));
                 robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .1));
@@ -215,6 +216,8 @@ public class MultiClassTeleop extends LinearOpMode {
                         topGoalShoot = false;
                     }
                 }
+                RingClass.RingSystemControl(gamepad1.dpad_down, gamepad1.dpad_up, gamepad1.dpad_right, gamepad1.dpad_left, gamepad1.a, gamepad1.b, Ring1Color.red, Ring2Color.red, Ring3Color.red, gamepad1.back, ShooterClass.sotAngleSetReturn());
+                ShooterClass.shooterControl(gamepad1.left_bumper, robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), RingClass.intakePowerReturn());
                 Movement(topGoalXPos,topGoalYPos,topGoalThetaPos,50,.3,4,.5,0,5,1.5);
                 robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.speed + .1));
                 robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .1));
@@ -231,7 +234,7 @@ public class MultiClassTeleop extends LinearOpMode {
                 robot.LB_M.setPower(DrivetrainClass.LBMReturn());
                 robot.RF_M.setPower(DrivetrainClass.RFMReturn());
                 robot.RB_M.setPower(DrivetrainClass.RBMReturn());
-                robot.IN_M.setPower(RingClass.intakePowerReturn());
+
             }
             if(Ring1Color.red > .05 && Ring2Color.red < .25 && Ring3Color.red < .25){
                 pattern = RevBlinkinLedDriver.BlinkinPattern.GREEN;//one ring
@@ -250,6 +253,7 @@ public class MultiClassTeleop extends LinearOpMode {
             robot.STG_M.setPower(RingClass.stagerPowerRetun());
             robot.STOP_S.setPosition(RingClass.stopperSetReturn());
             robot.IN_S.setPosition(RingClass.intakePositionReturn());
+            robot.IN_M.setPower(RingClass.intakePowerReturn());
             blinkinLedDriver.setPattern(pattern);
 
             //Displaying Telemetry
