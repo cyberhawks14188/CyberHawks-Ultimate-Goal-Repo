@@ -103,7 +103,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         powershotStateOnce = false;
                         shootMethod = false;
                         powershotShootOnce = true;//makers sure we run the correct things in the next loop cycles
-                        powershotPositionY = initialPositionY + 5;
+                        powershotPositionY = initialPositionY + 8;
                         powershotPositionX = initialPositionX;//sets endpoints and the line to follow
                         breakOut = false; //This lets us calculate where the robot is before telling the robot to stop if withing a certain distance
                     }
@@ -136,7 +136,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         powershotStateOnce = false;
                         shootMethod = false;
                         powershotShootOnce = true;//makers sure we run the correct things in the next loop cycles
-                        powershotPositionY = initialPositionY + 11;
+                        powershotPositionY = initialPositionY + 12;
                         powershotPositionX = initialPositionX;//sets endpoints and the line to follow
                         breakOut = false; //This lets us calculate where the robot is before telling the robot to stop if withing a certain distance
                     }
@@ -169,7 +169,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         powershotStateOnce = false;
                         shootMethod = false;
                         powershotShootOnce = true;//makers sure we run the correct things in the next loop cycles
-                        powershotPositionY = initialPositionY + 17;
+                        powershotPositionY = initialPositionY + 20;
                         powershotPositionX = initialPositionX;//sets endpoints and the line to follow
                         breakOut = false; //This lets us calculate where the robot is before telling the robot to stop if withing a certain distance
                     }
