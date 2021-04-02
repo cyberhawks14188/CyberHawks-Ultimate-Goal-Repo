@@ -207,7 +207,7 @@ public class MultiClassTeleop extends LinearOpMode {
                 robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .1));
                 robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.speed + .1));
                 robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.speed + .1));
-/*TOP GOAL*//*}else if(topGoalShoot){
+                /*TOP GOAL*//*}else if(topGoalShoot){
                 if(topGoalOnce) {
                     topGoalYStart = OdoClass.odoYReturn(); topGoalXStart = OdoClass.odoXReturn();
                     topGoalOnce = false;
