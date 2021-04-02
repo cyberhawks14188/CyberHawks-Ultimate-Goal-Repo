@@ -64,9 +64,9 @@ public class MultiClassTeleop extends LinearOpMode {
             NormalizedRGBA Ring3Color = robot.Ring3_CS.getNormalizedColors();
             //Calling to the Classes and the methods inside of them to run the calculations and set points.
             OdoClass.RadiusOdometry(robot.LF_M.getCurrentPosition(), robot.LB_M.getCurrentPosition(), robot.RF_M.getCurrentPosition());
-            if(gamepad1.x){
+         /*   if(gamepad1.x){
                 topGoalXPos = OdoClass.odoXReturn(); topGoalYPos = OdoClass.odoYReturn(); topGoalThetaPos = OdoClass.thetaInDegreesReturn();
-            }
+            }*/
             if (gamepad1.y && !powershotLoop) {//our one button system to control if we are going to run our powershot autonomous section
                 if (powershotControl) {
                     powershotMovement = 4;
@@ -77,7 +77,7 @@ public class MultiClassTeleop extends LinearOpMode {
             } else if (!gamepad1.y) {
                 powershotLoop = false;
             }
-            if (gamepad1.right_trigger > .05 && !topGoalLoop) {//our one button system to control if we are going to run our powershot autonomous section
+          /*  if (gamepad1.right_trigger > .05 && !topGoalLoop) {//our one button system to control if we are going to run our powershot autonomous section
                 if (topGoalShoot) {
                     topGoalShoot = false;
                 } else {
@@ -86,7 +86,7 @@ public class MultiClassTeleop extends LinearOpMode {
                 topGoalLoop = true;
             } else if (gamepad1.right_trigger < .05) {
                 topGoalLoop = false;
-            }
+            }*/
             if (powershotControl) {
                 if (powershotOnlyOnce) {//runs these 3 lines of code that set follow positions only once to ensure we are following the correct position
                     initialPositionX = OdoClass.odoXReturn();
@@ -207,7 +207,7 @@ public class MultiClassTeleop extends LinearOpMode {
                 robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .1));
                 robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.speed + .1));
                 robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.speed + .1));
-/*TOP GOAL*/}else if(topGoalShoot){
+/*TOP GOAL*//*}else if(topGoalShoot){
                 if(topGoalOnce) {
                     topGoalYStart = OdoClass.odoYReturn(); topGoalXStart = OdoClass.odoXReturn();
                     topGoalOnce = false;
@@ -222,7 +222,7 @@ public class MultiClassTeleop extends LinearOpMode {
                 robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.speed + .1));
                 robot.LB_M.setPower(DirectionClass.LB_M_DirectionReturn() * (SpeedClass.speed + .1));
                 robot.RF_M.setPower(DirectionClass.RF_M_DirectionReturn() * (SpeedClass.speed + .1));
-                robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.speed + .1));
+                robot.RB_M.setPower(DirectionClass.RB_M_DirectionReturn() * (SpeedClass.speed + .1));*/
             }else{
                 //runs the calculations for TeleOp if we are not in the powershot subsytem to let us run a normal TeleOp
                 DrivetrainClass.DriveBase(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.right_bumper);
