@@ -35,7 +35,6 @@ public class ShooterSystem {
             shooterMotorSetpoint = 0;
             shooterMotorCorrection = 0;//we set both of these variables to ensure that neither one has power
         }else if(shooterFSM == 1){//Top Goal state
-            if(intakepower == 0){
                 shooterMotorSetpoint = 1700;//Shooter flywheel set point is 1900 encoder ticks per second
                 timePassed = runtime - previousTime;
                 previousTime = runtime;
@@ -43,10 +42,6 @@ public class ShooterSystem {
                 previousShooterMotorEncoder = shootermotorcurrent;
                 shooterMotorError = shooterMotorSetpoint - shooterMotorVelocity;
                 shooterMotorCorrection = shooterMotorError * shooterMotorProportionalMultiplier;
-            }else{
-                shooterMotorSetpoint = 0;
-                shooterMotorCorrection = 0;//we set both of these variables to ensure that neither one has power
-            }
             SOTAngleSet = 1.05;
         }else if (shooterFSM == 2){//Powershot state
             if(intakepower == 0) {
