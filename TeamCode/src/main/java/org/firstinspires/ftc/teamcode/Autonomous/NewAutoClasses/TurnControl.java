@@ -8,7 +8,7 @@ public class TurnControl {
     public double theta;
     double thetaSetPoint = 0;
     double thetaLastError = 0;
-    double thetaDerivativeMultiplier = .9;
+    double thetaDerivativeMultiplier = .92;
     double thetaDerivative;
     public double turnControl(double thetaendsetpoint, double thetaindegrees){
         //Turns the robots in incriments instead of going straight to the end setpoint
