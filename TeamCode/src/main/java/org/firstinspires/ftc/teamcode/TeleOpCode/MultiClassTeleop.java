@@ -257,7 +257,8 @@ public class MultiClassTeleop extends LinearOpMode {
             blinkinLedDriver.setPattern(pattern);
 
             //Displaying Telemetry
-            telemetry.addData("intakeSet", intakeSet);
+            telemetry.addData("distancefrom", DirectionClass.distanceFromReturn());
+            telemetry.addData("theta initial", thetaInitial)
             telemetry.addData("speed variable", SpeedClass.SpeedReturn());
             telemetry.addData("powershotMovement", powershotMovement);
             telemetry.addData("powershotinitialY", powershotPositionY);
