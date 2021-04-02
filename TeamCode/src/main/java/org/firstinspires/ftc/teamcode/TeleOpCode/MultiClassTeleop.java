@@ -103,7 +103,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         powershotStateOnce = false;
                         shootMethod = false;
                         powershotShootOnce = true;//makers sure we run the correct things in the next loop cycles
-                        powershotPositionY = initialPositionY + 8;
+                        powershotPositionY = initialPositionY + 6.5;
                         powershotPositionX = initialPositionX;//sets endpoints and the line to follow
                         breakOut = false; //This lets us calculate where the robot is before telling the robot to stop if withing a certain distance
                     }
