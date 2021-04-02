@@ -113,7 +113,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         breakOut = true;
                     }
                     if (shootMethod) {
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.125, .3, 3, 2.5, 0, .3, 1);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .3, 3, 3, 0, .3, 1);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -126,7 +126,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotStateOnce = true;
                         }
                     } else {//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.125, .3, 3, 2.5, 0, .3, 1);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .3, 3, 3, 0, .3, 1);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 2) {
@@ -146,7 +146,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         breakOut = true;
                     }
                     if (shootMethod) {
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.125, .3, 3, 2.5, 0, .3, 1);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .3, 3, 3, 0, .3, 1);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -159,7 +159,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotStateOnce = true;
                         }
                     } else {//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.125, .3, 3, 2.5, 0, .3, 1);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .3, 3, 3, 0, .3, 1);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 3) {
@@ -179,7 +179,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         breakOut = true;
                     }
                     if (shootMethod) {
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.125, .3, 3, 2.5, 0, .3, 1);//holds position to ensure accuracy when shooting
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .3, 3, 3, 0, .3, 1);//holds position to ensure accuracy when shooting
                         if (powershotShootOnce) {//set the current time when we start the shooting process
                             timerStart = getRuntime();
                             powershotShootOnce = false;
@@ -192,7 +192,7 @@ public class MultiClassTeleop extends LinearOpMode {
                             powershotStateOnce = true;
                         }
                     } else {//code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.125, .3, 3, 2.5, 0, .3, 1);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .3, 3, 3, 0, .3, 1);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 4) {
