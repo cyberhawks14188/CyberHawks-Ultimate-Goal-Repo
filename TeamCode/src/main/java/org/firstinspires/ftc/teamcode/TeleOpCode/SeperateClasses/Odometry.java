@@ -45,5 +45,5 @@ public class Odometry {
     public double odoXReturn(){return (-xCoordinatePosition/COUNTS_PER_INCH);}
     public double odoYReturn(){return yCoordinatePosition/COUNTS_PER_INCH;}
     public double thetaINRadiansReturn(){return thetaInRadians;}
-    public double thetaInDegreesReturn(){return Math.toDegrees(thetaInRadians) % 360;}//returns our angle in degrees with a value from 1-360
+    public double thetaInDegreesReturn(){return Math.toDegrees(thetaInRadians);}//returns our angle in degrees with a value from 1-360
 }
