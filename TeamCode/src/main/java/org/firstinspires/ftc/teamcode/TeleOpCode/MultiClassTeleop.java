@@ -117,7 +117,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         breakOut = true;
                     }
                     if (shootMethod) {
-                        shootSubsystem(Ring1Color.red, Ring2Color.red, Ring3Color.red, 12, 3);
+                        shootSubsystem(Ring1Color.red, Ring2Color.red, Ring3Color.red, 17, 3);
                     } else {//code to get us to our target position
                         Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .3, 3, 3, 0, .3, 1);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
