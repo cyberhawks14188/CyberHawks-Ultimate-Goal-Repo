@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses.ShooterSystem;
 import org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses.WobbleGoalArm;
 
 @TeleOp
-public class MultiClassTeleop extends LinearOpMode {
+public class OldMultiClassTeleop extends LinearOpMode {
     //calls our classes to let us organize our code easier in different classes
     Odometry OdoClass = new Odometry();
     RingSystem RingClass = new RingSystem();
