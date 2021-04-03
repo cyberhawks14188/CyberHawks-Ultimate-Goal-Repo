@@ -169,7 +169,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         powershotStateOnce = false;
                         shootMethod = false;
                         powershotShootOnce = true;//makers sure we run the correct things in the next loop cycles
-                        powershotPositionY = initialPositionY + 24;
+                        powershotPositionY = initialPositionY + 22;
                         powershotPositionX = initialPositionX;//sets endpoints and the line to follow
                         breakOut = false; //This lets us calculate where the robot is before telling the robot to stop if withing a certain distance
                     }
@@ -200,7 +200,7 @@ public class MultiClassTeleop extends LinearOpMode {
                     powershotOnlyOnce = true;
                 }
                 //runs the shooter to always be running so we keep constant speed
-                ShooterClass.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1300, 1);
+                ShooterClass.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1200, .9);
                 WobbleArmClass.WobbleControl(gamepad1.left_trigger, robot.WB_PT.getVoltage());
                 //sets drive motors if we are in the powershot subsytem because we control the robot differently than TeleOp
                 robot.LF_M.setPower(DirectionClass.LF_M_DirectionReturn() * (SpeedClass.speed + .1));

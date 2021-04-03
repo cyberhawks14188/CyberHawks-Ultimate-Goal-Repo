@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses;
 public class ShooterSystem {
     //Sets varibles to use in the method
     boolean shooterControlBoolean;
-    double SOTAngleSet = 1.05;
+    double SOTAngleSet = 1.08;
     double SOTAngleError;
     double SOTAngleLastError = 0;
     double SOTAngleDerivitveMultiplier = -5;
@@ -42,7 +42,7 @@ public class ShooterSystem {
                 previousShooterMotorEncoder = shootermotorcurrent;
                 shooterMotorError = shooterMotorSetpoint - shooterMotorVelocity;
                 shooterMotorCorrection = shooterMotorError * shooterMotorProportionalMultiplier;
-            SOTAngleSet = 1.05;
+            SOTAngleSet = 1.08;
         }else if (shooterFSM == 2){//Powershot state
             if(intakepower == 0) {
                 shooterMotorSetpoint = 1700;//Shooter flywheel set point is 1900 encoder ticks per second
@@ -81,6 +81,18 @@ public class ShooterSystem {
         SOTAngleError = sotangleset - sotanglecurrent;
         SOTAnglePower = ((SOTAngleError * SOTAnglePropotionalMultiplier) + ((SOTAngleError - SOTAngleLastError)*SOTAngleDerivitveMultiplier));
         SOTAngleLastError = SOTAngleError;
+        if(Math.abs(SOTAngleError) < .01){
+            SOTAnglePower = 0;
+        }else{
+            if(Math.abs(SOTAnglePower) < .08){
+                if(SOTAnglePower < 0) {
+                    SOTAnglePower = -.08;
+                }else if(SOTAnglePower > 0){
+                    SOTAnglePower = .08;
+                }
+            }
+        }
+
         //Flywheel speed setpoint control. We use our custom one button on/off system to use the left bumper to set the shooter speed.
 
         //This is the Flywheels PID. This makes sure the Shooter speed is the same no matter the battery power
