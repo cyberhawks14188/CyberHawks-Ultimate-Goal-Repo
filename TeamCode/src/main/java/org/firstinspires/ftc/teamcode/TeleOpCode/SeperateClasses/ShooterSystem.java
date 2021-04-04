@@ -3,11 +3,11 @@ package org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses;
 public class ShooterSystem {
     //Sets varibles to use in the method
     boolean shooterControlBoolean;
-    double SOTAngleSet = 1.08;
+    double SOTAngleSet = 1.02;
     double SOTAngleError;
     double SOTAngleLastError = 0;
-    double SOTAngleDerivitveMultiplier = -5;
-    double SOTAnglePropotionalMultiplier = -5;
+    double SOTAngleDerivitveMultiplier = -6.5;
+    double SOTAnglePropotionalMultiplier = -4.5;
     double SOTAnglePower;
     double shooterMotorSetpoint = 0;
     double shooterMotorCorrection = 0;
@@ -42,7 +42,7 @@ public class ShooterSystem {
                 previousShooterMotorEncoder = shootermotorcurrent;
                 shooterMotorError = shooterMotorSetpoint - shooterMotorVelocity;
                 shooterMotorCorrection = shooterMotorError * shooterMotorProportionalMultiplier;
-            SOTAngleSet = 1.08;
+            SOTAngleSet = 1.02;
         }else if (shooterFSM == 2){//Powershot state
             if(intakepower == 0) {
                 shooterMotorSetpoint = 1200;//Shooter flywheel set point is 1900 encoder ticks per second
@@ -65,14 +65,17 @@ public class ShooterSystem {
         if(Math.abs(SOTAngleError) < .01){
             SOTAnglePower = 0;
         }else{
-            if(Math.abs(SOTAnglePower) < .08){
+            if(Math.abs(SOTAnglePower) < .1){
                 if(SOTAnglePower < 0) {
-                    SOTAnglePower = -.08;
+                    SOTAnglePower = -.1;
                 }else if(SOTAnglePower > 0){
-                    SOTAnglePower = .08;
+                    SOTAnglePower = .1;
                 }
             }
         }
+
+
+
 
     }
     //Method that we can use in autonomous
@@ -81,7 +84,7 @@ public class ShooterSystem {
         SOTAngleError = sotangleset - sotanglecurrent;
         SOTAnglePower = ((SOTAngleError * SOTAnglePropotionalMultiplier) + ((SOTAngleError - SOTAngleLastError)*SOTAngleDerivitveMultiplier));
         SOTAngleLastError = SOTAngleError;
-        if(Math.abs(SOTAngleError) < .01){
+        if(Math.abs(SOTAngleError) < .03){
             SOTAnglePower = 0;
         }else{
             if(Math.abs(SOTAnglePower) < .08){

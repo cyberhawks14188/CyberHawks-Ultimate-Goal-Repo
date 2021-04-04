@@ -54,7 +54,7 @@ public class DirectionCalcClass {
         distanceFrom = Math.hypot(distanceFromEndX, distanceFromEndY);
         distanceFromSet = 1;
         //Finds the point that the robot will be going to next
-        //Finds this by calculating how far we are from the endpoint and how far ahead we want to look ahead using purePursuit Distance
+        //Finds this by calculating how far we are from the endpoint and how far ahead we want to look ahead Distance
         xsetpoint = endpointx - (((distanceFrom-purePursuitDistance)*(endpointx-startpointx))/distance);
         ysetpoint = endpointy - (((distanceFrom-purePursuitDistance)*(endpointy-startpointy))/distance);
         //If we want to maintain position then just hold the end setpoint

@@ -89,6 +89,7 @@ public class BlueAuto extends LinearOpMode {
         if (tfod != null) {
             tfod.activate();
         }
+        //During int scan the ring stack using tensor flow
         while (isStarted() != true) {
             //Sets up a ratio for our webcam to look at
             //Allows our camera to focus only on the ring stack
@@ -120,7 +121,7 @@ public class BlueAuto extends LinearOpMode {
                 }
             }
             stopperSetpoint = .3;
-            shooterAngleSetpoint = 1.6;
+            shooterAngleSetpoint = 1.63;
             intakeServoSetpoint = .63;
             intakeServoSetpoint = .3;
             Stager.RingSystemAutonomous(intakeSetpoint, stopperSetpoint, stagerSetpoint, intakeServoSetpoint);
@@ -129,18 +130,19 @@ public class BlueAuto extends LinearOpMode {
             PowerSetting();
         }
 
-
-
         waitForStart();
+        //Shuts down Tensor Flow
         tfod.shutdown();
+        //Sets our intial varible setpoints
         action = 1;
         startPointX = 0;
         startPointY = 0;
         stopperSetpoint = .3;
         wobbleSetpoint = 1.4;
-        shooterAngleSetpoint = .88;
-        shooterSetpoint = 1200;
+        shooterAngleSetpoint = .89;
+        shooterSetpoint = 1225;
         gripSetpoint = .1;
+        //Depending on the ring stack we change our intake to diffrent heights to be able to reach the top of the stack
         if(Detected == 2){
             intakeServoSetpoint = .63;
         }
@@ -150,16 +152,14 @@ public class BlueAuto extends LinearOpMode {
         else{
             intakeServoSetpoint = .63;
         }
-
-       // robot.Ring1_CS.setGain(15); robot.Ring2_CS.setGain(15); robot.Ring3_CS.setGain(15);
+        //Enters our 1 loop system, will exit once all actions are done
         while(opModeIsActive() && stopProgram == 0) {
-          //  NormalizedRGBA Ring1Color = robot.Ring1_CS.getNormalizedColors(); NormalizedRGBA Ring2Color = robot.Ring2_CS.getNormalizedColors(); NormalizedRGBA Ring3Color = robot.Ring3_CS.getNormalizedColors();
             //Moves to first power shot shooting position
             if(action == 1){
                 wobbleSetpoint = .6;
-                    xSetpoint = 51; ySetpoint = -38.5; thetaSetpoint = 0; targetSpeed = 75; accelerationDistance = .25; decelerationDistance = 7;
-                      slowMoveSpeed = 2.65; slowMovedDistance = 1; thetaDeccelerationDegree = 2; thetaTargetSpeed = .3;
-
+                    xSetpoint = 51; ySetpoint = -38.45; thetaSetpoint = 0; targetSpeed = 90; accelerationDistance = .25; decelerationDistance = 8;
+                      slowMoveSpeed = 3.85; slowMovedDistance = 1; thetaDeccelerationDegree = 2; thetaTargetSpeed = .6;
+                //Exits once the robot is a certain distance and angle away
                 if (DirectionClass.distanceFromReturn() <= .15 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .2 && OdoClass.thetaInDegreesReturn() > -.2)){
                     StopMotors();
                     action = 2; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -171,6 +171,7 @@ public class BlueAuto extends LinearOpMode {
             }
             //Shoots 1st powershot
             else if(action == 2) {
+                slowMoveSpeed = 2.5; slowMovedDistance = 1;
                 decelerationDistance = 2;
                 stopperSetpoint = .5;
                 stagerSetpoint = .45;
@@ -181,8 +182,9 @@ public class BlueAuto extends LinearOpMode {
             }
             //Goes to 2nd power shot
             else if(action == 3){
-                    xSetpoint = 51; ySetpoint = -32;  accelerationDistance = 0; decelerationDistance = .3; targetSpeed = 8.65;
-                  thetaDeccelerationDegree = 3; thetaTargetSpeed = .3;
+                    xSetpoint = 51; ySetpoint = -32;  accelerationDistance = 0; decelerationDistance = .3; targetSpeed = 9;
+                  thetaDeccelerationDegree = 1; thetaTargetSpeed = .4;
+                //Exits once the robot is a certain distance and angle away
                 if (DirectionClass.distanceFromReturn() <= .15 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .2 && OdoClass.thetaInDegreesReturn() > -.2)){
                     StopMotors();
                     action = 4; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -203,8 +205,9 @@ public class BlueAuto extends LinearOpMode {
             }
             //Goes to 3rd power shot
             else if(action == 5) {
-                xSetpoint = 51; ySetpoint = -26.25;  accelerationDistance = 0; decelerationDistance = .3; targetSpeed = 8.65;
-                   
+                xSetpoint = 51; ySetpoint = -25.3;  accelerationDistance = 0; decelerationDistance = .3; targetSpeed = 9;
+                thetaDeccelerationDegree = 1; thetaTargetSpeed = .3;
+                //Exits once the robot is a certain distance and angle away
                 if (DirectionClass.distanceFromReturn() <= .15 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .2 && OdoClass.thetaInDegreesReturn() > -.2)){
                     StopMotors();
                     action = 6; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -216,6 +219,7 @@ public class BlueAuto extends LinearOpMode {
             }
             //Shoots 3rd powershot
             else if(action == 6) {
+                thetaDeccelerationDegree = 3; thetaTargetSpeed = .3;
                 stopperSetpoint = .5;
                 decelerationDistance = 2;
                 if(timepassed <= getRuntime()){
@@ -223,9 +227,11 @@ public class BlueAuto extends LinearOpMode {
                 }
             }
             //Goes to the 1st wobble goal
+            //Position depends on the stack read
             else if(action == 7) {
                 wobbleSetpoint = 1.8;
-
+                shooterSetpoint = 1800;
+                shooterAngleSetpoint = 1.1485;
                 if(Detected == 0){
                     xSetpoint = 62; ySetpoint = 25;  accelerationDistance = 1; decelerationDistance = 4; targetSpeed = 70;
                 }
@@ -246,6 +252,7 @@ public class BlueAuto extends LinearOpMode {
                     breakout = 1;
                 }
                 }
+            //Maintains position and drops the 1st wobble goal
             else if(action == 8){
                 decelerationDistance = 10;  targetSpeed = 8; wobbleSetpoint = 2.1;
                 if(robot.WB_PT.getVoltage() >= 2.04){
@@ -255,6 +262,7 @@ public class BlueAuto extends LinearOpMode {
                     action = 9; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
                 }
             }
+            //Moves around 30ins to the right of the ring stack
             else if(action == 9){
                 wobbleSetpoint = 2.1;
                 xSetpoint = 40; ySetpoint = -22; thetaSetpoint = 0; targetSpeed = 70; accelerationDistance = 1; decelerationDistance = 4;
@@ -268,7 +276,7 @@ public class BlueAuto extends LinearOpMode {
                     breakout = 1;
                 }
             }
-
+            //Moves to around 10in to the right of the 2nd wobble goal
             else if(action == 10){
                 gripSetpoint = .65;
                 xSetpoint = 18; ySetpoint = -10; thetaSetpoint = 0; targetSpeed = 50; accelerationDistance = 1; decelerationDistance = 4;
@@ -281,10 +289,9 @@ public class BlueAuto extends LinearOpMode {
                     breakout = 1;
                 }
             }
-
+            //Turns until perpendicular to the wobble goal
             else if(action == 11){
-                shooterSetpoint = 1800;
-                shooterAngleSetpoint = 1.19;
+
                 thetaSetpoint = -87; targetSpeed = 3; accelerationDistance = 0; decelerationDistance = 0; slowMovedDistance = 0;
                 thetaDeccelerationDegree = 7; thetaTargetSpeed = 4;
                 if (OdoClass.thetaInDegreesReturn() <= -84 && breakout != 0){
@@ -296,6 +303,7 @@ public class BlueAuto extends LinearOpMode {
                     breakout = 1;
                 }
             }
+            //Goes forward to get the 2nd wobble goal in it's claw
             else if(action == 12){
                 robot.LF_M.setPower(.35);
                 robot.LB_M.setPower(.35);
@@ -310,7 +318,7 @@ public class BlueAuto extends LinearOpMode {
                      xSetpoint = 25.25;
                  }
                  else if(Detected == 0){
-                     xSetpoint = 27;
+                     xSetpoint = 28;
                  }
                 if (OdoClass.odoXReturn() >= xSetpoint && breakout != 0){
                     StopMotors();
@@ -322,6 +330,7 @@ public class BlueAuto extends LinearOpMode {
                     breakout = 1;
                 }
             }
+            //Grabs the 2nd wobble goal
             else  if(action == 13){
                 if(timepassed <= getRuntime()){
                     onlyDriveMotors = 0;
@@ -332,6 +341,7 @@ public class BlueAuto extends LinearOpMode {
                     ySetpoint = OdoClass.odoYReturn();
                 }
             }
+            //Turns back to straight forward
             else if(action == 14){
                 thetaSetpoint = 0; targetSpeed = 3; accelerationDistance = 0; decelerationDistance = 0;
                 slowMovedDistance = 0;
@@ -345,12 +355,13 @@ public class BlueAuto extends LinearOpMode {
                     breakout = 1;
                 }
             }
+            //Moves to infront of the ring stack
             else if(action == 15){
                 slowMoveSpeed = .5; slowMovedDistance = 1.5;
                   thetaDeccelerationDegree = 5; thetaTargetSpeed = .3;
                 wobbleSetpoint = .6;
-                xSetpoint = 32.5; ySetpoint = -3.5; thetaSetpoint = 10; targetSpeed = 20; accelerationDistance = 1; decelerationDistance = 1;
-                if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0){
+                xSetpoint = 32.5; ySetpoint = -4.25; thetaSetpoint = 10; targetSpeed = 20; accelerationDistance = 1; decelerationDistance = 1;
+                if (DirectionClass.distanceFromReturn() <= .35 && breakout != 0){
                     StopMotors();
                     action = 16; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
                     timepassed = getRuntime() + .4;
@@ -359,15 +370,16 @@ public class BlueAuto extends LinearOpMode {
                     breakout = 1;
                 }
             }
+            //Moves so the intake is above the stack
             else if(action == 16){
                 if(Detected == 2){
-                    xSetpoint = 35;
+                    xSetpoint = 34.25;
                 }
                 if(Detected == 1){
                     xSetpoint = 36.25;
                 }
-                 targetSpeed = 7; decelerationDistance = .25;  accelerationDistance = 0; intakeSetpoint = -1; stagerSetpoint = 1;
-                if (DirectionClass.distanceFromReturn() <= .2 && breakout != 0){
+                 targetSpeed = 10; decelerationDistance = .25;  accelerationDistance = 0; intakeSetpoint = -1; stagerSetpoint = 1;
+                if (DirectionClass.distanceFromReturn() <= .4 && breakout != 0){
                     StopMotors();
                     action = 17; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
                     timepassed2 = 100;
@@ -386,6 +398,7 @@ public class BlueAuto extends LinearOpMode {
 
                 }
             }
+            //Grabs the ring stack
             else if(action == 17){
                 targetSpeed = .1; decelerationDistance = 6;
                 if(Detected == 2) {
@@ -409,6 +422,7 @@ public class BlueAuto extends LinearOpMode {
 
                 }
             }
+            //moves to the 2nd wobble goal droping spot
             else if(action == 18) {
                 stopperSetpoint = .3;
                 stagerSetpoint = 0;
@@ -433,6 +447,7 @@ public class BlueAuto extends LinearOpMode {
                     breakout = 1;
                 }
             }
+            //Drops the 2nd wobble goal
             else if(action == 19){
                 decelerationDistance = 10;  targetSpeed = 8; wobbleSetpoint = 2.1;
                 if(robot.WB_PT.getVoltage() >= 1.98){
@@ -442,6 +457,7 @@ public class BlueAuto extends LinearOpMode {
                     action = 20; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
                 }
             }
+            //Goes to the navigating line
             else if(action == 20) {
                 if(Detected == 0){
                     xSetpoint = 63; ySetpoint = -15;
@@ -458,6 +474,8 @@ public class BlueAuto extends LinearOpMode {
                     breakout = 1;
                 }
             }
+            //Action only for a 0 ring stack
+            //Moves forward after strafing to make sure we don't knock the wobble goal
             else if(action == 21 && Detected == 0){
                 xSetpoint = 76; ySetpoint = -15;
                 thetaSetpoint = 0;  accelerationDistance = 1; decelerationDistance = 5; targetSpeed = 20;
@@ -483,7 +501,6 @@ public class BlueAuto extends LinearOpMode {
             if(robot.WB_PT.getVoltage() < 1.2){
                 gripSetpoint = .1;
             }
-            Telemetry();
             PowerSetting();
         }
         StopMotors();
@@ -496,6 +513,7 @@ public class BlueAuto extends LinearOpMode {
         }
 
         public void Telemetry () {
+        //Displays telemetry
             telemetry.addData("Odo X", OdoClass.odoXReturn());
             telemetry.addData("Odo Y", OdoClass.odoYReturn());
             telemetry.addData("Theta Angle", OdoClass.thetaInDegreesReturn());
