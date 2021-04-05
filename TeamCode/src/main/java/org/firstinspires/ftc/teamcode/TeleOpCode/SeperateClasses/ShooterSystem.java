@@ -7,7 +7,7 @@ public class ShooterSystem {
     double SOTAngleError;
     double SOTAngleLastError = 0;
     double SOTAngleDerivitveMultiplier = -6.5;
-    double SOTAnglePropotionalMultiplier = -4.5;
+    double SOTAnglePropotionalMultiplier = -3.5;
     double SOTAnglePower;
     double shooterMotorSetpoint = 0;
     double shooterMotorCorrection = 0;
@@ -52,7 +52,7 @@ public class ShooterSystem {
                 previousShooterMotorEncoder = shootermotorcurrent;
                 shooterMotorError = shooterMotorSetpoint - shooterMotorVelocity;
                 shooterMotorCorrection = shooterMotorError * shooterMotorProportionalMultiplier;
-                SOTAngleSet = .88;
+                SOTAngleSet = .97;
             }else{
                 shooterMotorSetpoint = 0;
                 shooterMotorCorrection = 0;//we set both of these variables to ensure that neither one has power
@@ -62,7 +62,7 @@ public class ShooterSystem {
         SOTAngleError = SOTAngleSet - sotanglecurrent;
         SOTAnglePower = ((SOTAngleError * SOTAnglePropotionalMultiplier) + ((SOTAngleError - SOTAngleLastError)*SOTAngleDerivitveMultiplier));
         SOTAngleLastError = SOTAngleError;
-        if(Math.abs(SOTAngleError) < .01){
+        if(Math.abs(SOTAngleError) < .05){
             SOTAnglePower = 0;
         }else{
             if(Math.abs(SOTAnglePower) < .1){
