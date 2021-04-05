@@ -164,7 +164,7 @@ public class MultiClassTeleop extends LinearOpMode {
                     powershotOnlyOnce = true;
                 }
                 //runs the shooter to always be running so we keep constant speed
-                ShooterClass.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1300, .94);
+                ShooterClass.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1300, .97);
                 //holds wobble goal position so the arm holds a wobble goal if we have one
                 WobbleArmClass.WobbleControl(gamepad1.left_trigger, robot.WB_PT.getVoltage());
                 //sets drive motors if we are in the powershot subsytem because we control the robot differently than TeleOp

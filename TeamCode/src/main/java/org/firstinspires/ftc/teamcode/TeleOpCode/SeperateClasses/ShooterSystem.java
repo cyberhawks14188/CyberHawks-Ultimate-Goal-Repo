@@ -52,7 +52,7 @@ public class ShooterSystem {
                 previousShooterMotorEncoder = shootermotorcurrent;
                 shooterMotorError = shooterMotorSetpoint - shooterMotorVelocity;
                 shooterMotorCorrection = shooterMotorError * shooterMotorProportionalMultiplier;
-                SOTAngleSet = .88;
+                SOTAngleSet = .97;
             }else{
                 shooterMotorSetpoint = 0;
                 shooterMotorCorrection = 0;//we set both of these variables to ensure that neither one has power
