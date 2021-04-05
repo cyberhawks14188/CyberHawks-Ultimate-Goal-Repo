@@ -376,7 +376,7 @@ public class BlueAuto extends LinearOpMode {
                     xSetpoint = 34.25;
                 }
                 if(Detected == 1){
-                    xSetpoint = 36.25;
+                    xSetpoint = 37.1;
                 }
                  targetSpeed = 10; decelerationDistance = .25;  accelerationDistance = 0; intakeSetpoint = -1; stagerSetpoint = 1;
                 if (DirectionClass.distanceFromReturn() <= .4 && breakout != 0){
