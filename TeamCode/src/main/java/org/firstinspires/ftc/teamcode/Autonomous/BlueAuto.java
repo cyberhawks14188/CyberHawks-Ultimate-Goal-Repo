@@ -348,8 +348,8 @@ public class BlueAuto extends LinearOpMode {
             else if(action == 14){
                 thetaSetpoint = 0; targetSpeed = 3; accelerationDistance = 0; decelerationDistance = 0;
                 slowMovedDistance = 0;
-                thetaDeccelerationDegree = 5; thetaTargetSpeed = 4;
-                if (OdoClass.thetaInDegreesReturn() >= -5 && breakout != 0){
+                thetaDeccelerationDegree = 4; thetaTargetSpeed = 4;
+                if (OdoClass.thetaInDegreesReturn() >= -9 && breakout != 0){
                     StopMotors();
                     action = 15; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
                     timepassed = getRuntime() + .4;
