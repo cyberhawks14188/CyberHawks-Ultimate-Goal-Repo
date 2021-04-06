@@ -139,7 +139,7 @@ public class BlueAuto extends LinearOpMode {
         startPointY = 0;
         stopperSetpoint = .3;
         wobbleSetpoint = 1.4;
-        shooterAngleSetpoint = .898;
+        shooterAngleSetpoint = .8945;
         shooterSetpoint = 1225;
         gripSetpoint = .1;
         //Depending on the ring stack we change our intake to diffrent heights to be able to reach the top of the stack
