@@ -139,7 +139,7 @@ public class BlueAuto extends LinearOpMode {
         startPointY = 0;
         stopperSetpoint = .3;
         wobbleSetpoint = 1.4;
-        shooterAngleSetpoint = .89;
+        shooterAngleSetpoint = .893;
         shooterSetpoint = 1225;
         gripSetpoint = .1;
         //Depending on the ring stack we change our intake to diffrent heights to be able to reach the top of the stack
@@ -157,7 +157,7 @@ public class BlueAuto extends LinearOpMode {
             //Moves to first power shot shooting position
             if(action == 1){
                 wobbleSetpoint = .6;
-                    xSetpoint = 51; ySetpoint = -38.45; thetaSetpoint = 0; targetSpeed = 90; accelerationDistance = .25; decelerationDistance = 8;
+                    xSetpoint = 51; ySetpoint = -38.2; thetaSetpoint = 0; targetSpeed = 90; accelerationDistance = .25; decelerationDistance = 8;
                       slowMoveSpeed = 3.85; slowMovedDistance = 1; thetaDeccelerationDegree = 2; thetaTargetSpeed = .6;
                 //Exits once the robot is a certain distance and angle away
                 if (DirectionClass.distanceFromReturn() <= .15 && breakout != 0 && (OdoClass.thetaInDegreesReturn() < .2 && OdoClass.thetaInDegreesReturn() > -.2)){
@@ -376,7 +376,7 @@ public class BlueAuto extends LinearOpMode {
                     xSetpoint = 34.25;
                 }
                 if(Detected == 1){
-                    xSetpoint = 36.25;
+                    xSetpoint = 37.85;
                 }
                  targetSpeed = 10; decelerationDistance = .25;  accelerationDistance = 0; intakeSetpoint = -1; stagerSetpoint = 1;
                 if (DirectionClass.distanceFromReturn() <= .4 && breakout != 0){
