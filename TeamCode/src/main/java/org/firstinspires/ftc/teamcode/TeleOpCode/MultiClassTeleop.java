@@ -136,7 +136,7 @@ public class MultiClassTeleop extends LinearOpMode {
                     }
                     if (shootMethod) {
                         //runs our method to shoot 1 ring even if the robot gets out of the target zone a little bit
-                        shootSubsystem(Ring1Color.red, Ring2Color.red, Ring3Color.red, 24, 3);
+                        shootSubsystem(Ring1Color.red, Ring2Color.red, Ring3Color.red, 22.5, 3);
                     } else {
                         //code to get us to our target position
                         Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .4, 3, 3, 0, .3, 1);
@@ -164,7 +164,7 @@ public class MultiClassTeleop extends LinearOpMode {
                     powershotOnlyOnce = true;
                 }
                 //runs the shooter to always be running so we keep constant speed
-                ShooterClass.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1300, .97);
+                ShooterClass.ShooterControlAuto(robot.SOT_M.getCurrentPosition(), getRuntime(), robot.SOT_PT.getVoltage(), 1300, .99);
                 //holds wobble goal position so the arm holds a wobble goal if we have one
                 WobbleArmClass.WobbleControl(gamepad1.left_trigger, robot.WB_PT.getVoltage());
                 //sets drive motors if we are in the powershot subsytem because we control the robot differently than TeleOp
