@@ -107,7 +107,7 @@ public class MultiClassTeleop extends LinearOpMode {
                     startPointX = OdoClass.odoXReturn();startPointY = OdoClass.odoYReturn();
                     shootMethod = false;
                     powershotShootOnce = true;
-                    powershotPositionY = initialPositionY + 8.5; powershotPositionX = initialPositionX;//sets endpoints and the line to follow
+                    powershotPositionY = initialPositionY + 10; powershotPositionX = initialPositionX;//sets endpoints and the line to follow
                     breakOut = false;//makes sure that our distance from variable has time to calculate before entering the shooting method
                 }
                 if (powershotMovement == 1) {//our 1st powershot sub section
@@ -123,7 +123,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         shootSubsystem(Ring1Color.red, Ring2Color.red, Ring3Color.red, 15.5, 2);
                     } else {
                         //code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .3, 3, 3, 0, .3, 1);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .4, 3, 3, 0, .3, 1);
                         RingClass.RingSystemAuto(1, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 2) {
@@ -136,10 +136,10 @@ public class MultiClassTeleop extends LinearOpMode {
                     }
                     if (shootMethod) {
                         //runs our method to shoot 1 ring even if the robot gets out of the target zone a little bit
-                        shootSubsystem(Ring1Color.red, Ring2Color.red, Ring3Color.red, 22.5, 3);
+                        shootSubsystem(Ring1Color.red, Ring2Color.red, Ring3Color.red, 24, 3);
                     } else {
                         //code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .3, 3, 3, 0, .3, 1);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .4, 3, 3, 0, .3, 1);
                         RingClass.RingSystemAuto(0, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 3) {
@@ -155,7 +155,7 @@ public class MultiClassTeleop extends LinearOpMode {
                         shootSubsystem(Ring1Color.red, Ring2Color.red, Ring3Color.red, 12, 4);
                     } else {
                         //code to get us to our target position
-                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .3, 3, 3, 0, .3, 1);
+                        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .4, 3, 3, 0, .3, 1);
                         RingClass.RingSystemAuto(1, Ring1Color.red, Ring2Color.red, Ring3Color.red);//makes sure we don't shoot the ring when we don't want to
                     }
                 } else if (powershotMovement == 4) {
@@ -264,7 +264,7 @@ public class MultiClassTeleop extends LinearOpMode {
     }
     //declares our shootings subsystem for our powershot method
     public void shootSubsystem (double color1, double color2, double color3, double nextypos, double nextmove){
-        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .3, 3, 3, 0, .3, 1);//holds position to ensure accuracy when shooting
+        Movement(powershotPositionX, powershotPositionY, thetaInitial, 7.5, .4, 3, 3, 0, .3, 1);//holds position to ensure accuracy when shooting
         if (powershotShootOnce) {//set the current time when we start the shooting process
             timerStart = getRuntime();
             powershotShootOnce = false;
