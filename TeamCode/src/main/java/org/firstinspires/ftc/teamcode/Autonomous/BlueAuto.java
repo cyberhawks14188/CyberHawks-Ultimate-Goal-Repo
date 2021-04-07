@@ -121,7 +121,7 @@ public class BlueAuto extends LinearOpMode {
                 }
             }
             stopperSetpoint = .3;
-            shooterAngleSetpoint = 1.63;
+            shooterAngleSetpoint = 1.635;
             intakeServoSetpoint = .63;
             intakeServoSetpoint = .3;
             Stager.RingSystemAutonomous(intakeSetpoint, stopperSetpoint, stagerSetpoint, intakeServoSetpoint);
@@ -234,7 +234,7 @@ public class BlueAuto extends LinearOpMode {
             else if(action == 7) {
                 wobbleSetpoint = 1.8;
                 shooterSetpoint = 1800;
-                shooterAngleSetpoint = 1.14;
+                shooterAngleSetpoint = 1.125;
                 if(Detected == 0){
                     xSetpoint = 62; ySetpoint = 25;  accelerationDistance = 1; decelerationDistance = 4; targetSpeed = 70;
                 }
@@ -363,7 +363,7 @@ public class BlueAuto extends LinearOpMode {
                 slowMoveSpeed = .5; slowMovedDistance = 1.5;
                   thetaDeccelerationDegree = 5; thetaTargetSpeed = .3;
                 wobbleSetpoint = .6;
-                xSetpoint = 32.5; ySetpoint = -4.25; thetaSetpoint = 10; targetSpeed = 20; accelerationDistance = 1; decelerationDistance = 1;
+                xSetpoint = 32.5; ySetpoint = -5.25; thetaSetpoint = 10; targetSpeed = 20; accelerationDistance = 1; decelerationDistance = 1;
                 if (DirectionClass.distanceFromReturn() <= .35 && breakout != 0){
                     StopMotors();
                     action = 16; startPointX = OdoClass.odoXReturn(); startPointY = OdoClass.odoYReturn(); breakout = 0;
@@ -376,7 +376,7 @@ public class BlueAuto extends LinearOpMode {
             //Moves so the intake is above the stack
             else if(action == 16){
                 if(Detected == 2){
-                    xSetpoint = 34.25;
+                    xSetpoint = 33.9;
                 }
                 if(Detected == 1){
                     xSetpoint = 37.85;
