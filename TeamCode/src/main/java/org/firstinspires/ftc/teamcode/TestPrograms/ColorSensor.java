@@ -8,13 +8,13 @@ import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 import org.firstinspires.ftc.teamcode.ControlHub.JustMotorRobotHardware;
 
-@TeleOp
+//@TeleOp
 public class ColorSensor extends LinearOpMode {
     JustMotorRobotHardware robot = new JustMotorRobotHardware();
 
     public void runOpMode() {
         robot.init(hardwareMap);
-        final float[] hsvValues = new float[3];
+      /*  final float[] hsvValues = new float[3];
         if (robot.ColorSensor1 instanceof SwitchableLight) {
             ((SwitchableLight)robot.ColorSensor1).enableLight(true);
         }
@@ -28,6 +28,6 @@ public class ColorSensor extends LinearOpMode {
                     .addData("Green", "%.3f", colors.green)
                     .addData("Blue", "%.3f", colors.blue);
             telemetry.update();
-        }
+        }*/
     }
 }

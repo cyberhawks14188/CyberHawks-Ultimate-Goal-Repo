@@ -20,7 +20,7 @@ public class JustMotorRobotHardware {
     public DcMotor Motor2;
     public DcMotor Motor3;
     public DcMotor Motor4;
-    public NormalizedColorSensor ColorSensor1;
+  //  public NormalizedColorSensor ColorSensor1;
 
 
     //Create Hardware map
@@ -34,7 +34,7 @@ public class JustMotorRobotHardware {
         Motor2 = JustmotorhardwareMap.get(DcMotor.class, "Motor2");
         Motor3 = JustmotorhardwareMap.get(DcMotor.class, "Motor3");
         Motor4 = JustmotorhardwareMap.get(DcMotor.class, "Motor4");
-        ColorSensor1 = JustmotorhardwareMap.get(NormalizedColorSensor.class, "ColorSensor1");
+       // ColorSensor1 = JustmotorhardwareMap.get(NormalizedColorSensor.class, "ColorSensor1");
         NormalizedColorSensor colorSensor;
 
 
