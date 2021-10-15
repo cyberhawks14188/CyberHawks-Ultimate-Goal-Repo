@@ -8,8 +8,8 @@ public class ComplexBallDrive extends LinearOpMode {
 
     BallDriveHardware robot = new BallDriveHardware();
 
-    static double robotA = 8;
-    static double robotB = 8;
+    static double robotA = -13;
+    static double robotB = 6.5;
 
     static double robotTurningMax = Math.max(robotA,robotB);
     static double robotTurningX = robotA/robotTurningMax;

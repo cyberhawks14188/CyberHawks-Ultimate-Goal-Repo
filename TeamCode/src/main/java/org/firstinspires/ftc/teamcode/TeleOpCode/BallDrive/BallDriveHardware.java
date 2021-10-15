@@ -51,6 +51,7 @@ public class BallDriveHardware {
         //Zero power Behavor
         //LF_M.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //or FLOAT
 
+        RB_X_M.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Define and initialize ALL installed servos.
         //servo.setPosition(0);

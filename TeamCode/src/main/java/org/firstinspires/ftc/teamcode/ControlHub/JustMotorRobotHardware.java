@@ -20,6 +20,9 @@ public class JustMotorRobotHardware {
     public DcMotor Motor2;
     public DcMotor Motor3;
     public DcMotor Motor4;
+    public CRServo CRServo1;
+    public CRServo CRServo2;
+    public AnalogInput PivotPT;
   //  public NormalizedColorSensor ColorSensor1;
 
 
@@ -34,6 +37,9 @@ public class JustMotorRobotHardware {
         Motor2 = JustmotorhardwareMap.get(DcMotor.class, "Motor2");
         Motor3 = JustmotorhardwareMap.get(DcMotor.class, "Motor3");
         Motor4 = JustmotorhardwareMap.get(DcMotor.class, "Motor4");
+        CRServo1 = JustmotorhardwareMap.get(CRServo.class, "CRServo1");
+        CRServo2 = JustmotorhardwareMap.get(CRServo.class, "CRServo2");
+        PivotPT = JustmotorhardwareMap.get(AnalogInput.class, "PivotPT");
        // ColorSensor1 = JustmotorhardwareMap.get(NormalizedColorSensor.class, "ColorSensor1");
         NormalizedColorSensor colorSensor;
 
@@ -53,10 +59,10 @@ public class JustMotorRobotHardware {
         Motor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         Motor3.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         Motor4.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        Motor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        Motor4.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        Motor3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        Motor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        Motor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Motor4.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Motor3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Motor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
 

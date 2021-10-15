@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOpCode.SeperateClasses;
 
+import org.firstinspires.ftc.teamcode.RobotHardware;
+
 public class ShooterSystem {
     //Sets varibles to use in the method
     boolean shooterControlBoolean;
@@ -58,6 +60,67 @@ public class ShooterSystem {
                 shooterMotorCorrection = 0;//we set both of these variables to ensure that neither one has power
             }
         }
+
+        //Shooter Angle PID Loop follow the setpoint set above
+        SOTAngleError = SOTAngleSet - sotanglecurrent;
+        SOTAnglePower = ((SOTAngleError * SOTAnglePropotionalMultiplier) + ((SOTAngleError - SOTAngleLastError)*SOTAngleDerivitveMultiplier));
+        SOTAngleLastError = SOTAngleError;
+        if(Math.abs(SOTAngleError) < .05){
+            SOTAnglePower = 0;
+        }else{
+            if(Math.abs(SOTAnglePower) < .1){
+                if(SOTAnglePower < 0) {
+                    SOTAnglePower = -.1;
+                }else if(SOTAnglePower > 0){
+                    SOTAnglePower = .1;
+                }
+            }
+        }
+
+
+
+
+    }
+    public void shooterControlFULL(boolean leftbumper, double shootermotorcurrent, double runtime, double sotanglecurrent, double intakepower){
+        //Flywheel speed setpoint control. We use our custom one button on/off system to use the left bumper to set the shooter speed.
+        if (leftbumper && !shooterControlBoolean) {
+            if (shooterFSM < 2){
+                shooterFSM = shooterFSM + 1;
+            }else{
+                shooterFSM = 0;
+            }
+            shooterControlBoolean = true;
+        } else if (!leftbumper) {
+            shooterControlBoolean = false;
+        }
+        if(shooterFSM == 0){
+            shooterMotorSetpoint = 0;
+            shooterMotorCorrection = 0;//we set both of these variables to ensure that neither one has power
+        }else if(shooterFSM == 1){//Top Goal state
+            shooterMotorSetpoint = 25000;//Shooter flywheel set point is 1900 encoder ticks per second
+            timePassed = runtime - previousTime;
+            previousTime = runtime;
+            shooterMotorVelocity = Math.abs(shootermotorcurrent - previousShooterMotorEncoder) / timePassed;
+            previousShooterMotorEncoder = shootermotorcurrent;
+            shooterMotorError = shooterMotorSetpoint - shooterMotorVelocity;
+            shooterMotorCorrection = shooterMotorError * shooterMotorProportionalMultiplier;
+            SOTAngleSet = .6;
+        }else if (shooterFSM == 2){//Powershot state
+            if(intakepower == 0) {
+                shooterMotorSetpoint = 1300;//Shooter flywheel set point is 1900 encoder ticks per second
+                timePassed = runtime - previousTime;
+                previousTime = runtime;
+                shooterMotorVelocity = Math.abs(shootermotorcurrent - previousShooterMotorEncoder) / timePassed;
+                previousShooterMotorEncoder = shootermotorcurrent;
+                shooterMotorError = shooterMotorSetpoint - shooterMotorVelocity;
+                shooterMotorCorrection = shooterMotorError * shooterMotorProportionalMultiplier;
+                SOTAngleSet = .97;
+            }else{
+                shooterMotorSetpoint = 0;
+                shooterMotorCorrection = 0;//we set both of these variables to ensure that neither one has power
+            }
+        }
+
         //Shooter Angle PID Loop follow the setpoint set above
         SOTAngleError = SOTAngleSet - sotanglecurrent;
         SOTAnglePower = ((SOTAngleError * SOTAnglePropotionalMultiplier) + ((SOTAngleError - SOTAngleLastError)*SOTAngleDerivitveMultiplier));
